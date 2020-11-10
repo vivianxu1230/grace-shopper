@@ -1,5 +1,6 @@
 const User = require('./user')
 const Product = require('./product')
+
 // const sequelize= require('sequelize')
 
 /**
@@ -11,6 +12,7 @@ const Product = require('./product')
 // const Order= sequelize.define('order')
 Product.belongsToMany(User, {through: 'Order'})
 User.belongsToMany(Product, {through: 'Order'})
+
 // User.belongsToMany(Order)
 // Order.belongsTo(User)
 
