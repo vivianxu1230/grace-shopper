@@ -13,7 +13,7 @@ export const allProducts = (products) => ({
 export const fetchProducts = () => {
     return async (dispatch) => {
         try {
-            const { data } = await.get('/api/products');
+            const { data } = await axios.get('/api/products');
             dispatch(allProducts(data))
         } catch (error) {
             console.log(error)
@@ -22,6 +22,7 @@ export const fetchProducts = () => {
 }
 
 // Initial State 
+const initialState = []
 
 const productsReducer = (state = initialState, action) => {
     switch (action.type){
@@ -32,3 +33,5 @@ const productsReducer = (state = initialState, action) => {
         return state
     }
 }
+
+export default productsReducer
