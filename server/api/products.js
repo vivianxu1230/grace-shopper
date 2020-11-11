@@ -13,10 +13,10 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:productId', async (req, res, next) => {
   try {
-    const product = await Product.findOne({
+    const product = await Product.findAll({
       where: {
-        id: req.params.productId
-      }
+        id: req.params.productId,
+      },
     })
     res.json(product)
   } catch (error) {
