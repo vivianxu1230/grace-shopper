@@ -1,19 +1,22 @@
 import React from 'react'
-import {connect, useStore} from 'react-redux'
+import {connect} from 'react-redux'
+import {getUsersThunk} from '../store'
 
-export class adminUsers extends React.Component {
+class AdminUsers extends React.Component {
+  componentDidMount() {
+    this.props.getUsers()
+  }
   render() {
     return (
       <div>
         <h1>All Users</h1>
-        {users.map(user => {
+        {this.props.users.map(user => {
           return (
             <div key={user.id}>
               <h2>
                 {user.firstName} {user.lastName}
               </h2>
               <h2>{user.email}</h2>
-              {/* <h2>{user.orders}</h2> */}
             </div>
           )
         })}
@@ -21,3 +24,17 @@ export class adminUsers extends React.Component {
     )
   }
 }
+
+const mapState = reduxState => {
+  return {
+    users: reduxState.adminUsers
+  }
+}
+
+const mapDispatch = dispatch => {
+  return {
+    getUsers: () => dispatch(getUsersThunk())
+  }
+}
+
+export default connect(mapState, mapDispatch)(AdminUsers)
