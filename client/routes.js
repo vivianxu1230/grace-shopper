@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 
+
+
 import {
   Login,
   Signup,
@@ -11,8 +13,10 @@ import {
   Home,
   adminView,
   AdminUsers,
-  adminProducts
+  adminProducts,
+  Cart
 } from './components'
+
 
 
 import {me} from './store'
@@ -32,14 +36,16 @@ class Routes extends Component {
       <Switch>
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={Home} />
+
         <Route path="/home" component={Home} />
         {/* <Route path="/login" component={Login} /> */}
-
+        <Route path="/cart" component={Cart} />
         <Route path="/signup" component={Signup} />
         <Route path="/adminView" component={adminView} />
         <Route path="/adminusers" component={AdminUsers} />
         <Route path="/adminproducts" component={adminProducts} />
         <Route exact path="/products" component={AllProducts} />
+
 
         {isLoggedIn && (
           <Switch>
@@ -57,19 +63,19 @@ class Routes extends Component {
 /**
  * CONTAINER
  */
-const mapState = state => {
+const mapState = (state) => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
   }
 }
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
     loadInitialData() {
       dispatch(me())
-    }
+    },
   }
 }
 
@@ -82,5 +88,5 @@ export default withRouter(connect(mapState, mapDispatch)(Routes))
  */
 Routes.propTypes = {
   loadInitialData: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
 }
