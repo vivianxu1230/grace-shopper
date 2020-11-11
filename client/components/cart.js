@@ -20,7 +20,8 @@ const Cart = ({checkout, userCart, isLoggedIn, loadCart}) => {
           <p>Price</p>
           <p>Qty</p>
         </div>
-        {userCart.map((product) => (
+        {console.log(userCart)}
+        {userCart.map(product => (
           <div className="cart-item" key={product.id}>
             <p>{product.name}</p>
             <p>${product.price}</p>
@@ -47,15 +48,15 @@ const Cart = ({checkout, userCart, isLoggedIn, loadCart}) => {
 /**
  * CONTAINER
  */
-const mapState = (state) => {
+const mapState = state => {
   // console.log(state.cart)
   return {
     isLoggedIn: !!state.user.id,
-    userCart: state.cart,
+    userCart: state.cart
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
@@ -65,7 +66,7 @@ const mapDispatch = (dispatch) => {
     },
     checkout() {
       dispatch(deleteThunk())
-    },
+    }
   }
 }
 
