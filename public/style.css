@@ -35,3 +35,29 @@ nav h1 {
   display: flex;
   flex-direction: column;
 }
+
+.cart-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+img:last-child {
+  height: 100px;
+  width: auto;
+}
+
+.cart-heading {
+  display: inline-flex;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.cart-heading p {
+  font-weight: bold;
+}

@@ -23,3 +23,18 @@ router.get('/:userId', async (req, res, next) => {
     next(err)
   }
 })
+
+router.put('/:userId', async (req, res, next) => {
+  try {
+    const user = await User.findOne({
+      where: {
+        id: req.params.userId,
+      },
+    })
+    user.update({
+      cart: [],
+    })
+  } catch (err) {
+    next(err)
+  }
+})
