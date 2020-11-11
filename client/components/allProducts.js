@@ -1,23 +1,24 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchProducts} from '../store/products'
 
-export class AllProducts extends React.Component {
+class AllProducts extends React.Component {
   componentDidMount() {
     this.props.fetchProducts()
   }
 
   render() {
-    const {products} = this.props
+    const { products } = this.props
+    console.log(products, ('this is products'))
     return (
       <div>
         {products.map(product => {
           return (
             <div className="products" key={product.id}>
-              <a className="link" href={`/products/${product.id}`}>
-                {' '}
+              < Link to={`/products/${product.id}`}>
                 {product.name}
-              </a>
+              </Link>
               <img
                 style={{width: '500px', height: '500px'}}
                 src={product.imageUrl}
@@ -32,7 +33,7 @@ export class AllProducts extends React.Component {
 }
 
 const mapState = state => ({
-  proudcts: state.products
+  products: state.products
 })
 
 const mapDispatch = dispatch => ({

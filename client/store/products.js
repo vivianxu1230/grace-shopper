@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 // Action Types
-const ALL_PRODUCTS = 'ALL_PRODUCTS'
+export const ALL_PRODUCTS = 'ALL_PRODUCTS'
 
 // Action Creators
 export const allProducts = products => ({
@@ -28,7 +28,6 @@ const productsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ALL_PRODUCTS:
       return action.products
-
     default:
       return state
   }
