@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchProducts} from '../store/products'
 
-export class allProducts extends React.Component {
+export class AllProducts extends React.Component {
   componentDidMount() {
     this.props.fetchProducts()
   }
@@ -39,4 +39,4 @@ const mapDispatch = dispatch => ({
   fetchProducts: () => dispatch(fetchProducts())
 })
 
-export default connect(mapState, mapDispatch)(allProducts)
+export default connect(mapState, mapDispatch)(AllProducts)
