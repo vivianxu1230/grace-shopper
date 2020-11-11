@@ -30,7 +30,8 @@ async function seed() {
       firstName: 'Patrick',
       lastName: 'Star',
       email: 'underARock@email.com',
-      password: '123'
+      password: '123',
+      cart: [1]
     }),
     User.create({
       firstName: 'Patti',
@@ -47,7 +48,8 @@ async function seed() {
       price: '10.00',
       category: 'tops',
       imageUrl:
-        'https://scene7.zumiez.com/is/image/zumiez/product_main_medium/Shaka-Wear-Max-Heavy-White-T-Shirt-_325409-front-US.jpg'
+        'https://scene7.zumiez.com/is/image/zumiez/product_main_medium/Shaka-Wear-Max-Heavy-White-T-Shirt-_325409-front-US.jpg',
+      onHold: true
     }),
     Product.create({
       name: 'Black shirt',
