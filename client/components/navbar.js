@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout, fetchCart} from '../store'
 
+
 const Navbar = ({userCart, loadCart, handleClick, isLoggedIn}) => {
   React.useEffect(() => {
     async function fetchData() {
@@ -55,6 +56,8 @@ const Navbar = ({userCart, loadCart, handleClick, isLoggedIn}) => {
     </div>
   )
 }
+
+
 
 /**
  * CONTAINER
