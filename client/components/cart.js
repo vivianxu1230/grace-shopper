@@ -22,18 +22,18 @@ const Cart = ({isLoggedIn}) => (
 /**
  * CONTAINER
  */
-const mapState = (state) => {
+const mapState = state => {
   console.log(state)
   return {
-    isLoggedIn: !!state.user.id,
+    isLoggedIn: !!state.user.id
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
-    },
+    }
   }
 }
 
