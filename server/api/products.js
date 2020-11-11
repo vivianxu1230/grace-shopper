@@ -18,7 +18,7 @@ router.get('/:productId', async (req, res, next) => {
         id: req.params.productId
       }
     })
-    res.json(product)
+     res.json(product)
   } catch (error) {
     next(error)
   }
