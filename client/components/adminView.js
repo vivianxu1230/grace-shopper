@@ -15,7 +15,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
-export const adminView = props => (
+export const adminView = () => (
   <div>
     <h1>ADMIN VIEW</h1>
     <Link to="./adminproducts">Products</Link>
