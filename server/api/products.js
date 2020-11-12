@@ -23,3 +23,22 @@ router.get('/:productId', async (req, res, next) => {
     next(error)
   }
 })
+
+router.post('/', (req, res, next) => {
+  Product.create(req.body)
+  .then(product => res.json(product))
+  .catch(next)
+})
+
+
+router.delete('/:productId', (req, res, next) => {
+  Product.destroy({
+    where: {
+      id: req.params.productId
+    }
+  })
+  .then(() => res.status(204).end())
+  .catch(next)
+ res.status(200);
+})
+

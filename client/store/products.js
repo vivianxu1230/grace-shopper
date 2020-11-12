@@ -2,11 +2,23 @@ import axios from 'axios'
 
 // Action Types
 export const ALL_PRODUCTS = 'ALL_PRODUCTS'
+export const ADD_PRODUCT = 'ADD_PRODUCT'
+export const DELETE_PRODUCT = 'DELETE_PRODUCT'
 
 // Action Creators
 export const allProducts = products => ({
   type: ALL_PRODUCTS,
   products
+})
+
+export const deleteProduct = productId => ({
+  type: 'DELETE_PRODUCT',
+  productId
+})
+
+export const addProduct = product  => ({
+  tpye: 'ADD_PRODUCT',
+  product
 })
 
 // Fetch Thunk Creator
@@ -21,6 +33,33 @@ export const fetchProducts = () => {
   }
 }
 
+// Delete Thunk Creator
+export const removeProduct = (id) => {
+  return async(dispatch) => {
+    try {
+      await axios.delete(`/api/products/${id}`);
+      dispatch(removeProduct(id));
+    }
+    catch (error){
+      console.log(error)
+    }
+
+  }
+};
+
+// Add Product
+export const postProduct = (product) => {
+  return async (dispatch) => {
+    try {
+      console.log(product)
+      const { data } = await axios.post('/api/products', product);
+      dispatch(postProduct(data))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+};
+
 // Initial State
 const initialState = []
 
@@ -28,9 +67,12 @@ const productsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ALL_PRODUCTS:
       return action.products
+    case DELETE_PRODUCT:
+      return state.filter((product) => product.id !== action.productId)
+    case ADD_PRODUCT:
+      return [...state, action.product]
     default:
-      return state
+      return state;
+    }
   }
-}
-
 export default productsReducer
