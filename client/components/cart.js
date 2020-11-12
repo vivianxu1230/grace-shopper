@@ -2,15 +2,27 @@ import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {logout, fetchCart, deleteThunk} from '../store'
 
-const Cart = ({checkout, userCart, isLoggedIn, loadCart}) => {
+import {logout, fetchCart, checkoutThunk, deleteThunk} from '../store'
+
+const Cart = ({
+  removeCartProduct,
+  checkout,
+  userCart,
+  isLoggedIn,
+  loadCart
+}) => {
   React.useEffect(() => {
     async function fetchData() {
       await loadCart()
     }
     fetchData()
   }, [])
+
+  async function clickHandler() {
+    await checkout()
+    window.location.replace('/checkoutconf')
+  }
 
   return (
     <div>
@@ -20,8 +32,18 @@ const Cart = ({checkout, userCart, isLoggedIn, loadCart}) => {
           <p>Price</p>
           <p>Qty</p>
         </div>
-        {userCart.map((product) => (
+        {userCart.map(product => (
           <div className="cart-item" key={product.id}>
+            <button
+              onClick={() => {
+                window.location.reload(true)
+                removeCartProduct()
+              }}
+              type="button"
+              className="delete-checkout"
+            >
+              x
+            </button>
             <p>{product.name}</p>
             <p>${product.price}</p>
             <p>{product.quantity}</p>
@@ -31,7 +53,7 @@ const Cart = ({checkout, userCart, isLoggedIn, loadCart}) => {
       </div>
       {isLoggedIn ? (
         <div>
-          <button type="button" onClick={() => checkout()}>
+          <button type="button" onClick={() => clickHandler()}>
             Checkout
           </button>
         </div>
@@ -47,15 +69,15 @@ const Cart = ({checkout, userCart, isLoggedIn, loadCart}) => {
 /**
  * CONTAINER
  */
-const mapState = (state) => {
+const mapState = state => {
   // console.log(state.cart)
   return {
     isLoggedIn: !!state.user.id,
-    userCart: state.cart,
+    userCart: state.cart
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
@@ -64,8 +86,11 @@ const mapDispatch = (dispatch) => {
       dispatch(fetchCart())
     },
     checkout() {
-      dispatch(deleteThunk())
+      dispatch(checkoutThunk())
     },
+    removeCartProduct() {
+      dispatch(deleteThunk())
+    }
   }
 }
 

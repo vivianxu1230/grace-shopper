@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout, fetchCart} from '../store'
 
-
 const Navbar = ({userCart, loadCart, handleClick, isLoggedIn}) => {
   React.useEffect(() => {
     async function fetchData() {
@@ -32,7 +31,7 @@ const Navbar = ({userCart, loadCart, handleClick, isLoggedIn}) => {
             <Link to="/signup">Sign Up</Link>
           </div>
         )}
-        <Link to="/cart">
+        <Link className="cart-link" to="/cart">
           <svg className="cart-icon" transform=" scale(0.4)">
             <g>
               <circle transform="scale(0.2)" cx="170" cy="374" r="50" />
@@ -57,26 +56,24 @@ const Navbar = ({userCart, loadCart, handleClick, isLoggedIn}) => {
   )
 }
 
-
-
 /**
  * CONTAINER
  */
-const mapState = (state) => {
+const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    userCart: state.cart,
+    userCart: state.cart
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
     },
     loadCart() {
       dispatch(fetchCart())
-    },
+    }
   }
 }
 
@@ -87,5 +84,5 @@ export default connect(mapState, mapDispatch)(Navbar)
  */
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired
 }
