@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout, fetchCart} from '../store'
-import adminView from './adminView'
 
 const Navbar = ({userCart, loadCart, handleClick, isLoggedIn, isAdmin}) => {
   React.useEffect(() => {
