@@ -16,23 +16,25 @@ const Cart = db.define(
       type: Sequelize.DECIMAL(10, 2),
       defaultValue: 1.0
     }
-  },
-  {
-    hooks: {
-      beforeCreate(cart) {
-        cart.total = Product.findAll({
-          where: {
-            cartId: cart.id
-          }
-        })
-      }
-    }
   }
+  // {
+  //   hooks: {
+  //     beforeCreate(cart) {
+  //       cart.total = Product.findAll({
+  //         where: {
+  //           cartId: cart.id
+  //         }
+  //       })
+  //     }
+  //   }
+  // }
 )
 
-Product.belongsToMany(Order, {through: 'Cart'})
-Order.belongsToMany(Product, {through: 'Cart'})
+Product.belongsToMany(Order, {through: 'Cart', as: 'cartId'})
+Order.belongsToMany(Product, {through: 'Cart', as: 'cartId'})
 User.hasMany(Order)
+// Cart.hasMany(Product)
+User.hasOne(Cart)
 
 module.exports = {
   User,

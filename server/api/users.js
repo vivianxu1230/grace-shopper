@@ -16,7 +16,8 @@ router.get('/:userId', async (req, res, next) => {
     const user = await User.findOne({
       where: {
         id: req.params.userId
-      }
+      },
+      include: {all: true}
     })
     res.json(user)
   } catch (err) {

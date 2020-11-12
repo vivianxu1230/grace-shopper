@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Product, Order} = require('../server/db/models')
+const {User, Product, Order, Cart} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -157,7 +157,8 @@ async function seed() {
       price: '500.00',
       category: 'streetwear',
       imageUrl:
-        'https://news.artnet.com/app/news-upload/2015/11/lixenberg-e1447430235587.jpg'
+        'https://news.artnet.com/app/news-upload/2015/11/lixenberg-e1447430235587.jpg',
+      cartId: 1
     }),
     Product.create({
       name: 'Pink and Fluffy',
@@ -165,7 +166,8 @@ async function seed() {
       price: '1000.00',
       category: 'streetwear',
       imageUrl:
-        'https://media.gq.com/photos/58347f75c764ae804c6d1876/1:1/w_1024%2Cc_limit/cam-ron-lede.jpg'
+        'https://media.gq.com/photos/58347f75c764ae804c6d1876/1:1/w_1024%2Cc_limit/cam-ron-lede.jpg',
+      cartId: 1
     })
   ])
 
@@ -184,6 +186,18 @@ async function seed() {
     })
   ])
 
+  const carts = await Promise.all([
+    Cart.create({
+      id: 1,
+      total: 30.0,
+      userId: 1
+    }),
+    Cart.create({
+      id: 2,
+      total: 30.0,
+      userId: 2
+    })
+  ])
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
 }

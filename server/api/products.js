@@ -11,6 +11,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+//try and refactor with findbypk
 router.get('/:productId', async (req, res, next) => {
   try {
     const product = await Product.findAll({
@@ -18,7 +19,7 @@ router.get('/:productId', async (req, res, next) => {
         id: req.params.productId
       }
     })
-     res.json(product)
+    res.json(product)
   } catch (error) {
     next(error)
   }
