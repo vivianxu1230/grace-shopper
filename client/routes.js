@@ -12,7 +12,8 @@ import {
   adminView,
   AdminUsers,
   adminProducts,
-  Cart
+  Cart,
+  CheckoutPage
 } from './components'
 import {me} from './store'
 
@@ -29,9 +30,7 @@ class Routes extends Component {
 
     return (
       <Switch>
-        {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={Home} />
-
         <Route path="/home" component={Home} />
         {/* <Route path="/login" component={Login} /> */}
         <Route path="/cart" component={Cart} />
@@ -40,16 +39,16 @@ class Routes extends Component {
         <Route path="/adminusers" component={AdminUsers} />
         <Route path="/adminproducts" component={adminProducts} />
         <Route exact path="/products" component={AllProducts} />
-        <Route path = '/products/:id' component = {SingleProduct} />
+        <Route path="/products/:id" component={SingleProduct} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route path="/checkoutconf" component={CheckoutPage} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
-        
       </Switch>
     )
   }
@@ -58,19 +57,19 @@ class Routes extends Component {
 /**
  * CONTAINER
  */
-const mapState = (state) => {
+const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id,
+    isLoggedIn: !!state.user.id
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = dispatch => {
   return {
     loadInitialData() {
       dispatch(me())
-    },
+    }
   }
 }
 
@@ -83,5 +82,5 @@ export default withRouter(connect(mapState, mapDispatch)(Routes))
  */
 Routes.propTypes = {
   loadInitialData: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired
 }

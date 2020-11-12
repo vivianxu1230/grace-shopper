@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+
 import {logout, fetchCart, deleteThunk} from '../store'
 
 const Cart = ({checkout, userCart, isLoggedIn, loadCart}) => {
@@ -11,6 +12,11 @@ const Cart = ({checkout, userCart, isLoggedIn, loadCart}) => {
     }
     fetchData()
   }, [])
+
+  async function clickHandler() {
+    await checkout()
+    window.location.replace('/checkoutconf')
+  }
 
   return (
     <div>
@@ -32,7 +38,7 @@ const Cart = ({checkout, userCart, isLoggedIn, loadCart}) => {
       </div>
       {isLoggedIn ? (
         <div>
-          <button type="button" onClick={() => checkout()}>
+          <button type="button" onClick={() => clickHandler()}>
             Checkout
           </button>
         </div>

@@ -47,7 +47,7 @@ nav h1 {
   justify-content: space-evenly;
 }
 
-img:last-child {
+.cart-item img:last-child {
   height: 100px;
   width: auto;
 }
@@ -60,4 +60,12 @@ img:last-child {
 
 .cart-heading p {
   font-weight: bold;
+}
+
+.cart-link {
+  display: inline-flex;
+  height: 80px;
+  width: 150px;
+  margin-left: 20px;
+  margin-top: 20px;
 }
