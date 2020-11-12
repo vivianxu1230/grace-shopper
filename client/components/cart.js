@@ -32,7 +32,6 @@ const Cart = ({
           <p>Price</p>
           <p>Qty</p>
         </div>
-        {console.log(userCart)}
         {userCart.map(product => (
           <div className="cart-item" key={product.id}>
             <button
