@@ -16,4 +16,3 @@ export {default as AllProducts} from './allProducts'
 export {default as CheckoutPage} from './checkoutpage'
 export {default as AdminProducts} from './adminProducts'
 export {default as NewProduct} from './newProduct'
-
