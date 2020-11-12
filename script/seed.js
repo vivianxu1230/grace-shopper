@@ -24,7 +24,8 @@ async function seed() {
       firstName: 'Nayvadius',
       lastName: 'Wilburn',
       email: 'realHitterz@email.com',
-      password: '123'
+      password: '123',
+      isAdmin: true
     }),
     User.create({
       firstName: 'Patrick',

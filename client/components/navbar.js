@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout, fetchCart} from '../store'
+import adminView from './adminView'
 
-const Navbar = ({userCart, loadCart, handleClick, isLoggedIn}) => {
+const Navbar = ({userCart, loadCart, handleClick, isLoggedIn, isAdmin}) => {
   React.useEffect(() => {
     async function fetchData() {
       await loadCart()
@@ -22,6 +23,7 @@ const Navbar = ({userCart, loadCart, handleClick, isLoggedIn}) => {
             <a href="#" onClick={handleClick}>
               Logout
             </a>
+            {isAdmin ? <Link to="/adminview">Admin View</Link> : <></>}
           </div>
         ) : (
           <div>
@@ -62,7 +64,8 @@ const Navbar = ({userCart, loadCart, handleClick, isLoggedIn}) => {
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    userCart: state.cart
+    userCart: state.cart,
+    isAdmin: !!state.user.isAdmin
   }
 }
 
