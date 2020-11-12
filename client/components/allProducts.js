@@ -10,7 +10,7 @@ class AllProducts extends React.Component {
 
   render() {
     const { products } = this.props
-    console.log(products, ('this is products'))
+    
     return (
       <div>
         {products.map(product => {

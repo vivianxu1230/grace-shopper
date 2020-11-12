@@ -5,12 +5,12 @@ import {Link} from 'react-router-dom'
 import {logout, fetchCart, deleteThunk} from '../store'
 
 const Cart = ({checkout, userCart, isLoggedIn, loadCart}) => {
-  // React.useEffect(() => {
-  //   async function fetchData() {
-  //     await loadCart()
-  //   }
-  //   fetchData()
-  // }, [])
+  React.useEffect(() => {
+    async function fetchData() {
+      await loadCart()
+    }
+    fetchData()
+  }, [])
 
   return (
     <div>

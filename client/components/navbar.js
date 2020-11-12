@@ -46,7 +46,7 @@ const Navbar = ({userCart, loadCart, handleClick, isLoggedIn}) => {
               />
               {/* {REPLACE TEXT 0 with data} */}
               <text transform="translate(40, 40), scale(1.5)" fill="white">
-                {userCart.length}
+                {userCart.length || 0}
               </text>
             </g>
           </svg>
