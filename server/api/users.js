@@ -15,8 +15,8 @@ router.get('/:userId', async (req, res, next) => {
   try {
     const user = await User.findOne({
       where: {
-        id: req.params.userId,
-      },
+        id: req.params.userId
+      }
     })
     res.json(user)
   } catch (err) {
@@ -28,11 +28,26 @@ router.put('/:userId', async (req, res, next) => {
   try {
     const user = await User.findOne({
       where: {
-        id: req.params.userId,
-      },
+        id: req.params.userId
+      }
     })
     user.update({
-      cart: [],
+      cart: []
+    })
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.patch('/:userId', async (req, res, next) => {
+  try {
+    const user = await User.findOne({
+      where: {
+        id: req.params.userId
+      }
+    })
+    user.update({
+      cart: req.body
     })
   } catch (err) {
     next(err)

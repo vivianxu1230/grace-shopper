@@ -3,9 +3,15 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
-import {logout, fetchCart, deleteThunk} from '../store'
+import {logout, fetchCart, checkoutThunk, deleteThunk} from '../store'
 
-const Cart = ({checkout, userCart, isLoggedIn, loadCart}) => {
+const Cart = ({
+  removeCartProduct,
+  checkout,
+  userCart,
+  isLoggedIn,
+  loadCart
+}) => {
   React.useEffect(() => {
     async function fetchData() {
       await loadCart()
@@ -29,6 +35,16 @@ const Cart = ({checkout, userCart, isLoggedIn, loadCart}) => {
         {console.log(userCart)}
         {userCart.map(product => (
           <div className="cart-item" key={product.id}>
+            <button
+              onClick={() => {
+                window.location.reload(true)
+                removeCartProduct()
+              }}
+              type="button"
+              className="delete-checkout"
+            >
+              x
+            </button>
             <p>{product.name}</p>
             <p>${product.price}</p>
             <p>{product.quantity}</p>
@@ -71,6 +87,9 @@ const mapDispatch = dispatch => {
       dispatch(fetchCart())
     },
     checkout() {
+      dispatch(checkoutThunk())
+    },
+    removeCartProduct() {
       dispatch(deleteThunk())
     }
   }
