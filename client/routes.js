@@ -11,7 +11,7 @@ import {
   Home,
   adminView,
   AdminUsers,
-  adminProducts,
+  AdminProducts,
   Cart,
   CheckoutPage
 } from './components'
@@ -34,13 +34,14 @@ class Routes extends Component {
         <Route path="/home" component={Home} />
         <Route path="/cart" component={Cart} />
         <Route path="/signup" component={Signup} />
+
         <Route exact path="/products" component={AllProducts} />
         <Route path="/products/:id" component={SingleProduct} />
         {isAdmin && (
           <Switch>
             <Route path="/adminview" component={adminView} />
             <Route path="/adminusers" component={AdminUsers} />
-            <Route path="/adminproducts" component={adminProducts} />
+            <Route path="/adminproducts" component={AdminProducts} />
           </Switch>
         )}
         {isLoggedIn && (
