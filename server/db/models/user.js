@@ -5,11 +5,17 @@ const db = require('../db')
 const User = db.define('user', {
   firstName: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   lastName: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   email: {
     type: Sequelize.STRING,
@@ -42,11 +48,8 @@ const User = db.define('user', {
     type: Sequelize.BOOLEAN
   },
   isAdmin: {
-    type: Sequelize.BOOLEAN
-  },
-  cart: {
-    type: Sequelize.ARRAY(Sequelize.INTEGER),
-    defaultValue: []
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   }
 })
 
