@@ -4,18 +4,29 @@ const db = require('../db')
 const Product = db.define('product', {
   name: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   description: {
     type: Sequelize.TEXT,
     allowNull: false
   },
   price: {
-    type: Sequelize.DECIMAL(10, 2)
+    type: Sequelize.DECIMAL(10, 2),
+    validate: {
+      notEmpty: true,
+      min: 1.0
+    }
   },
   quantity: {
     type: Sequelize.INTEGER,
-    defaultValue: 1
+    defaultValue: 1,
+    validate: {
+      min: 0,
+      max: 1
+    }
   },
   onHold: {
     type: Sequelize.BOOLEAN,
@@ -23,7 +34,11 @@ const Product = db.define('product', {
   },
   category: {
     type: Sequelize.STRING,
-    allowNull: false
+    defaultValue: 'tops',
+    allowNull: false,
+    validate: {
+      isIn: [['tops', 'bottoms', 'rare', 'vintage', 'streetwear']]
+    }
   },
   imageUrl: {
     type: Sequelize.STRING,

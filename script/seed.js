@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Product} = require('../server/db/models')
+const {User, Product, Order} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -30,8 +30,7 @@ async function seed() {
       firstName: 'Patrick',
       lastName: 'Star',
       email: 'underARock@email.com',
-      password: '123',
-      cart: [1]
+      password: '123'
     }),
     User.create({
       firstName: 'Patti',
@@ -49,7 +48,8 @@ async function seed() {
       category: 'tops',
       imageUrl:
         'https://scene7.zumiez.com/is/image/zumiez/product_main_medium/Shaka-Wear-Max-Heavy-White-T-Shirt-_325409-front-US.jpg',
-      onHold: true
+      quantity: 0,
+      orderId: 1
     }),
     Product.create({
       name: 'Black shirt',
@@ -57,7 +57,9 @@ async function seed() {
       price: '20.00',
       category: 'tops',
       imageUrl:
-        'https://www.dhresource.com/0x0/f2/albu/g10/M00/6F/74/rBVaWV6-ZdKAA-iTAACRasUGiXw810.jpg/distressing-black-t-shirt-ripped-cuffs-short.jpg'
+        'https://www.dhresource.com/0x0/f2/albu/g10/M00/6F/74/rBVaWV6-ZdKAA-iTAACRasUGiXw810.jpg/distressing-black-t-shirt-ripped-cuffs-short.jpg',
+      quantity: 0,
+      orderId: 1
     }),
     Product.create({
       name: 'Naked Dress',
@@ -65,7 +67,9 @@ async function seed() {
       price: '1000.00',
       category: 'rare',
       imageUrl:
-        'https://usa-grlk5lagedl.stackpathdns.com/production/usa/images/1588020134914913-Cher-1974-BobMackie.jpg?w=1900&fit=crop&crop=faces&auto=%5B%22format%22%2C%20%22compress%22%5D&cs=srgb'
+        'https://usa-grlk5lagedl.stackpathdns.com/production/usa/images/1588020134914913-Cher-1974-BobMackie.jpg?w=1900&fit=crop&crop=faces&auto=%5B%22format%22%2C%20%22compress%22%5D&cs=srgb',
+      quantity: 0,
+      orderId: 2
     }),
     Product.create({
       name: 'Canary',
@@ -165,13 +169,25 @@ async function seed() {
     })
   ])
 
+  const orders = await Promise.all([
+    Order.create({
+      address: '1234 S Main St, NY, NY',
+      orderStatus: 'Shipped',
+      paymentInfo: '12345678910',
+      userId: 1
+    }),
+    Order.create({
+      address: '5678 N Main St, NO, LA',
+      orderStatus: 'Processing',
+      paymentInfo: '12345678910',
+      userId: 2
+    })
+  ])
+
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
 }
 
-// We've separated the `seed` function from the `runSeed` function.
-// This way we can isolate the error handling and exit trapping.
-// The `seed` function is concerned only with modifying the database.
 async function runSeed() {
   console.log('seeding...')
   try {
@@ -186,12 +202,8 @@ async function runSeed() {
   }
 }
 
-// Execute the `seed` function, IF we ran this module directly (`node seed`).
-// `Async` functions always return a promise, so we can use `catch` to handle
-// any errors that might occur inside of `seed`.
 if (module === require.main) {
   runSeed()
 }
 
-// we export the seed function for testing purposes (see `./seed.spec.js`)
 module.exports = seed
