@@ -29,14 +29,8 @@ const deleteCartProduct = productId => ({
  */
 export const fetchCart = () => async dispatch => {
   try {
-    const res = await axios.get('/auth/me')
-    const productIdArray = res.data.cart
-    let userCartArray = []
-    for (let i = 0; i < productIdArray.length; i++) {
-      const {data} = await axios.get(`/api/products/${productIdArray[i]}`)
-      userCartArray.push(data[0])
-    }
-    dispatch(getUserCart(userCartArray))
+    const {data} = await axios.get('/api/cart')
+    dispatch(getUserCart(data))
   } catch (err) {
     console.error(err)
   }

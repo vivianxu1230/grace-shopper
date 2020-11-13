@@ -1,13 +1,13 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Product, Order, Cart} = require('../server/db/models')
+const {User, Product, Order, OrderItem} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-  const users = await Promise.all([
+  await Promise.all([
     User.create({
       firstName: 'Jane',
       lastName: 'Doe',
@@ -40,7 +40,7 @@ async function seed() {
     })
   ])
 
-  const products = await Promise.all([
+  await Promise.all([
     Product.create({
       name: 'White shirt',
       description: 'Soo soft. 100% cotton.',
@@ -68,8 +68,7 @@ async function seed() {
       category: 'rare',
       imageUrl:
         'https://usa-grlk5lagedl.stackpathdns.com/production/usa/images/1588020134914913-Cher-1974-BobMackie.jpg?w=1900&fit=crop&crop=faces&auto=%5B%22format%22%2C%20%22compress%22%5D&cs=srgb',
-      quantity: 0,
-      orderId: 2
+      quantity: 1
     }),
     Product.create({
       name: 'Canary',
@@ -77,7 +76,9 @@ async function seed() {
       price: '1000.00',
       category: 'rare',
       imageUrl:
-        'https://usa-grlk5lagedl.stackpathdns.com/production/usa/images/1588022022414842-037fbca4-9584-4984-951a-b628cd243a49-getty-472217210.jpg?w=1900&fit=crop&crop=faces&auto=%5B%22format%22%2C%20%22compress%22%5D&cs=srgb'
+        'https://usa-grlk5lagedl.stackpathdns.com/production/usa/images/1588022022414842-037fbca4-9584-4984-951a-b628cd243a49-getty-472217210.jpg?w=1900&fit=crop&crop=faces&auto=%5B%22format%22%2C%20%22compress%22%5D&cs=srgb',
+      quantity: 1,
+      orderId: 2
     }),
     Product.create({
       name: 'Cat Suit',
@@ -85,7 +86,9 @@ async function seed() {
       price: '1000.00',
       category: 'rare',
       imageUrl:
-        'https://usa-grlk5lagedl.stackpathdns.com/production/usa/images/1588022291020743-2017-Bella-Hadid-Alexander-Wang.jpg?w=1900&fit=crop&crop=faces&auto=%5B%22format%22%2C%20%22compress%22%5D&cs=srgb'
+        'https://usa-grlk5lagedl.stackpathdns.com/production/usa/images/1588022291020743-2017-Bella-Hadid-Alexander-Wang.jpg?w=1900&fit=crop&crop=faces&auto=%5B%22format%22%2C%20%22compress%22%5D&cs=srgb',
+      quantity: 1,
+      orderId: 2
     }),
     Product.create({
       name: 'Red Suit',
@@ -157,8 +160,7 @@ async function seed() {
       price: '500.00',
       category: 'streetwear',
       imageUrl:
-        'https://news.artnet.com/app/news-upload/2015/11/lixenberg-e1447430235587.jpg',
-      cartId: 1
+        'https://news.artnet.com/app/news-upload/2015/11/lixenberg-e1447430235587.jpg'
     }),
     Product.create({
       name: 'Pink and Fluffy',
@@ -166,12 +168,11 @@ async function seed() {
       price: '1000.00',
       category: 'streetwear',
       imageUrl:
-        'https://media.gq.com/photos/58347f75c764ae804c6d1876/1:1/w_1024%2Cc_limit/cam-ron-lede.jpg',
-      cartId: 1
+        'https://media.gq.com/photos/58347f75c764ae804c6d1876/1:1/w_1024%2Cc_limit/cam-ron-lede.jpg'
     })
   ])
 
-  const orders = await Promise.all([
+  await Promise.all([
     Order.create({
       address: '1234 S Main St, NY, NY',
       orderStatus: 'Shipped',
@@ -180,25 +181,35 @@ async function seed() {
     }),
     Order.create({
       address: '5678 N Main St, NO, LA',
-      orderStatus: 'Processing',
+      orderStatus: 'Cart',
       paymentInfo: '12345678910',
       userId: 2
     })
   ])
 
-  const carts = await Promise.all([
-    Cart.create({
-      id: 1,
-      total: 30.0,
-      userId: 1
+  await Promise.all([
+    OrderItem.create({
+      orderId: 1,
+      productId: 1,
+      price: 10.0
     }),
-    Cart.create({
-      id: 2,
-      total: 30.0,
-      userId: 2
+    OrderItem.create({
+      orderId: 1,
+      productId: 2,
+      price: 20.0
+    }),
+    OrderItem.create({
+      orderId: 2,
+      productId: 4,
+      price: 1000.0
+    }),
+    OrderItem.create({
+      orderId: 2,
+      productId: 5,
+      price: 1000.0
     })
   ])
-  console.log(`seeded ${users.length} users`)
+
   console.log(`seeded successfully`)
 }
 
