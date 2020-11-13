@@ -37,7 +37,7 @@ const Product = db.define('product', {
     defaultValue: 'tops',
     allowNull: false,
     validate: {
-      isIn: [['tops', 'bottoms', 'rare', 'vintage', 'streetwear']]
+      isIn: [['tops', 'bottoms', 'rare', 'vintage', 'streetwear', 'shoes']]
     }
   },
   imageUrl: {

@@ -62,110 +62,119 @@ async function seed() {
       orderId: 1
     }),
     Product.create({
-      name: 'Naked Dress',
-      description: 'Leave just enough for the imagination.',
+      name: 'Fluid Twill Dress',
+      description:
+        'This silk twill dress with a micro-check print reminiscent of typical tie patterns is characterized by its austere allure and flowing silhouette with band collar.',
       price: '1000.00',
-      category: 'rare',
+      category: 'vintage',
       imageUrl:
-        'https://usa-grlk5lagedl.stackpathdns.com/production/usa/images/1588020134914913-Cher-1974-BobMackie.jpg?w=1900&fit=crop&crop=faces&auto=%5B%22format%22%2C%20%22compress%22%5D&cs=srgb',
+        'https://live.staticflickr.com/65535/48302062717_0b80b85e9e_b.jpg',
       quantity: 0,
       orderId: 2
     }),
     Product.create({
       name: 'Canary',
-      description: 'Give them a look worthy of a headliner',
+      description: 'Pink leather ballerina pointe-style shoes',
+      price: '1000.00',
+      category: 'shoes',
+      imageUrl:
+        'https://live.staticflickr.com/65535/49014186342_61220d9aa3_b.jpg'
+    }),
+    Product.create({
+      name: 'Guipure',
+      description:
+        'The dress is made of refined lace with hand-embroidered floral motifs and buttons that illuminate the garment.',
       price: '1000.00',
       category: 'rare',
       imageUrl:
-        'https://usa-grlk5lagedl.stackpathdns.com/production/usa/images/1588022022414842-037fbca4-9584-4984-951a-b628cd243a49-getty-472217210.jpg?w=1900&fit=crop&crop=faces&auto=%5B%22format%22%2C%20%22compress%22%5D&cs=srgb'
+        'https://live.staticflickr.com/4786/25918424607_d2377d33a3_b.jpg'
     }),
     Product.create({
-      name: 'Cat Suit',
-      description: 'Halle Berry has could never.',
-      price: '1000.00',
-      category: 'rare',
-      imageUrl:
-        'https://usa-grlk5lagedl.stackpathdns.com/production/usa/images/1588022291020743-2017-Bella-Hadid-Alexander-Wang.jpg?w=1900&fit=crop&crop=faces&auto=%5B%22format%22%2C%20%22compress%22%5D&cs=srgb'
-    }),
-    Product.create({
-      name: 'Red Suit',
+      name: 'White Body Suit',
       description: 'Make a statement head to toe.',
       price: '3000.00',
-      category: 'rare',
+      category: 'vintage',
       imageUrl:
-        'https://media.gq-magazine.co.uk/photos/5d13aac9b6fee9df40c9ff12/master/w_1280%2cc_limit/040-rami-malek-met-gala-menswear-040419-credit-getty-images.jpg'
+        'https://live.staticflickr.com/4245/34829438805_89a4de6165_b.jpg'
     }),
     Product.create({
-      name: 'Black Bomber',
+      name: 'Fringe Black Bootie',
       description: 'Stay warm and in fashion.',
-      price: '150.00',
-      category: 'vintage',
+      price: '500.00',
+      category: 'shoes',
       imageUrl:
-        'https://media.gq-magazine.co.uk/photos/5d138dcfb6fee9b6b1c9dd17/master/w_1280%2cc_limit/gettyimages-908911244.jpg'
+        'https://cdn.rickowens.eu/products/80056/large/RP20F2843LGFLWN_9999__1.jpg?1588690637'
     }),
     Product.create({
-      name: 'A Vibe',
-      description: 'Eccentric and fearless, make your fashion rebellious.',
+      name: 'Ganni',
+      description:
+        "Meet the epitome of party dresses. Boasting a flared design and whimsical rose print, this mini dress from GANNI will turn you into the prettiest one of any event. Now let's have some fun.",
       price: '2000.00',
-      category: 'rare',
-      imageUrl:
-        'https://dazedimg-dazedgroup.netdna-ssl.com/701/azure/dazed-prod/1180/4/1184488.jpg'
-    }),
-    Product.create({
-      name: 'Alien Green',
-      description: 'Be bold and green.',
-      price: '200.00',
       category: 'vintage',
       imageUrl:
-        'https://i.pinimg.com/originals/cf/5c/1f/cf5c1f4fa5ff1038933ac6d2dd783356.jpg'
+        'https://cdn-images.farfetch-contents.com/15/87/78/22/15877822_30100693_1000.jpg'
     }),
     Product.create({
-      name: 'Animal Print Gown',
-      description: 'Fun for the animal in you',
+      name: 'Strada',
+      description:
+        "Florals in spring may be overrated, but they'll always be adored. Made from breathable cotton, the ones on this shirt will make you look great no matter the occasion. It's just too good.",
+      price: '200.00',
+      category: 'tops',
+      imageUrl:
+        'https://cdn-images.farfetch-contents.com/15/41/01/91/15410191_30129490_1000.jpg'
+    }),
+    Product.create({
+      name: 'Hoodie With Band',
+      description: 'Black hoodie with reflective band.',
       price: '600.00',
-      category: 'vintage',
-      imageUrl:
-        'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/1982-raquel-welch-gettyimages-118283737-1556563271.jpg?crop=1xw:1xh;center,top&resize=768:*'
-    }),
-    Product.create({
-      name: 'Pink Tracksuit',
-      description: 'Soft and pink. What more can you ask for?',
-      price: '500.00',
       category: 'streetwear',
       imageUrl:
-        'https://video-images.vice.com/_uncategorized/1561754577715-GettyImages-112370037.jpeg?resize=975:*'
+        'https://www.givenchy.com/dw/image/v2/BBRT_PRD/on/demandware.static/-/Sites-Givenchy_master/default/dw4f24be96/images/BMJ09030AF001/BMJ09030AF001-02-01.jpg'
     }),
     Product.create({
-      name: 'Tommy Fit',
-      description: 'Throw it back.',
+      name: 'Extreme-Tex Rain Jacket',
+      description:
+        'A sleek, distinctive design characterizes this rain jacket born from the desire to combine cutting-edge textile technologies with eco-sustainable manufacturing methods.',
+      price: '500.00',
+      category: 'rare',
+      imageUrl:
+        'https://www.prada.com/content/dam/pradanux_products/S/SGB/SGB625/1XV1F0342/SGB625_1XV1_F0342_S_202_SLF.png/_jcr_content/renditions/cq5dam.web.white.1200.1500.webp'
+    }),
+    Product.create({
+      name: 'Light Bonded Bottoms',
+      description:
+        'Highly waterproof and breathable pants made of Komatsu Matere® fabric.',
       price: '200.00',
       category: 'streetwear',
       imageUrl:
-        'https://cultureposters.com/wp-content/uploads/2019/05/aliya.jpg'
+        'https://cdn.rickowens.eu/products/80447/large/RP20F2300QLX_09_40_-1.jpg?1588775617'
     }),
     Product.create({
-      name: 'Blue Supreme',
-      description: 'Take your look to the next level.',
-      price: '4000.00',
+      name: 'Performa',
+      description:
+        'Reinterpreting the classic Chelsea boot, these brushed leather booties are characterized by the rubber welt with an indented motif.',
+      price: '900.00',
+      category: 'shoes',
+      imageUrl:
+        'https://cdn.rickowens.eu/products/81425/large/RP20F2884LDE_90_-_1.jpg?1591352033'
+    }),
+    Product.create({
+      name: 'Sheepskin Coat',
+      description:
+        'This sheepskin coat is characterized by its striking vintage finish. A frog toggle closure decorates the front of the coat with distinctive shirt-style collar.',
+      price: '2000.00',
+      category: 'vintage',
+      imageUrl:
+        'https://www.prada.com/content/dam/pradanux_products/U/UPS/UPS418/889F0002/UPS418_889_F0002_SLF.png/_jcr_content/renditions/cq5dam.web.white.1200.1500.webp'
+    }),
+    Product.create({
+      name: 'Sable Dress',
+      description:
+        'Flowing lines moved by the sunray pleats on the skirt define the design of this light sablé dress. The garment with refined three-quarter sleeves and a waist belt in the same fabric has a vibrant floral print.',
+      price: '1000.00',
       category: 'rare',
       imageUrl:
-        'http://thesource.com/wp-content/uploads/2018/07/Lil-Kim-Crush-on-You-Blue.jpg'
-    }),
-    Product.create({
-      name: 'Coogi Sweater',
-      description: "Stay Coogi'd down to the socks.",
-      price: '500.00',
-      category: 'streetwear',
-      imageUrl:
-        'https://news.artnet.com/app/news-upload/2015/11/lixenberg-e1447430235587.jpg'
-    }),
-    Product.create({
-      name: 'Pink and Fluffy',
-      description: 'Not just anyone can pull this off.',
-      price: '1000.00',
-      category: 'streetwear',
-      imageUrl:
-        'https://media.gq.com/photos/58347f75c764ae804c6d1876/1:1/w_1024%2Cc_limit/cam-ron-lede.jpg'
+        'https://www.prada.com/content/dam/pradanux_products/P/P3C/P3C65H/1X5TF0002/P3C65H_1X5T_F0002_S_202_SLF.png/jcr:content/renditions/cq5dam.web.white.2400.3000.webp'
     })
   ])
 
