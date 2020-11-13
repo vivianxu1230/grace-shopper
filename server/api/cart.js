@@ -38,10 +38,24 @@ router.put('/checkout', async (req, res, next) => {
   }
 })
 
+//create order if order doesn't exist (price, item.id)
+//set order status to cart 
+
+
 router.put(`/add/:productId`, async (req, res, next) => {
   try {
-    const item = await Product.findByPk(req.params.productId)
-    OrderItem.create({productId: item.id, price: item.price})
+    const item = await Product.findOne({where: {
+      id:req.params.productId
+    }
+    })
+    const order = Order.findOrCreate({
+      where: {
+        userId: req.session.passport.user,
+        orderStatus: 'Cart'
+      }
+    })
+    
+    OrderItem.create({productId: item.id, price: item.price, orderId: order.id})
     res.sendStatus(204)
   } catch (err) {
     next(err)
