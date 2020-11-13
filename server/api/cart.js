@@ -31,20 +31,25 @@ router.put('/checkout', async (req, res, next) => {
       cart.products[i].quantity = 0
     }
     await cart.save()
+    res.sendStatus(204)
   } catch (err) {
     next(err)
   }
 })
 
-router.delete('/:id', async (req, res, next) => {
+router.put('/delete/:productId', async (req, res, next) => {
   try {
-    await Campus.destroy({
+    const orderItem = await OrderItem.findOne({
       where: {
-        id: req.params.id
+        productId: req.params.productId
       }
     })
+    console.log(orderItem)
+    await orderItem.update({productId: null})
+    await orderItem.update({orderId: null})
+
     res.sendStatus(204)
   } catch (err) {
-    console.log('Error!:', err)
+    next(err)
   }
 })

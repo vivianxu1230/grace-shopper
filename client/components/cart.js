@@ -4,12 +4,12 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
 import {logout, fetchCart, checkoutThunk, deleteThunk} from '../store'
-import {render} from 'enzyme'
 
 class Cart extends React.Component {
   constructor(props) {
     super(props)
     this.clickHandler = this.clickHandler.bind(this)
+    this.deleteHandler = this.deleteHandler.bind(this)
   }
   async componentDidMount() {
     await this.props.loadCart()
@@ -18,6 +18,10 @@ class Cart extends React.Component {
   async clickHandler() {
     await this.props.checkout()
     window.location.replace('/checkoutconf')
+  }
+
+  async deleteHandler(productId) {
+    await this.props.removeCartProduct(productId)
   }
 
   render() {
@@ -33,7 +37,9 @@ class Cart extends React.Component {
             this.props.userCart.products.map(product => (
               <div className="cart-item" key={product.id}>
                 <button
-                  onClick={() => {}}
+                  onClick={() => {
+                    this.deleteHandler(product.id)
+                  }}
                   type="button"
                   className="delete-checkout"
                 >
@@ -66,7 +72,7 @@ class Cart extends React.Component {
  * CONTAINER
  */
 const mapState = state => {
-  // console.log(state.cart)
+  console.log(state)
   return {
     isLoggedIn: !!state.user.id,
     userCart: state.cart
