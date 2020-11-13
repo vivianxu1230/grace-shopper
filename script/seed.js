@@ -78,7 +78,8 @@ async function seed() {
       description: 'Pink leather ballerina pointe-style shoes',
       price: '1000.00',
       category: 'shoes',
-      imageUrl:'https://live.staticflickr.com/65535/49014186342_61220d9aa3_b.jpg''https://usa-grlk5lagedl.stackpathdns.com/production/usa/images/1588022022414842-037fbca4-9584-4984-951a-b628cd243a49-getty-472217210.jpg?w=1900&fit=crop&crop=faces&auto=%5B%22format%22%2C%20%22compress%22%5D&cs=srgb',
+      imageUrl:
+        'https://live.staticflickr.com/65535/49014186342_61220d9aa3_b.jpg',
       quantity: 1,
       orderId: 2
     }),
@@ -89,10 +90,9 @@ async function seed() {
       price: '1000.00',
       category: 'rare',
       imageUrl:
-        'https://live.staticflickr.com/4786/25918424607_d2377d33a3_b.jpg'
+        'https://live.staticflickr.com/4786/25918424607_d2377d33a3_b.jpg',
       quantity: 1,
       orderId: 2
-
     }),
     Product.create({
       name: 'White Body Suit',
