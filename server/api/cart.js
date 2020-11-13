@@ -30,7 +30,32 @@ router.put('/checkout', async (req, res, next) => {
     for (let i = 0; i < cart.products.length; i++) {
       cart.products[i].quantity = 0
     }
+
     await cart.save()
+    res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+})
+
+//create order if order doesn't exist (price, item.id)
+//set order status to cart 
+
+
+router.put(`/add/:productId`, async (req, res, next) => {
+  try {
+    const item = await Product.findOne({where: {
+      id:req.params.productId
+    }
+    })
+    const order = Order.findOrCreate({
+      where: {
+        userId: req.session.passport.user,
+        orderStatus: 'Cart'
+      }
+    })
+    
+    OrderItem.create({productId: item.id, price: item.price, orderId: order.id})
     res.sendStatus(204)
   } catch (err) {
     next(err)
@@ -44,7 +69,7 @@ router.put('/delete/:productId', async (req, res, next) => {
         productId: req.params.productId
       }
     })
-    console.log(orderItem)
+
     await orderItem.update({productId: null})
     await orderItem.update({orderId: null})
 
