@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout, fetchCart} from '../store'
+import {AllProducts} from './allProducts'
 
 class Navbar extends React.Component {
   async componentDidMount() {
@@ -16,6 +17,7 @@ class Navbar extends React.Component {
           {this.props.isLoggedIn ? (
             <div>
               <Link to="/home">Home</Link>
+              <Link to="/products" component={AllProducts}>All Products</Link>
               <a href="#" onClick={this.props.handleClick}>
                 Logout
               </a>

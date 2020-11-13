@@ -22,7 +22,7 @@ class SingleProduct extends React.Component {
           style={{width: '500px', height: '500px'}}
           src={finalProduct.imageUrl}
         />
-        <h2>{finalProduct.description}</h2>
+        <p>{finalProduct.description}</p>
         <p>Price - {finalProduct.price}</p>
 
         <button
