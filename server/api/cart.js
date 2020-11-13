@@ -30,7 +30,18 @@ router.put('/checkout', async (req, res, next) => {
     for (let i = 0; i < cart.products.length; i++) {
       cart.products[i].quantity = 0
     }
+
     await cart.save()
+    res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.put(`/add/:productId`, async (req, res, next) => {
+  try {
+    const item = await Product.findByPk(req.params.productId)
+    OrderItem.create({productId: item.id, price: item.price})
     res.sendStatus(204)
   } catch (err) {
     next(err)
@@ -44,7 +55,7 @@ router.put('/delete/:productId', async (req, res, next) => {
         productId: req.params.productId
       }
     })
-    console.log(orderItem)
+
     await orderItem.update({productId: null})
     await orderItem.update({orderId: null})
 

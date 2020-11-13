@@ -1,11 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleProduct} from '../store/singleProduct'
+import {addItemThunk} from '../store/cart'
 
 class SingleProduct extends React.Component {
   componentDidMount() {
     this.props.fetchSingleProduct(this.props.match.params.id)
-    // this.props.addProductToCart(this.props.match.params.id)
   }
 
   render() {
@@ -28,7 +28,9 @@ class SingleProduct extends React.Component {
         <button
           type="submit"
           className="addToCart"
-          // onClick = {() => this.addProductToCart(product.id, 1)}
+          onClick={() => {
+            this.props.addItemThunk(finalProduct.id)
+          }}
         >
           Add To Cart
         </button>
@@ -45,8 +47,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchSingleProduct: id => dispatch(fetchSingleProduct(id))
-    // addProductToCart: (id, count) => dispatch(addProductToCart(id, count))
+    fetchSingleProduct: id => dispatch(fetchSingleProduct(id)),
+    addItemThunk: id => dispatch(addItemThunk(id))
   }
 }
 

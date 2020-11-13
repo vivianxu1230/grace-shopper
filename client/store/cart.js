@@ -5,12 +5,13 @@ import axios from 'axios'
  */
 const GET_USER_CART = 'GET_USER_CART'
 const CHECKOUT = 'CHECKOUT'
+const ADD_TO_CART = 'ADD_TO_CART'
 const DELETE_CART_PRODUCT = 'DELETE_CART_PRODUCT'
 
 /**
  * INITIAL STATE
  */
-const cart = []
+const cart = {}
 
 /**
  * ACTION CREATORS
@@ -19,9 +20,14 @@ const getUserCart = userCart => ({type: GET_USER_CART, userCart})
 
 const checkout = () => ({type: CHECKOUT})
 
-const deleteCartProduct = productId => ({
+const addToCart = product => ({
+  type: ADD_TO_CART,
+  product
+})
+
+const deleteCartProduct = product => ({
   type: DELETE_CART_PRODUCT,
-  productId
+  product
 })
 
 /**
@@ -38,17 +44,27 @@ export const fetchCart = () => async dispatch => {
 
 export const checkoutThunk = () => async dispatch => {
   try {
-    await axios.put('api/cart/checkout')
+    await axios.put('/api/cart/checkout')
     dispatch(checkout())
   } catch (err) {
     console.error(err)
   }
 }
 
-export const deleteThunk = productId => async dispatch => {
+export const addItemThunk = productId => async dispatch => {
+  try {
+    await axios.put(`/api/cart/add/${productId}`)
+    const {data} = await axios.get(`/api/products/${productId}`)
+    dispatch(addToCart(data[0]))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const deleteThunk = product => async dispatch => {
   try {
     await axios.put(`/api/cart/delete/4`)
-    dispatch(deleteCartProduct(productId))
+    dispatch(deleteCartProduct(product))
   } catch (err) {
     console.error(err)
   }
@@ -62,7 +78,9 @@ export default function(state = cart, action) {
     case GET_USER_CART:
       return action.userCart
     case CHECKOUT:
-      return []
+      return {}
+    case ADD_TO_CART:
+      return {...state, products: [...state.products, action.product]}
     case DELETE_CART_PRODUCT:
       return state.products.filter(product => product.id !== action.productId)
     default:
