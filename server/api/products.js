@@ -11,6 +11,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+//try and refactor with findbypk
 router.get('/:productId', async (req, res, next) => {
   try {
     const product = await Product.findAll({
@@ -18,8 +19,27 @@ router.get('/:productId', async (req, res, next) => {
         id: req.params.productId
       }
     })
-     res.json(product)
+    res.json(product)
   } catch (error) {
     next(error)
   }
 })
+
+router.post('/', (req, res, next) => {
+  Product.create(req.body)
+  .then(product => res.json(product))
+  .catch(next)
+})
+
+
+router.delete('/:productId', (req, res, next) => {
+  Product.destroy({
+    where: {
+      id: req.params.productId
+    }
+  })
+  .then(() => res.status(204).end())
+  .catch(next)
+ res.status(200);
+})
+

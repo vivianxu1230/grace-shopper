@@ -4,39 +4,25 @@ const User = require('./user')
 const Product = require('./product')
 const Order = require('./order')
 
-const Cart = db.define(
-  'Cart',
-  {
-    id: {
-      type: Sequelize.INTEGER,
-      primaryKey: true,
-      allowNull: false
-    },
-    total: {
-      type: Sequelize.DECIMAL(10, 2),
-      defaultValue: 1.0
-    }
-  },
-  {
-    hooks: {
-      beforeCreate(cart) {
-        cart.total = Product.findAll({
-          where: {
-            cartId: cart.id
-          }
-        })
-      }
+const OrderItem = db.define('orderItem', {
+  price: {
+    type: Sequelize.DECIMAL(10, 2),
+    allowNull: false,
+    validate: {
+      min: 1.0
     }
   }
-)
+})
 
-Product.belongsToMany(Order, {through: 'Cart'})
-Order.belongsToMany(Product, {through: 'Cart'})
+Product.belongsToMany(Order, {through: OrderItem})
+Order.belongsToMany(Product, {through: OrderItem})
+
 User.hasMany(Order)
+Order.belongsTo(User)
 
 module.exports = {
   User,
   Product,
   Order,
-  Cart
+  OrderItem
 }
