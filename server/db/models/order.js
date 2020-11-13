@@ -6,7 +6,7 @@ const Order = db.define('order', {
   orderStatus: {
     type: Sequelize.STRING,
     validate: {
-      isIn: [['Shipped', 'Processing', 'Received']]
+      isIn: [['Cart', 'Shipped', 'Processing', 'Received']]
     }
   },
   paymentInfo: {

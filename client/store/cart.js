@@ -29,14 +29,8 @@ const deleteCartProduct = productId => ({
  */
 export const fetchCart = () => async dispatch => {
   try {
-    const res = await axios.get('/auth/me')
-    const productIdArray = res.data.cart
-    let userCartArray = []
-    for (let i = 0; i < productIdArray.length; i++) {
-      const {data} = await axios.get(`/api/products/${productIdArray[i]}`)
-      userCartArray.push(data[0])
-    }
-    dispatch(getUserCart(userCartArray))
+    const {data} = await axios.get('/api/cart')
+    dispatch(getUserCart(data))
   } catch (err) {
     console.error(err)
   }
@@ -44,9 +38,7 @@ export const fetchCart = () => async dispatch => {
 
 export const checkoutThunk = () => async dispatch => {
   try {
-    const res = await axios.get('/auth/me')
-    const userId = res.data.id
-    await axios.put(`/api//users/${userId}`)
+    await axios.put('api/cart/checkout')
     dispatch(checkout())
   } catch (err) {
     console.error(err)
@@ -55,11 +47,7 @@ export const checkoutThunk = () => async dispatch => {
 
 export const deleteThunk = productId => async dispatch => {
   try {
-    const res = await axios.get('/auth/me')
-    const userCartArray = res.data.cart
-    const userId = res.data.id
-    const newCart = userCartArray.filter(product => product.id !== productId)
-    await axios.patch(`/api//users/${userId}`, newCart)
+    await axios.put(`/api/cart/delete/4`)
     dispatch(deleteCartProduct(productId))
   } catch (err) {
     console.error(err)
@@ -76,7 +64,7 @@ export default function(state = cart, action) {
     case CHECKOUT:
       return []
     case DELETE_CART_PRODUCT:
-      return [...state].filter(product => product.id !== action.productId)
+      return state.products.filter(product => product.id !== action.productId)
     default:
       return state
   }
