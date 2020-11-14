@@ -54,6 +54,9 @@ class Cart extends React.Component {
                   <img src={product.imageUrl} />
                 </div>
               ))}
+              <button type="button" onClick={() => this.clickHandler()}>
+                Checkout
+              </button>
             </div>
           </div>
         ) : (

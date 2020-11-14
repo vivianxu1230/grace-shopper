@@ -79,7 +79,7 @@ export default function(state = cart, action) {
     case GET_USER_CART:
       return action.userCart
     case CHECKOUT:
-      return {}
+      return state
     case ADD_TO_CART:
       return {...state, products: [...state.products, action.product]}
     case DELETE_CART_PRODUCT:
