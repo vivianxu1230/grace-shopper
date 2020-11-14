@@ -23,16 +23,20 @@ export class NewProduct extends React.Component {
   }
 
   async handleSubmit(event) {
-    event.preventDefault()
-    await this.props.createProduct(this.state)
-    await this.setState({
-      name: '',
-      description: '',
-      price: 0,
-      quantity: 1,
-      category: '',
-      imageUrl: ''
-    })
+    try {
+      event.preventDefault()
+      await this.props.createProduct(this.state)
+      await this.setState({
+        name: '',
+        description: '',
+        price: 0,
+        quantity: 1,
+        category: '',
+        imageUrl: ''
+      })
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   render() {
@@ -81,6 +85,7 @@ export class NewProduct extends React.Component {
           value={this.state.category}
           onChange={this.handleChange}
         >
+          <option>category</option>
           <option name="tops">tops</option>
           <option name="bottoms">bottoms</option>
           <option name="rare">rare</option>

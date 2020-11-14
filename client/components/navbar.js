@@ -7,7 +7,11 @@ import {AllProducts} from './allProducts'
 
 class Navbar extends React.Component {
   async componentDidMount() {
-    await this.props.loadCart()
+    try {
+      await this.props.loadCart()
+    } catch (err) {
+      console.log(err)
+    }
   }
   render() {
     return (
