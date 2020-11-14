@@ -46,12 +46,13 @@ export class NewProduct extends React.Component {
           value={this.state.name}
           onChange={this.handleChange}
         />
-        <input
+        <textarea
           type="text"
           name="description"
           placeholder="Description"
           value={this.state.description}
           onChange={this.handleChange}
+          style={{height: '100px'}}
         />
         <input
           type="integer"
