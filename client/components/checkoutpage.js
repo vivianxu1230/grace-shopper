@@ -18,7 +18,6 @@ const checkoutpage = ({checkout, userCart, isLoggedIn, loadCart}) => {
  * CONTAINER
  */
 const mapState = state => {
-  // console.log(state.cart)
   return {
     isLoggedIn: !!state.user.id,
     userCart: state.cart

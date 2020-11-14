@@ -46,6 +46,7 @@ class Navbar extends React.Component {
                 />
                 <text transform="translate(40, 40), scale(1.5)" fill="white">
                   {this.props.userCart.products &&
+                    this.props.isLoggedIn &&
                     this.props.userCart.products.length}
                 </text>
               </g>

@@ -48,6 +48,7 @@ router.put(`/add/:productId`, async (req, res, next) => {
         id: req.params.productId
       }
     })
+    item.update({onHold: true})
     const order = await Order.findOrCreate({
       where: {
         userId: req.session.passport.user,
@@ -67,14 +68,32 @@ router.put(`/add/:productId`, async (req, res, next) => {
 
 router.put('/delete/:productId', async (req, res, next) => {
   try {
+    const item = await Product.findOne({
+      where: {
+        id: req.params.productId
+      }
+    })
+    item.update({onHold: false})
+    const cart = await Order.findOne({
+      where: {
+        userId: req.session.passport.user,
+        orderStatus: 'Cart'
+      },
+      include: Product
+    })
+    cart.update({
+      products: cart.products.filter(
+        product => product.id !== req.params.productId
+      )
+    })
     const orderItem = await OrderItem.findOne({
       where: {
         productId: req.params.productId
       }
     })
-
-    await orderItem.update({productId: null})
-    await orderItem.update({orderId: null})
+    orderItem.destroy()
+    // await orderItem.update({productId: null})
+    // await orderItem.update({orderId: null})
 
     res.sendStatus(204)
   } catch (err) {
