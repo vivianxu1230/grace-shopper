@@ -19,7 +19,6 @@ class Cart extends React.Component {
     this.deleteHandler = this.deleteHandler.bind(this)
   }
   async componentDidMount() {
-    // localStorage.clear()
     if (this.props.isLoggedIn) {
       await this.props.loadCart()
     } else {
@@ -37,7 +36,6 @@ class Cart extends React.Component {
       await this.props.removeCartProduct(productId)
     } else {
       this.props.removeCartProductGuest(productId)
-      console.log(localStorage.getItem('cart'))
     }
   }
 
@@ -72,9 +70,13 @@ class Cart extends React.Component {
                     <img src={product.imageUrl} />
                   </div>
                 ))}
-              <button type="button" onClick={() => this.checkoutHandler()}>
-                Checkout
-              </button>
+              {this.props.isLoggedIn ? (
+                <button type="button" onClick={() => this.checkoutHandler()}>
+                  Checkout
+                </button>
+              ) : (
+                <p>Log in or register to checkout</p>
+              )}
               <Link to="/products">
                 <button type="button">Continue shopping</button>
               </Link>
