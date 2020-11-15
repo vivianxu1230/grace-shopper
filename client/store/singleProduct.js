@@ -1,4 +1,4 @@
-import Axios from 'axios'
+import axios from 'axios'
 
 const GET_SINGLE_PRODUCT = 'GET_SINGLE_PRODUCT'
 
@@ -10,7 +10,7 @@ export const getProduct = product => ({
 export const fetchSingleProduct = id => {
   return async dispatch => {
     try {
-      const {data} = await Axios.get(`/api/products/${id}`)
+      const {data} = await axios.get(`/api/products/${id}`)
       dispatch(getProduct(data))
     } catch (err) {
       console.log(err)
