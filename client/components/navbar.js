@@ -14,7 +14,7 @@ const Navbar = ({userCart, loadCart, handleClick, isLoggedIn}) => {
   }, [])
   return (
     <div>
-      <h1>Grace Bopper</h1>
+      <h1 id="header">Grace Bopper</h1>
       <nav>
         {isLoggedIn ? (
           <div>
