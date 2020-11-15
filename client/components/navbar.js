@@ -6,19 +6,22 @@ import {logout, fetchCart, fetchGuestCart} from '../store'
 import {AllProducts} from './allProducts'
 
 class Navbar extends React.Component {
-  async componentDidMount() {
-    if (this.props.isLoggedIn) {
-      await this.props.loadCart()
-    } else {
-      this.props.loadGuestCart()
-    }
+  componentDidMount() {
+    // if (this.props.user) {
+    //   this.props.loadCart()
+    // } else {
+    //   this.props.loadGuestCart()
+    // }
+    //  this.props && this.props.user ? this.props.loadCart() : this.props.loadGuestCart()
+    this.props.loadGuestCart()
   }
+
   render() {
     return (
       <div>
         <h1>Grace Bopper</h1>
         <nav>
-          {this.props.isLoggedIn ? (
+          {this.props && this.props.isLoggedIn ? (
             <div>
               <Link to="/home">Home</Link>
               <Link to="/products" component={AllProducts}>
@@ -30,7 +33,6 @@ class Navbar extends React.Component {
             </div>
           ) : (
             <div>
-              {/* The navbar will show these links before you log in */}
               <Link to="/products">All Products</Link>
               <Link to="/login">Login</Link>
               <Link to="/signup">Sign Up</Link>

@@ -27,14 +27,15 @@ class Routes extends Component {
 
   render() {
     const {isLoggedIn, isAdmin} = this.props
-
     return (
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/home" component={Home} />
-        <Route path="/cart" component={Cart} />
+        <Route
+          path="/cart"
+          render={props => <Cart {...props} isLoggedIn={isLoggedIn} />}
+        />
         <Route path="/signup" component={Signup} />
-
         <Route exact path="/products" component={AllProducts} />
         <Route path="/products/:id" component={SingleProduct} />
         {isAdmin && (
@@ -46,12 +47,10 @@ class Routes extends Component {
         )}
         {isLoggedIn && (
           <Switch>
-            {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
             <Route path="/checkoutconf" component={CheckoutPage} />
           </Switch>
         )}
-        {/* Displays our Login component as a fallback */}
         <Route component={Login} />
       </Switch>
     )

@@ -26,14 +26,12 @@ router.put('/checkout', async (req, res, next) => {
       },
       include: Product
     })
-    console.log(cart.paymentInfo, cart.address, cart.orderStatus)
-    if (cart.paymentInfo && cart.address) {
-      cart.update({orderStatus: 'Received'})
-    }
-    const cartItems = cart.products
-    for (let i = 0; i < cart.products.length; i++) {
-      cartItems[i].update({quantity: 0})
-    }
+    // console.log(cart.paymentInfo, cart.address, cart.orderStatus)
+    cart.update({orderStatus: 'Received'})
+    // const cartItems = cart.products
+    // for (let i = 0; i < cart.products.length; i++) {
+    //   cartItems[i].update({quantity: 0})
+    // }
     res.sendStatus(204)
   } catch (err) {
     next(err)
