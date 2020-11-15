@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {getUsersThunk} from '../store'
 
-class AdminUsers extends React.Component {
+export class AdminUsers extends React.Component {
   componentDidMount() {
     this.props.getUsers()
   }
