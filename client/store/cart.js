@@ -41,7 +41,7 @@ const addToCartGuest = product => ({
 })
 
 const deleteCartGuest = productId => ({
-  type: ADD_TO_CART_GUEST,
+  type: DELETE_CART_PRODUCT_GUEST,
   productId
 })
 /**
@@ -88,49 +88,51 @@ export const deleteThunk = productId => async dispatch => {
 export const fetchGuestCart = () => async dispatch => {
   try {
     const unparsedCart = localStorage.getItem('cart')
-    const arrOfCartIds = unparsedCart.split(',').map(elem => Number(elem))
-    console.log(arrOfCartIds)
-    const guestCart = {}
-    guestCart.products = []
-    for (let i = 0; i < arrOfCartIds.length; i++) {
-      const {data} = await axios.get(`/api/products/${arrOfCartIds[i]}`)
-      guestCart.products.push(data[0])
+    if (unparsedCart) {
+      const arrOfCartIds = unparsedCart.split(',').map(elem => Number(elem))
+      const guestCart = {}
+      guestCart.products = []
+      for (let i = 0; i < arrOfCartIds.length; i++) {
+        if (arrOfCartIds[i]) {
+          const {data} = await axios.get(`/api/products/${arrOfCartIds[i]}`)
+          guestCart.products.push(data[0])
+        }
+      }
+      dispatch(getGuestCart(guestCart))
     }
-    dispatch(getGuestCart(guestCart))
   } catch (err) {
     console.error(err)
   }
 }
 
-export const addItemGuest = productId => dispatch => {
-  try {
-    const filteredCartArr = localStorage
-      .getItem('cart')
-      .split(',')
-      .map(elem => Number(elem))
-      .filter(elem => elem !== productId)
-    const stringifiedCartArr = filteredCartArr
-      .map(elem => String(elem))
-      .join(',')
-    localStorage.setItem('cart', stringifiedCartArr)
-    dispatch(deleteCartGuest(productId))
-  } catch (err) {
-    console.error(err)
-  }
-}
-
-export const deleteThunkGuest = productId => async dispatch => {
+export const addItemGuest = productId => async dispatch => {
   try {
     let localCart = localStorage.getItem('cart')
     if (localCart) {
       let stringifiedId = ',' + productId
-      localStorage.setItem('cart', cart + stringifiedId)
-      console.log(localCart)
+      localStorage.setItem('cart', localCart + stringifiedId)
     } else {
       localStorage.setItem('cart', productId.toString())
     }
     const {data} = await axios.get(`/api/products/${productId}`)
     dispatch(addToCartGuest(data[0]))
+  } catch (err) {
+    console.error(err)
+  }
+}
+
+export const deleteThunkGuest = productId => dispatch => {
+  try {
+    const filteredCartArr = localStorage
+      .getItem('cart')
+      .split(',')
+      .map(elem => Number(elem))
+      .filter(elem => elem !== productId && !isNaN(elem))
+    const stringifiedCartArr = filteredCartArr
+      .map(elem => String(elem))
+      .join(',')
+    localStorage.setItem('cart', stringifiedCartArr)
+    dispatch(deleteCartGuest(productId))
   } catch (err) {
     console.error(err)
   }
@@ -157,7 +159,7 @@ export default function(state = cart, action) {
     case GET_GUEST_CART:
       return action.cart
     case ADD_TO_CART_GUEST:
-      return {...state, products: action.product}
+      return {...state, products: [...state.products, action.product]}
     case DELETE_CART_PRODUCT_GUEST:
       return {
         ...state,

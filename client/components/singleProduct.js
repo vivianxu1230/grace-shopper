@@ -8,17 +8,16 @@ class SingleProduct extends React.Component {
     this.addHandler = this.addHandler.bind(this)
   }
   componentDidMount() {
-    this.props.fetchSingleProduct(this.props.match.params.id)
+    const id = Number(this.props.match.params.id)
+    this.props.fetchSingleProduct(id)
   }
 
   addHandler(productId) {
-    localStorage.clear()
     if (this.props.isLoggedIn) {
       this.props.addItemThunk(productId)
     } else {
       this.props.addItemGuest(productId)
       console.log(localStorage.getItem('cart'))
-      console.log(productId)
     }
   }
 
@@ -28,7 +27,6 @@ class SingleProduct extends React.Component {
     for (let i = 0; i < product.length; i++) {
       finalProduct = product[i]
     }
-
     return (
       <div>
         <h1>{finalProduct.name}</h1>

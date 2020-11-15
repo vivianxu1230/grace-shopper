@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 import {
   logout,
   fetchCart,
+  fetchGuestCart,
   checkoutThunk,
   deleteThunk,
   deleteThunkGuest
@@ -18,7 +19,12 @@ class Cart extends React.Component {
     this.deleteHandler = this.deleteHandler.bind(this)
   }
   async componentDidMount() {
-    if (this.props.isLoggedIn) await this.props.loadCart()
+    // localStorage.clear()
+    if (this.props.isLoggedIn) {
+      await this.props.loadCart()
+    } else {
+      await this.props.loadGuestCart()
+    }
   }
 
   async checkoutHandler() {
@@ -31,6 +37,7 @@ class Cart extends React.Component {
       await this.props.removeCartProduct(productId)
     } else {
       this.props.removeCartProductGuest(productId)
+      console.log(localStorage.getItem('cart'))
     }
   }
 
@@ -47,27 +54,28 @@ class Cart extends React.Component {
               <p>Qty</p>
             </div>
             <div>
-              {this.props.cart.products.map(product => (
-                <div className="cart-item" key={product.id}>
-                  <button
-                    onClick={() => {
-                      this.props.removeCartProduct(product.id)
-                    }}
-                    type="button"
-                    className="delete-checkout"
-                  >
-                    x
-                  </button>
-                  <p>{product.name}</p>
-                  <p>${product.price}</p>
-                  <p>{product.quantity}</p>
-                  <img src={product.imageUrl} />
-                </div>
-              ))}
+              {this.props.cart.products &&
+                this.props.cart.products.map(product => (
+                  <div className="cart-item" key={product.id}>
+                    <button
+                      onClick={() => {
+                        this.deleteHandler(product.id)
+                      }}
+                      type="button"
+                      className="delete-checkout"
+                    >
+                      x
+                    </button>
+                    <p>{product.name}</p>
+                    <p>${product.price}</p>
+                    <p>{product.quantity}</p>
+                    <img src={product.imageUrl} />
+                  </div>
+                ))}
               <button type="button" onClick={() => this.checkoutHandler()}>
                 Checkout
               </button>
-              <Link to="/allproducts">
+              <Link to="/products">
                 <button type="button">Continue shopping</button>
               </Link>
             </div>
@@ -97,6 +105,9 @@ const mapDispatch = dispatch => {
     },
     loadCart() {
       dispatch(fetchCart())
+    },
+    loadGuestCart() {
+      dispatch(fetchGuestCart())
     },
     checkout() {
       dispatch(checkoutThunk())
