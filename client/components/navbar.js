@@ -13,6 +13,7 @@ class Navbar extends React.Component {
       this.props.loadGuestCart()
     }
   }
+  
   render() {
     return (
       <div>
@@ -24,6 +25,11 @@ class Navbar extends React.Component {
               <Link to="/products" component={AllProducts}>
                 All Products
               </Link>
+              {this.props.isAdmin ? (
+                <Link to="/adminview">Admin View</Link>
+              ) : (
+                <></>
+              )}
               <a href="#" onClick={this.props.handleClick}>
                 Logout
               </a>

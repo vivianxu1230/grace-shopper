@@ -18,15 +18,15 @@ class Cart extends React.Component {
     this.checkoutHandler = this.checkoutHandler.bind(this)
     this.deleteHandler = this.deleteHandler.bind(this)
   }
+  
   async componentDidMount() {
-    // localStorage.clear()
-    if (this.props.isLoggedIn) {
+ if (this.props.isLoggedIn) {
       await this.props.loadCart()
     } else {
       await this.props.loadGuestCart()
     }
   }
-
+  
   async checkoutHandler() {
     await this.props.checkout()
     window.location.replace('/checkoutconf')
@@ -37,7 +37,6 @@ class Cart extends React.Component {
       await this.props.removeCartProduct(productId)
     } else {
       this.props.removeCartProductGuest(productId)
-      console.log(localStorage.getItem('cart'))
     }
   }
 

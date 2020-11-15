@@ -27,10 +27,9 @@ router.get('/:productId', async (req, res, next) => {
 
 router.post('/', (req, res, next) => {
   Product.create(req.body)
-  .then(product => res.json(product))
-  .catch(next)
+    .then(product => res.json(product))
+    .catch(next)
 })
-
 
 router.delete('/:productId', (req, res, next) => {
   Product.destroy({
@@ -38,8 +37,7 @@ router.delete('/:productId', (req, res, next) => {
       id: req.params.productId
     }
   })
-  .then(() => res.status(204).end())
-  .catch(next)
- res.status(200);
+    .then(() => res.status(204).end())
+    .catch(next)
+  res.status(200)
 })
-

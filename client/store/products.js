@@ -16,8 +16,8 @@ export const deleteProduct = productId => ({
   productId
 })
 
-export const addProduct = product  => ({
-  tpye: 'ADD_PRODUCT',
+export const addProduct = product => ({
+  type: 'ADD_PRODUCT',
   product
 })
 
@@ -34,31 +34,29 @@ export const fetchProducts = () => {
 }
 
 // Delete Thunk Creator
-export const removeProduct = (id) => {
-  return async(dispatch) => {
+export const removeProduct = id => {
+  return async dispatch => {
     try {
-      await axios.delete(`/api/products/${id}`);
-      dispatch(removeProduct(id));
-    }
-    catch (error){
-      console.log(error)
-    }
-
-  }
-};
-
-// Add Product
-export const postProduct = (product) => {
-  return async (dispatch) => {
-    try {
-      console.log(product)
-      const { data } = await axios.post('/api/products', product);
-      dispatch(postProduct(data))
+      await axios.delete(`/api/products/${id}`)
+      dispatch(deleteProduct(id))
     } catch (error) {
       console.log(error)
     }
   }
-};
+}
+
+// Add Product
+export const postProduct = product => {
+  return async dispatch => {
+    try {
+      console.log('product', product)
+      const {data} = await axios.post('/api/products', product)
+      dispatch(addProduct(data))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
 
 // Initial State
 const initialState = []
@@ -68,11 +66,11 @@ const productsReducer = (state = initialState, action) => {
     case ALL_PRODUCTS:
       return action.products
     case DELETE_PRODUCT:
-      return state.filter((product) => product.id !== action.productId)
+      return state.filter(product => product.id !== action.productId)
     case ADD_PRODUCT:
       return [...state, action.product]
     default:
-      return state;
-    }
+      return state
   }
+}
 export default productsReducer
