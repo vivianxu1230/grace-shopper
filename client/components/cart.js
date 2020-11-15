@@ -1,79 +1,86 @@
-import React, {useState} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
-import {logout, fetchCart, checkoutThunk, deleteThunk} from '../store'
+import {
+  logout,
+  fetchCart,
+  fetchGuestCart,
+  checkoutThunk,
+  deleteThunk,
+  deleteThunkGuest
+} from '../store'
 
 class Cart extends React.Component {
   constructor(props) {
     super(props)
-    this.clickHandler = this.clickHandler.bind(this)
+    this.checkoutHandler = this.checkoutHandler.bind(this)
     this.deleteHandler = this.deleteHandler.bind(this)
   }
+  
   async componentDidMount() {
-    try {
+ if (this.props.isLoggedIn) {
       await this.props.loadCart()
-    } catch (err) {
-      console.log(err)
+    } else {
+      await this.props.loadGuestCart()
     }
   }
-
-  async clickHandler() {
-    try {
-      await this.props.checkout()
-      window.location.replace('/checkoutconf')
-    } catch (err) {
-      console.log(err)
-    }
+  
+  async checkoutHandler() {
+    await this.props.checkout()
+    window.location.replace('/checkoutconf')
   }
 
   async deleteHandler(productId) {
-    try {
+    if (this.props.isLoggedIn) {
       await this.props.removeCartProduct(productId)
-    } catch (err) {
-      console.log(err)
+    } else {
+      this.props.removeCartProductGuest(productId)
     }
   }
 
   render() {
     return (
-      <div>
-        <div className="cart-container">
-          <div className="cart-heading">
-            <p>Name</p>
-            <p>Price</p>
-            <p>Qty</p>
-          </div>
-          {this.props.userCart.products &&
-            this.props.userCart.products.map(product => (
-              <div className="cart-item" key={product.id}>
-                <button
-                  onClick={() => {
-                    this.deleteHandler(product.id)
-                  }}
-                  type="button"
-                  className="delete-checkout"
-                >
-                  x
-                </button>
-                <p>{product.name}</p>
-                <p>${product.price}</p>
-                <p>{product.quantity}</p>
-                <img src={product.imageUrl} />
-              </div>
-            ))}
-        </div>
-        {this.props.isLoggedIn ? (
+      <div className="cart-container">
+        {this.props.cart.products &&
+        this.props.cart &&
+        this.props.cart.products.length ? (
           <div>
-            <button type="button" onClick={this.clickHandler}>
-              Checkout
-            </button>
+            <div className="cart-heading">
+              <p>Name</p>
+              <p>Price</p>
+              <p>Qty</p>
+            </div>
+            <div>
+              {this.props.cart.products &&
+                this.props.cart.products.map(product => (
+                  <div className="cart-item" key={product.id}>
+                    <button
+                      onClick={() => {
+                        this.deleteHandler(product.id)
+                      }}
+                      type="button"
+                      className="delete-checkout"
+                    >
+                      x
+                    </button>
+                    <p>{product.name}</p>
+                    <p>${product.price}</p>
+                    <p>{product.quantity}</p>
+                    <img src={product.imageUrl} />
+                  </div>
+                ))}
+              <button type="button" onClick={() => this.checkoutHandler()}>
+                Checkout
+              </button>
+              <Link to="/products">
+                <button type="button">Continue shopping</button>
+              </Link>
+            </div>
           </div>
         ) : (
-          <div>
-            <p>Log in or sign up to check out</p>
-          </div>
+          <p>There are no items in your cart.</p>
         )}
       </div>
     )
@@ -84,10 +91,9 @@ class Cart extends React.Component {
  * CONTAINER
  */
 const mapState = state => {
-  console.log(state)
   return {
     isLoggedIn: !!state.user.id,
-    userCart: state.cart
+    cart: state.cart
   }
 }
 
@@ -99,11 +105,17 @@ const mapDispatch = dispatch => {
     loadCart() {
       dispatch(fetchCart())
     },
+    loadGuestCart() {
+      dispatch(fetchGuestCart())
+    },
     checkout() {
       dispatch(checkoutThunk())
     },
-    removeCartProduct() {
-      dispatch(deleteThunk())
+    removeCartProduct(productId) {
+      dispatch(deleteThunk(productId))
+    },
+    removeCartProductGuest(productId) {
+      dispatch(deleteThunkGuest(productId))
     }
   }
 }

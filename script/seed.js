@@ -70,7 +70,7 @@ async function seed() {
       category: 'vintage',
       imageUrl:
         'https://live.staticflickr.com/65535/48302062717_0b80b85e9e_b.jpg',
-      quantity: 0,
+      quantity: 1,
       orderId: 2
     }),
     Product.create({

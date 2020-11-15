@@ -26,11 +26,39 @@ router.put('/checkout', async (req, res, next) => {
       },
       include: Product
     })
-    cart.update({orderStatus: 'Received'})
-    for (let i = 0; i < cart.products.length; i++) {
-      cart.products[i].quantity = 0
+    console.log(cart.paymentInfo, cart.address, cart.orderStatus)
+    if (cart.paymentInfo && cart.address) {
+      cart.update({orderStatus: 'Received'})
     }
-    await cart.save()
+    const cartItems = cart.products
+    for (let i = 0; i < cart.products.length; i++) {
+      cartItems[i].update({quantity: 0})
+    }
+    res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.put(`/add/:productId`, async (req, res, next) => {
+  try {
+    const item = await Product.findOne({
+      where: {
+        id: req.params.productId
+      }
+    })
+    item.update({onHold: true})
+    const order = await Order.findOrCreate({
+      where: {
+        userId: req.session.passport.user,
+        orderStatus: 'Cart'
+      }
+    })
+    await OrderItem.create({
+      productId: item.id,
+      price: item.price,
+      orderId: order[0].id
+    })
     res.sendStatus(204)
   } catch (err) {
     next(err)
@@ -39,15 +67,30 @@ router.put('/checkout', async (req, res, next) => {
 
 router.put('/delete/:productId', async (req, res, next) => {
   try {
+    const item = await Product.findOne({
+      where: {
+        id: req.params.productId
+      }
+    })
+    item.update({onHold: false})
+    const cart = await Order.findOne({
+      where: {
+        userId: req.session.passport.user,
+        orderStatus: 'Cart'
+      },
+      include: Product
+    })
+    cart.update({
+      products: cart.products.filter(
+        product => product.id !== req.params.productId
+      )
+    })
     const orderItem = await OrderItem.findOne({
       where: {
         productId: req.params.productId
       }
     })
-    console.log(orderItem)
-    await orderItem.update({productId: null})
-    await orderItem.update({orderId: null})
-
+    orderItem.destroy()
     res.sendStatus(204)
   } catch (err) {
     next(err)
