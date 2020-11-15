@@ -9,7 +9,8 @@ export class NewProduct extends React.Component {
     this.state = {
       name: '',
       description: '',
-      price: '',
+      price: 0,
+      quantity: 1,
       category: '',
       imageUrl: ''
     }
@@ -28,8 +29,8 @@ export class NewProduct extends React.Component {
       await this.setState({
         name: '',
         description: '',
-        price: '',
-        quantity: '',
+        price: 0,
+        quantity: 1,
         category: '',
         imageUrl: ''
       })
@@ -49,35 +50,43 @@ export class NewProduct extends React.Component {
           value={this.state.name}
           onChange={this.handleChange}
         />
-        <input
+        <textarea
           type="text"
           name="description"
           placeholder="Description"
           value={this.state.description}
           onChange={this.handleChange}
+          style={{height: '100px'}}
         />
         <input
-          type="number"
+          type="integer"
           name="price"
           placeholder="Price"
           value={this.state.price}
           onChange={this.handleChange}
         />
         <input
-          type="number"
-          name="quantity"
-          placeholder="Quantity"
-          value={this.state.quantity}
-          onChange={this.handleChange}
-        />
-        <input
           type="text"
-          name="ImageUrl"
+          name="imageUrl"
           placeholder="ImageUrl"
           value={this.state.imageUrl}
           onChange={this.handleChange}
         />
 
+        <select
+          type="text"
+          name="category"
+          value={this.state.category}
+          onChange={this.handleChange}
+        >
+          <option>category</option>
+          <option name="tops">tops</option>
+          <option name="bottoms">bottoms</option>
+          <option name="rare">rare</option>
+          <option name="vintage">vintage</option>
+          <option name="streetwear">streetwear</option>
+          <option name="shoes">shoes</option>
+        </select>
         <button type="submit">Submit New Product</button>
       </form>
     )
@@ -86,7 +95,7 @@ export class NewProduct extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createCampus: product => dispatch(postProduct(product))
+    createProduct: product => dispatch(postProduct(product))
   }
 }
 
