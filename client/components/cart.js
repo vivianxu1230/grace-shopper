@@ -72,7 +72,6 @@ class Cart extends React.Component {
  * CONTAINER
  */
 const mapState = state => {
- 
   return {
     isLoggedIn: !!state.user.id,
     userCart: state.cart
