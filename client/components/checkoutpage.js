@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout, fetchCart, deleteThunk} from '../store'
 
-const checkoutpage = ({checkout, userCart, isLoggedIn, loadCart}) => {
+const checkoutpage = ({checkout, cart, isLoggedIn, loadCart}) => {
   return (
     <div>
       <h3 style={{textAlign: 'center'}}>
@@ -20,7 +20,7 @@ const checkoutpage = ({checkout, userCart, isLoggedIn, loadCart}) => {
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    userCart: state.cart
+    cart: state.cart
   }
 }
 

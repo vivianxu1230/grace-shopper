@@ -1,10 +1,25 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchSingleProduct, addItemThunk} from '../store'
+import {fetchSingleProduct, addItemThunk, addItemGuest} from '../store'
 
 class SingleProduct extends React.Component {
+  constructor(props) {
+    super(props)
+    this.addHandler = this.addHandler.bind(this)
+  }
   componentDidMount() {
     this.props.fetchSingleProduct(this.props.match.params.id)
+  }
+
+  addHandler(productId) {
+    localStorage.clear()
+    if (this.props.isLoggedIn) {
+      this.props.addItemThunk(productId)
+    } else {
+      this.props.addItemGuest(productId)
+      console.log(localStorage.getItem('cart'))
+      console.log(productId)
+    }
   }
 
   render() {
@@ -23,16 +38,19 @@ class SingleProduct extends React.Component {
         />
         <p>{finalProduct.description}</p>
         <p>Price - {finalProduct.price}</p>
-
-        <button
-          type="submit"
-          className="addToCart"
-          onClick={() => {
-            this.props.addItemThunk(finalProduct.id)
-          }}
-        >
-          Add To Cart
-        </button>
+        {finalProduct.quantity ? (
+          <button
+            type="submit"
+            className="addToCart"
+            onClick={() => {
+              this.addHandler(finalProduct.id)
+            }}
+          >
+            Add To Cart
+          </button>
+        ) : (
+          <p>Item is sold out</p>
+        )}
       </div>
     )
   }
@@ -40,6 +58,7 @@ class SingleProduct extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    isLoggedIn: !!state.user.id,
     product: state.product
   }
 }
@@ -47,7 +66,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchSingleProduct: id => dispatch(fetchSingleProduct(id)),
-    addItemThunk: id => dispatch(addItemThunk(id))
+    addItemThunk: id => dispatch(addItemThunk(id)),
+    addItemGuest: id => dispatch(addItemGuest(id))
   }
 }
 

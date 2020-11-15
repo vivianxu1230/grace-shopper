@@ -40,9 +40,6 @@ router.put('/checkout', async (req, res, next) => {
   }
 })
 
-//create order if order doesn't exist (price, item.id)
-//set order status to cart
-
 router.put(`/add/:productId`, async (req, res, next) => {
   try {
     const item = await Product.findOne({

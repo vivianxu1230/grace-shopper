@@ -3,33 +3,43 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
-import {logout, fetchCart, checkoutThunk, deleteThunk} from '../store'
+import {
+  logout,
+  fetchCart,
+  checkoutThunk,
+  deleteThunk,
+  deleteThunkGuest
+} from '../store'
 
 class Cart extends React.Component {
   constructor(props) {
     super(props)
-    this.clickHandler = this.clickHandler.bind(this)
+    this.checkoutHandler = this.checkoutHandler.bind(this)
     this.deleteHandler = this.deleteHandler.bind(this)
   }
   async componentDidMount() {
     if (this.props.isLoggedIn) await this.props.loadCart()
   }
 
-  async clickHandler() {
+  async checkoutHandler() {
     await this.props.checkout()
     window.location.replace('/checkoutconf')
   }
 
   async deleteHandler(productId) {
-    await this.props.removeCartProduct(productId)
+    if (this.props.isLoggedIn) {
+      await this.props.removeCartProduct(productId)
+    } else {
+      this.props.removeCartProductGuest(productId)
+    }
   }
 
   render() {
     return (
       <div className="cart-container">
-        {this.props.userCart.products &&
-        this.props.userCart &&
-        this.props.userCart.products.length ? (
+        {this.props.cart.products &&
+        this.props.cart &&
+        this.props.cart.products.length ? (
           <div>
             <div className="cart-heading">
               <p>Name</p>
@@ -37,7 +47,7 @@ class Cart extends React.Component {
               <p>Qty</p>
             </div>
             <div>
-              {this.props.userCart.products.map(product => (
+              {this.props.cart.products.map(product => (
                 <div className="cart-item" key={product.id}>
                   <button
                     onClick={() => {
@@ -54,9 +64,12 @@ class Cart extends React.Component {
                   <img src={product.imageUrl} />
                 </div>
               ))}
-              <button type="button" onClick={() => this.clickHandler()}>
+              <button type="button" onClick={() => this.checkoutHandler()}>
                 Checkout
               </button>
+              <Link to="/allproducts">
+                <button type="button">Continue shopping</button>
+              </Link>
             </div>
           </div>
         ) : (
@@ -73,7 +86,7 @@ class Cart extends React.Component {
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    userCart: state.cart
+    cart: state.cart
   }
 }
 
@@ -90,6 +103,9 @@ const mapDispatch = dispatch => {
     },
     removeCartProduct(productId) {
       dispatch(deleteThunk(productId))
+    },
+    removeCartProductGuest(productId) {
+      dispatch(deleteThunkGuest(productId))
     }
   }
 }
