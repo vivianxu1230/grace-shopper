@@ -12,16 +12,28 @@ class Cart extends React.Component {
     this.deleteHandler = this.deleteHandler.bind(this)
   }
   async componentDidMount() {
-    await this.props.loadCart()
+    try {
+      await this.props.loadCart()
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   async clickHandler() {
-    await this.props.checkout()
-    window.location.replace('/checkoutconf')
+    try {
+      await this.props.checkout()
+      window.location.replace('/checkoutconf')
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   async deleteHandler(productId) {
-    await this.props.removeCartProduct(productId)
+    try {
+      await this.props.removeCartProduct(productId)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   render() {
