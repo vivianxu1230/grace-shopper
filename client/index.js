@@ -9,6 +9,10 @@ import App from './app'
 // establishes socket connection
 import './socket'
 
+process.on('unhandledRejection', (reason, p) => {
+  throw reason
+})
+
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
