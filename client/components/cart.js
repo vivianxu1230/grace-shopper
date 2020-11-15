@@ -20,13 +20,13 @@ class Cart extends React.Component {
   }
   
   async componentDidMount() {
- if (this.props.isLoggedIn) {
+    if (this.props.isLoggedIn) {
       await this.props.loadCart()
     } else {
       await this.props.loadGuestCart()
     }
   }
-  
+
   async checkoutHandler() {
     await this.props.checkout()
     window.location.replace('/checkoutconf')

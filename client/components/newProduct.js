@@ -65,13 +65,6 @@ export class NewProduct extends React.Component {
           value={this.state.price}
           onChange={this.handleChange}
         />
-        {/* <input
-          type="number"
-          name="quantity"
-          placeholder="Quantity"
-          value={this.state.quantity}
-          onChange={this.handleChange}
-        /> */}
         <input
           type="text"
           name="imageUrl"
@@ -79,6 +72,7 @@ export class NewProduct extends React.Component {
           value={this.state.imageUrl}
           onChange={this.handleChange}
         />
+
         <select
           type="text"
           name="category"
