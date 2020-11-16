@@ -6,14 +6,15 @@ import {logout, fetchCart, fetchGuestCart} from '../store'
 import {AllProducts} from './allProducts'
 
 class Navbar extends React.Component {
-  componentDidMount() {
-    // if (this.props.user) {
-    //   this.props.loadCart()
+  async componentDidMount() {
+    // if (this.props.isLoggedIn) {
+    //   await this.props.loadCart()
+    //   console.log('logged in')
     // } else {
-    //   this.props.loadGuestCart()
+    //   await this.props.loadGuestCart()
+    //   console.log('not logged in')
     // }
-    //  this.props && this.props.user ? this.props.loadCart() : this.props.loadGuestCart()
-    this.props.loadGuestCart()
+    await this.props.loadGuestCart()
   }
 
   render() {
@@ -71,6 +72,7 @@ class Navbar extends React.Component {
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
+    user: state.user,
     cart: state.cart,
     isAdmin: !!state.user.isAdmin
   }
@@ -95,7 +97,7 @@ export default connect(mapState, mapDispatch)(Navbar)
 /**
  * PROP TYPES
  */
-Navbar.propTypes = {
-  handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
-}
+// Navbar.propTypes = {
+//   handleClick: PropTypes.func.isRequired,
+//   isLoggedIn: PropTypes.bool.isRequired
+// }

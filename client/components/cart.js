@@ -18,15 +18,13 @@ class Cart extends React.Component {
     this.checkoutHandler = this.checkoutHandler.bind(this)
     this.deleteHandler = this.deleteHandler.bind(this)
   }
-  componentDidMount() {
-    // this.props.isLoggedIn ? this.props.loadCart() : this.props.loadGuestCart()
-    //  if (this.props.isLoggedIn) {
-    //   this.props.loadCart()
-    // } else {
-    //   this.props.loadGuestCart()
-    // }
-    this.props.loadGuestCart()
-  }
+  // componentDidMount() {
+  //   // if (this.props.isLoggedIn) {
+  //   //   this.props.loadCart()
+  //   // } else {
+  //   //   this.props.loadGuestCart()
+  //   // }
+  // }
 
   async checkoutHandler() {
     await this.props.checkout()
@@ -44,9 +42,7 @@ class Cart extends React.Component {
   render() {
     return (
       <div className="cart-container">
-        {this.props.cart.products &&
-        this.props.cart &&
-        this.props.cart.products.length ? (
+        {this.props.cart.products && this.props.cart.products.length ? (
           <div>
             <div className="cart-heading">
               <p>Name</p>
@@ -98,7 +94,7 @@ class Cart extends React.Component {
  */
 const mapState = state => {
   return {
-    // isLoggedIn: !!state.user.id,
+    isLoggedIn: !!state.user.id,
     cart: state.cart
   }
 }
@@ -108,12 +104,12 @@ const mapDispatch = dispatch => {
     handleClick() {
       dispatch(logout())
     },
-    loadCart() {
-      dispatch(fetchCart())
-    },
-    loadGuestCart() {
-      dispatch(fetchGuestCart())
-    },
+    // loadCart() {
+    //   dispatch(fetchCart())
+    // },
+    // loadGuestCart() {
+    //   dispatch(fetchGuestCart())
+    // },
     checkout() {
       dispatch(checkoutThunk())
     },

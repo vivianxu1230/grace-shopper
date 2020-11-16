@@ -75,3 +75,21 @@ nav h1 {
   padding: 2px;
   margin-top: 15px;
 }
+
+.img-overlay {
+  position: relative;
+  display: inline-block;
+  transition: transform 150ms ease-in-out;
+}
+
+.img-overlay img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.img-overlay svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

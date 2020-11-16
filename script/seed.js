@@ -186,13 +186,13 @@ async function seed() {
   await Promise.all([
     Order.create({
       address: '1234 S Main St, NY, NY',
-      orderStatus: 'Shipped',
+      status: 'Shipped',
       paymentInfo: '12345678910',
       userId: 1
     }),
     Order.create({
       address: '5678 N Main St, NO, LA',
-      orderStatus: 'Cart',
+      status: 'Cart',
       paymentInfo: '12345678910',
       userId: 2
     })

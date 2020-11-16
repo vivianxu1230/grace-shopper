@@ -31,10 +31,14 @@ class Routes extends Component {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/home" component={Home} />
-        <Route
+        {/* {isLoggedIn? (<Route
           path="/cart"
           render={props => <Cart {...props} isLoggedIn={isLoggedIn} />}
-        />
+        />) : (<Route
+          path="/cart"
+          render={props => <Cart {...props} isLoggedIn={isLoggedIn} />}
+        />)} */}
+        <Route path="/cart" component={Cart} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/products" component={AllProducts} />
         <Route path="/products/:id" component={SingleProduct} />
@@ -61,9 +65,8 @@ class Routes extends Component {
  * CONTAINER
  */
 const mapState = state => {
+  // console.log(state)
   return {
-    // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
-    // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
     isAdmin: !!state.user.isAdmin
   }
