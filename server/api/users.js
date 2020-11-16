@@ -1,7 +1,9 @@
 const router = require('express').Router()
 const {User} = require('../db/models')
 
-const adminsOnly = (req, res, next) => {
+module.exports = router
+
+const adminsOnly = (req,res,next) => {
   if (!req.user.isAdmin) {
     const err = new Error('No access.')
     err.status = 401
@@ -21,12 +23,9 @@ router.get('/', adminsOnly, async (req, res, next) => {
   }
 })
 
-router.get('/:userId', adminsOnly, async (req, res, next) => {
+router.get('/:userId', async (req, res, next) => {
   try {
     const user = await User.findOne({
-      attributes: {exclude: ['password', 'email', 'firstName', 'lastName', 'isAdmin']
-      },
-
       where: {
         id: req.params.userId
       },
@@ -56,10 +55,6 @@ router.put('/:userId', async (req, res, next) => {
 router.patch('/:userId', async (req, res, next) => {
   try {
     const user = await User.findOne({
-
-      attributes: {exclude: ['password', 'email', 'firstName', 'lastName', 'isAdmin']
-      },
-
       where: {
         id: req.params.userId
       }
@@ -80,4 +75,3 @@ router.delete('/:userid', adminsOnly, (req, res, next) => {
   .catch(next) 
 })
 
-module.exports = router
