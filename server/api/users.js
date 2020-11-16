@@ -1,9 +1,7 @@
 const router = require('express').Router()
 const {User} = require('../db/models')
 
-module.exports = router
-
-const adminsOnly = (req,res,next) => {
+const adminsOnly = (req, res, next) => {
   if (!req.user.isAdmin) {
     const err = new Error('No access.')
     err.status = 401
@@ -12,18 +10,23 @@ const adminsOnly = (req,res,next) => {
   next()
 }
 
-router.get('/', async (req, res, next) => {
+router.get('/', adminsOnly, async (req, res, next) => {
   try {
-    const users = await User.findAll()
+    const users = await User.findAll({
+      attributes: {exclude: ['password', 'email', 'firstName', 'lastName', 'isAdmin']
+    }})
     res.json(users)
   } catch (err) {
     next(err)
   }
 })
 
-router.get('/:userId', async (req, res, next) => {
+router.get('/:userId', adminsOnly, async (req, res, next) => {
   try {
     const user = await User.findOne({
+      attributes: {exclude: ['password', 'email', 'firstName', 'lastName', 'isAdmin']
+      },
+
       where: {
         id: req.params.userId
       },
@@ -53,6 +56,10 @@ router.put('/:userId', async (req, res, next) => {
 router.patch('/:userId', async (req, res, next) => {
   try {
     const user = await User.findOne({
+
+      attributes: {exclude: ['password', 'email', 'firstName', 'lastName', 'isAdmin']
+      },
+
       where: {
         id: req.params.userId
       }
@@ -73,3 +80,4 @@ router.delete('/:userid', adminsOnly, (req, res, next) => {
   .catch(next) 
 })
 
+module.exports = router
