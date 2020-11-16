@@ -16,24 +16,31 @@ class AdminProducts extends React.Component {
   render() {
     const {products} = this.props
     return (
-      <div>
+      <div className="soloProductContainer">
         <NewProduct />
         {products.map(product => {
           return (
-            <div className="products" key={product.id}>
-              <Link to={`/products/${product.id}`}>{product.name} </Link>
-              <img
-                style={{width: '500px', height: '500px'}}
-                src={product.imageUrl}
-              />
-              <p>{product.description}</p>
-              <p>{product.price}</p>
+            <div className="soloProduct" key={product.id}>
+              <h1>{product.name} </h1>
+              <Link to={`/products/${product.id}`}>
+                <img src={product.imageUrl} />
+              </Link>
+              <h2>{product.price}</h2>
               <button
+                className="deleteProductAdmin"
                 type="button"
                 onClick={() => this.handleDelete(product.id)}
               >
                 {' '}
-                DELETE ME - X
+                DELETE PRODUCT
+              </button>
+              <button
+                className="editProductAdmin"
+                type="button"
+                onClick={() => this.editProduct(product.id)}
+              >
+                {' '}
+                EDIT PRODUCT
               </button>
             </div>
           )

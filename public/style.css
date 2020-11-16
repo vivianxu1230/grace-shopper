@@ -249,3 +249,63 @@ form div {
   top: 0;
   left: 0;
 }
+
+.deleteProductAdmin {
+  background-color: darken(#e0c9cb, 20%);
+  padding: 10px;
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  margin: 2px;
+  border-radius: px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #9c5959;
+  cursor: pointer;
+  width: 50%;
+  height: 40px;
+}
+
+.deleteProductAdmin:hover {
+  background: #ba7e7e;
+  transition: all 0.4s ease-in-out;
+}
+
+.editProductAdmin {
+  background-color: darken(#e0c9cb, 20%);
+  padding: 10px;
+  display: inline-block;
+  outline: 0;
+  border: 0;
+  margin: 2px;
+  border-radius: px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #9c5959;
+  cursor: pointer;
+  width: 50%;
+  height: 40px;
+}
+
+.editProductAdmin:hover {
+  background: #ba7e7e;
+  transition: all 0.4s ease-in-out;
+}
+
+.newProduct {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex-flow: wrap;
+  align-items: stretch;
+  padding-left: 10%;
+  padding-right: 10%;
+  width: 100%;
+  height: 300px;
+}
+
+.newProductInput {
+  display: inline;
+  position: inline;
+  margin: 10px;
+}

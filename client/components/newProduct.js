@@ -42,53 +42,60 @@ export class NewProduct extends React.Component {
   render() {
     return (
       //Double check route for action
-      <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Product Name"
-          value={this.state.name}
-          onChange={this.handleChange}
-        />
-        <textarea
-          type="text"
-          name="description"
-          placeholder="Description"
-          value={this.state.description}
-          onChange={this.handleChange}
-          style={{height: '100px'}}
-        />
-        <input
-          type="integer"
-          name="price"
-          placeholder="Price"
-          value={this.state.price}
-          onChange={this.handleChange}
-        />
-        <input
-          type="text"
-          name="imageUrl"
-          placeholder="ImageUrl"
-          value={this.state.imageUrl}
-          onChange={this.handleChange}
-        />
+      <div className="newProduct">
+        <form onSubmit={this.handleSubmit}>
+          <input
+            className="newProductInput"
+            type="text"
+            name="name"
+            placeholder="Product Name"
+            value={this.state.name}
+            onChange={this.handleChange}
+          />
+          <input
+            className="newProductInput"
+            type="integer"
+            name="price"
+            placeholder="Price"
+            value={this.state.price}
+            onChange={this.handleChange}
+          />
+          <input
+            className="newProductInput"
+            type="text"
+            name="imageUrl"
+            placeholder="ImageUrl"
+            value={this.state.imageUrl}
+            onChange={this.handleChange}
+          />
+          <textarea
+            className="newProductDescription"
+            type="text"
+            name="description"
+            placeholder="Description"
+            value={this.state.description}
+            onChange={this.handleChange}
+            style={{height: '100px'}}
+          />
 
-        <select
-          type="text"
-          name="category"
-          value={this.state.category}
-          onChange={this.handleChange}
-        >
-          <option>category</option>
-          <option name="tops">tops</option>
-          <option name="bottoms">bottoms</option>
-          <option name="rare">rare</option>
-          <option name="vintage">vintage</option>
-          <option name="streetwear">streetwear</option>
-          <option name="shoes">shoes</option>
-        </select>
-        <button type="submit">Submit New Product</button>
-      </form>
+          <select
+            className="newProductInput"
+            type="text"
+            name="category"
+            value={this.state.category}
+            onChange={this.handleChange}
+          >
+            <option>category</option>
+            <option name="tops">tops</option>
+            <option name="bottoms">bottoms</option>
+            <option name="rare">rare</option>
+            <option name="vintage">vintage</option>
+            <option name="streetwear">streetwear</option>
+            <option name="shoes">shoes</option>
+          </select>
+          <button type="submit">Submit New Product</button>
+        </form>
+      </div>
     )
   }
 }
