@@ -43,9 +43,7 @@ class Cart extends React.Component {
   render() {
     return (
       <div className="cart-container">
-        {this.props.cart.products &&
-        this.props.cart &&
-        this.props.cart.products.length ? (
+        {this.props.cart.products && this.props.cart.products.length ? (
           <div>
             <div className="cart-heading">
               <p>Name</p>
@@ -53,6 +51,7 @@ class Cart extends React.Component {
               <p>Qty</p>
             </div>
             <div>
+              {console.log(this.props.cart.products)}
               {this.props.cart.products &&
                 this.props.cart.products.map(product => (
                   <div className="cart-item" key={product.id}>
@@ -71,9 +70,13 @@ class Cart extends React.Component {
                     <img src={product.imageUrl} />
                   </div>
                 ))}
-              <button type="button" onClick={() => this.checkoutHandler()}>
-                Checkout
-              </button>
+              {this.props.isLoggedIn ? (
+                <button type="button" onClick={() => this.checkoutHandler()}>
+                  Checkout
+                </button>
+              ) : (
+                <p>Log in or register to checkout</p>
+              )}
               <Link to="/products">
                 <button type="button">Continue shopping</button>
               </Link>
@@ -102,12 +105,12 @@ const mapDispatch = dispatch => {
     handleClick() {
       dispatch(logout())
     },
-    loadCart() {
-      dispatch(fetchCart())
-    },
-    loadGuestCart() {
-      dispatch(fetchGuestCart())
-    },
+    // loadCart() {
+    //   dispatch(fetchCart())
+    // },
+    // loadGuestCart() {
+    //   dispatch(fetchGuestCart())
+    // },
     checkout() {
       dispatch(checkoutThunk())
     },

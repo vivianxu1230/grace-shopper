@@ -1,9 +1,10 @@
 import axios from 'axios'
 
 // Action Types
-export const ALL_PRODUCTS = 'ALL_PRODUCTS'
-export const ADD_PRODUCT = 'ADD_PRODUCT'
-export const DELETE_PRODUCT = 'DELETE_PRODUCT'
+const ALL_PRODUCTS = 'ALL_PRODUCTS'
+const ADD_PRODUCT = 'ADD_PRODUCT'
+const DELETE_PRODUCT = 'DELETE_PRODUCT'
+const FILTER = 'FILTER'
 
 // Action Creators
 export const allProducts = products => ({
@@ -20,6 +21,13 @@ export const addProduct = product => ({
   type: 'ADD_PRODUCT',
   product
 })
+
+export const filter = category => {
+  return {
+    type: FILTER,
+    category
+  }
+}
 
 // Fetch Thunk Creator
 export const fetchProducts = () => {
@@ -49,7 +57,6 @@ export const removeProduct = id => {
 export const postProduct = product => {
   return async dispatch => {
     try {
-      console.log('product', product)
       const {data} = await axios.post('/api/products', product)
       dispatch(addProduct(data))
     } catch (error) {
@@ -69,6 +76,8 @@ const productsReducer = (state = initialState, action) => {
       return state.filter(product => product.id !== action.productId)
     case ADD_PRODUCT:
       return [...state, action.product]
+    case FILTER:
+      return [...state].filter(product => product.category === action.category)
     default:
       return state
   }

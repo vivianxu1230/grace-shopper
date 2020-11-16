@@ -14,16 +14,16 @@ const DELETE_CART_PRODUCT_GUEST = 'DELETE_CART_PRODUCT_GUEST'
 /**
  * INITIAL STATE
  */
-const cart = {}
+const cart = {products: []}
 
 /**
  * ACTION CREATORS
  */
 const getUserCart = userCart => ({type: GET_USER_CART, userCart})
 
-const addToCart = productId => ({
+const addToCart = product => ({
   type: ADD_TO_CART,
-  productId
+  product
 })
 
 const deleteCartProduct = productId => ({
@@ -77,7 +77,6 @@ export const addItemThunk = productId => async dispatch => {
 
 export const deleteThunk = productId => async dispatch => {
   try {
-    console.log(productId)
     await axios.put(`/api/cart/delete/${productId}`)
     dispatch(deleteCartProduct(productId))
   } catch (err) {
