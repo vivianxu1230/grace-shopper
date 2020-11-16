@@ -84,7 +84,7 @@ const mapDispatch = dispatch => {
       evt.preventDefault()
       const formName = evt.target.name
       const formInfo = {
-        email: evt.target.email.value,
+        email: evt.target.email.value.toUpperCase(),
         password: evt.target.password.value
       }
       if (formName === 'signup') {

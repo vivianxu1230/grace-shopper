@@ -103,3 +103,6 @@ User.beforeUpdate(setSaltAndPassword)
 User.beforeBulkCreate(users => {
   users.forEach(setSaltAndPassword)
 })
+
+User.beforeCreate((user) => {const upperCase = user.email.toUpperCase();
+  user.email = upperCase})

@@ -8,6 +8,7 @@ import {AllProducts} from './allProducts'
 class Navbar extends React.Component {
   async componentDidMount() {
     if (this.props.isLoggedIn) {
+      console.log(this.props.isLoggedIn)
       await this.props.loadCart()
     } else {
       this.props.loadGuestCart()
@@ -15,6 +16,7 @@ class Navbar extends React.Component {
   }
   
   render() {
+    console.log(this.props)
     return (
       <div>
         <h1>Grace Bopper</h1>
