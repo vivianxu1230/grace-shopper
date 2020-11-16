@@ -8,6 +8,10 @@ const User = db.define('user', {
     allowNull: false,
     validate: {
       notEmpty: true
+    },
+    //https://sequelize.readthedocs.io/en/2.0/docs/models-definition/#:~:text=To%20define%20mappings%20between%20a,was%20updated%20the%20last%20time to turn values uppercase. Does it have to be async?
+    setDataValue : function(val) {
+      this.setDataValue('firstName', val.toUpperCase());
     }
   },
   lastName: {
@@ -15,18 +19,25 @@ const User = db.define('user', {
     allowNull: false,
     validate: {
       notEmpty: true
+    },
+    setDataValue : function(val) {
+      this.setDataValue('lastName', val.toUpperCase());
     }
   },
   email: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false,
     validate: {
-      isEmail: true
+      isEmail: true,
+      notEmpty: true,
+    },
+    setDataValue : function(val) {
+      this.setDataValue('email', val.toUpperCase());
     }
   },
   password: {
     type: Sequelize.STRING,
+    allowNull: false,
     // Making `.password` act like a func hides it when serializing to JSON.
     // This is a hack to get around Sequelize's lack of a "private" option.
     get() {

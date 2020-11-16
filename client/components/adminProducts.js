@@ -1,8 +1,7 @@
-
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {fetchProducts, deleteProduct} from '../store/products'
+import {fetchProducts, removeProduct} from '../store/products'
 import NewProduct from './newProduct'
 
 class AdminProducts extends React.Component {
@@ -11,16 +10,15 @@ class AdminProducts extends React.Component {
   }
 
   handleDelete(id) {
-    this.props.deleteProduct(id)
+    this.props.removeProduct(id)
   }
 
-
   render() {
-    const { products } = this.props
+    const {products} = this.props
     return (
       <div>
-          <NewProduct />
-        {products.map((product) => {
+        <NewProduct />
+        {products.map(product => {
           return (
             <div className="products" key={product.id}>
               <Link to={`/products/${product.id}`}>{product.name} </Link>
@@ -32,7 +30,10 @@ class AdminProducts extends React.Component {
               <p>{product.price}</p>
               <button
                 type="button"
-                onClick={() => this.handleDelete(product.id)}> DELETE ME - X
+                onClick={() => this.handleDelete(product.id)}
+              >
+                {' '}
+                DELETE ME - X
               </button>
             </div>
           )
@@ -42,15 +43,13 @@ class AdminProducts extends React.Component {
   }
 }
 
-const mapState = (state) => ({
-  products: state.products,
+const mapState = state => ({
+  products: state.products
 })
 
-const mapDispatch = (dispatch) => ({
+const mapDispatch = dispatch => ({
   fetchProducts: () => dispatch(fetchProducts()),
-  deleteProduct: (id) => dispatch(deleteProduct(id)),
+  removeProduct: id => dispatch(removeProduct(id))
 })
 
 export default connect(mapState, mapDispatch)(AdminProducts)
-
-

@@ -18,7 +18,7 @@ export const deleteProduct = productId => ({
 })
 
 export const addProduct = product => ({
-  tpye: 'ADD_PRODUCT',
+  type: 'ADD_PRODUCT',
   product
 })
 
@@ -46,7 +46,7 @@ export const removeProduct = id => {
   return async dispatch => {
     try {
       await axios.delete(`/api/products/${id}`)
-      dispatch(removeProduct(id))
+      dispatch(deleteProduct(id))
     } catch (error) {
       console.log(error)
     }
@@ -57,9 +57,8 @@ export const removeProduct = id => {
 export const postProduct = product => {
   return async dispatch => {
     try {
-      console.log(product)
       const {data} = await axios.post('/api/products', product)
-      dispatch(postProduct(data))
+      dispatch(addProduct(data))
     } catch (error) {
       console.log(error)
     }

@@ -66,6 +66,7 @@ router.put(`/add/:productId`, async (req, res, next) => {
     })
     res.sendStatus(204)
   } catch (err) {
+    console.log('ERRORRRRR')
     next(err)
   }
 })
