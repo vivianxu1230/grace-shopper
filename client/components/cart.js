@@ -1,79 +1,99 @@
-import React, {useState} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
-import {logout, fetchCart, checkoutThunk, deleteThunk} from '../store'
+import {
+  logout,
+  fetchCart,
+  fetchGuestCart,
+  checkoutThunk,
+  deleteThunk,
+  deleteThunkGuest
+} from '../store'
 
-const Cart = ({
-  removeCartProduct,
-  checkout,
-  userCart,
-  isLoggedIn,
-  loadCart
-}) => {
-  React.useEffect(() => {
-    async function fetchData() {
-      await loadCart()
+class Cart extends React.Component {
+  constructor(props) {
+    super(props)
+    this.checkoutHandler = this.checkoutHandler.bind(this)
+    this.deleteHandler = this.deleteHandler.bind(this)
+  }
+
+  async componentDidMount() {
+    if (this.props.isLoggedIn) {
+      await this.props.loadCart()
+    } else {
+      await this.props.loadGuestCart()
     }
-    fetchData()
-  }, [])
+  }
 
-  async function clickHandler() {
-    await checkout()
+  async checkoutHandler() {
+    await this.props.checkout()
     window.location.replace('/checkoutconf')
   }
 
-  return (
-    <div>
+  async deleteHandler(productId) {
+    if (this.props.isLoggedIn) {
+      await this.props.removeCartProduct(productId)
+    } else {
+      this.props.removeCartProductGuest(productId)
+    }
+  }
+
+  render() {
+    return (
       <div className="cart-container">
-        <div className="cart-heading">
-          <p>Name</p>
-          <p>Price</p>
-          <p>Qty</p>
-        </div>
-        {userCart.map(product => (
-          <div className="cart-item" key={product.id}>
-            <button
-              onClick={() => {
-                window.location.reload(true)
-                removeCartProduct()
-              }}
-              type="button"
-              className="delete-checkout"
-            >
-              x
-            </button>
-            <p>{product.name}</p>
-            <p>${product.price}</p>
-            <p>{product.quantity}</p>
-            <img src={product.imageUrl} />
+        {this.props.cart.products &&
+        this.props.cart &&
+        this.props.cart.products.length ? (
+          <div>
+            <div className="cart-heading">
+              <p>Name</p>
+              <p>Price</p>
+              <p>Qty</p>
+            </div>
+            <div>
+              {this.props.cart.products &&
+                this.props.cart.products.map(product => (
+                  <div className="cart-item" key={product.id}>
+                    <button
+                      onClick={() => {
+                        this.deleteHandler(product.id)
+                      }}
+                      type="button"
+                      className="delete-checkout"
+                    >
+                      x
+                    </button>
+                    <p>{product.name}</p>
+                    <p>${product.price}</p>
+                    <p>{product.quantity}</p>
+                    <img src={product.imageUrl} />
+                  </div>
+                ))}
+              <button type="button" onClick={() => this.checkoutHandler()}>
+                Checkout
+              </button>
+              <Link to="/products">
+                <button type="button">Continue shopping</button>
+              </Link>
+            </div>
           </div>
-        ))}
+        ) : (
+          <p>There are no items in your cart.</p>
+        )}
       </div>
-      {isLoggedIn ? (
-        <div>
-          <button type="button" onClick={() => clickHandler()}>
-            Checkout
-          </button>
-        </div>
-      ) : (
-        <div>
-          <p>Log in or sign up to check out</p>
-        </div>
-      )}
-    </div>
-  )
+    )
+  }
 }
 
 /**
  * CONTAINER
  */
 const mapState = state => {
-  // console.log(state.cart)
   return {
     isLoggedIn: !!state.user.id,
-    userCart: state.cart
+    cart: state.cart
   }
 }
 
@@ -85,11 +105,17 @@ const mapDispatch = dispatch => {
     loadCart() {
       dispatch(fetchCart())
     },
+    loadGuestCart() {
+      dispatch(fetchGuestCart())
+    },
     checkout() {
       dispatch(checkoutThunk())
     },
-    removeCartProduct() {
-      dispatch(deleteThunk())
+    removeCartProduct(productId) {
+      dispatch(deleteThunk(productId))
+    },
+    removeCartProductGuest(productId) {
+      dispatch(deleteThunkGuest(productId))
     }
   }
 }

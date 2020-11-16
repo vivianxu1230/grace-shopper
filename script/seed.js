@@ -1,13 +1,13 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Product, Order} = require('../server/db/models')
+const {User, Product, Order, OrderItem} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
-  const users = await Promise.all([
+  await Promise.all([
     User.create({
       firstName: 'Jane',
       lastName: 'Doe',
@@ -24,7 +24,8 @@ async function seed() {
       firstName: 'Nayvadius',
       lastName: 'Wilburn',
       email: 'realHitterz@email.com',
-      password: '123'
+      password: '123',
+      isAdmin: true
     }),
     User.create({
       firstName: 'Patrick',
@@ -54,7 +55,7 @@ async function seed() {
     })
   ])
 
-  const products = await Promise.all([
+  await Promise.all([
     Product.create({
       name: 'White shirt',
       description:
@@ -85,7 +86,7 @@ async function seed() {
       category: 'vintage',
       imageUrl:
         'https://live.staticflickr.com/65535/48302062717_0b80b85e9e_b.jpg',
-      quantity: 0,
+      quantity: 1,
       orderId: 2
     }),
     Product.create({
@@ -95,7 +96,9 @@ async function seed() {
       price: '1000.00',
       category: 'shoes',
       imageUrl:
-        'https://live.staticflickr.com/65535/49014186342_61220d9aa3_b.jpg'
+        'https://live.staticflickr.com/65535/49014186342_61220d9aa3_b.jpg',
+      quantity: 1,
+      orderId: 2
     }),
     Product.create({
       name: 'Guipure',
@@ -104,7 +107,9 @@ async function seed() {
       price: '1000.00',
       category: 'rare',
       imageUrl:
-        'https://live.staticflickr.com/4786/25918424607_d2377d33a3_b.jpg'
+        'https://live.staticflickr.com/4786/25918424607_d2377d33a3_b.jpg',
+      quantity: 1,
+      orderId: 2
     }),
     Product.create({
       name: 'White Body Suit',
@@ -196,7 +201,7 @@ async function seed() {
     })
   ])
 
-  const orders = await Promise.all([
+  await Promise.all([
     Order.create({
       address: '1234 S Main St, NY, NY',
       orderStatus: 'Shipped',
@@ -205,13 +210,35 @@ async function seed() {
     }),
     Order.create({
       address: '5678 N Main St, NO, LA',
-      orderStatus: 'Processing',
+      orderStatus: 'Cart',
       paymentInfo: '12345678910',
       userId: 2
     })
   ])
 
-  console.log(`seeded ${users.length} users`)
+  await Promise.all([
+    OrderItem.create({
+      orderId: 1,
+      productId: 1,
+      price: 10.0
+    }),
+    OrderItem.create({
+      orderId: 1,
+      productId: 2,
+      price: 20.0
+    }),
+    OrderItem.create({
+      orderId: 2,
+      productId: 4,
+      price: 1000.0
+    }),
+    OrderItem.create({
+      orderId: 2,
+      productId: 5,
+      price: 1000.0
+    })
+  ])
+
   console.log(`seeded successfully`)
 }
 

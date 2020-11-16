@@ -11,7 +11,10 @@ const Product = db.define('product', {
   },
   description: {
     type: Sequelize.TEXT,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      notEmpty: true
+    }
   },
   price: {
     type: Sequelize.DECIMAL(10, 2),
@@ -41,7 +44,7 @@ const Product = db.define('product', {
     }
   },
   imageUrl: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     defaultValue:
       'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'
   }

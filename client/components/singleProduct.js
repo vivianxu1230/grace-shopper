@@ -1,11 +1,24 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchSingleProduct} from '../store/singleProduct'
+import {fetchSingleProduct, addItemThunk, addItemGuest} from '../store'
 
 class SingleProduct extends React.Component {
+  constructor(props) {
+    super(props)
+    this.addHandler = this.addHandler.bind(this)
+  }
   componentDidMount() {
-    this.props.fetchSingleProduct(this.props.match.params.id)
-    // this.props.addProductToCart(this.props.match.params.id)
+    const id = Number(this.props.match.params.id)
+    this.props.fetchSingleProduct(id)
+  }
+
+  addHandler(productId) {
+    if (this.props.isLoggedIn) {
+      this.props.addItemThunk(productId)
+    } else {
+      this.props.addItemGuest(productId)
+      console.log(localStorage.getItem('cart'))
+    }
   }
 
   render() {
@@ -14,7 +27,6 @@ class SingleProduct extends React.Component {
     for (let i = 0; i < product.length; i++) {
       finalProduct = product[i]
     }
-
     return (
       <div>
         <div className="productContainer">
@@ -43,14 +55,16 @@ class SingleProduct extends React.Component {
 
 const mapStateToProps = state => {
   return {
+    isLoggedIn: !!state.user.id,
     product: state.product
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchSingleProduct: id => dispatch(fetchSingleProduct(id))
-    // addProductToCart: (id, count) => dispatch(addProductToCart(id, count))
+    fetchSingleProduct: id => dispatch(fetchSingleProduct(id)),
+    addItemThunk: id => dispatch(addItemThunk(id)),
+    addItemGuest: id => dispatch(addItemGuest(id))
   }
 }
 
