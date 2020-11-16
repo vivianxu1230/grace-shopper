@@ -23,7 +23,7 @@ class Navbar extends React.Component {
   render() {
     return (
       <div>
-        <h1>Grace Bopper</h1>
+        <h1>Archive</h1>
         <nav>
           {this.props && this.props.isLoggedIn ? (
             <div>
@@ -60,9 +60,9 @@ class Navbar extends React.Component {
                   d="M402.177,272.897H140.545l-5.12-29.696h215.04c6.326,0.019,12.017-3.843,14.336-9.728l51.2-129.024     c3.111-7.892-0.766-16.812-8.658-19.922c-1.808-0.713-3.735-1.076-5.678-1.07H108.801L96.513,12.801     c-1.262-7.471-7.784-12.906-15.36-12.8h-58.88c-8.483,0-15.36,6.877-15.36,15.36s6.877,15.36,15.36,15.36h46.08l44.032,260.096     c1.262,7.471,7.784,12.906,15.36,12.8h274.432c8.483,0,15.36-6.877,15.36-15.36C417.537,279.774,410.66,272.897,402.177,272.897z     "
                 />
                 <text transform="translate(40, 40), scale(1.5)" fill="white">
-                  {this.props.cart.products && this.props.cart.products.length
+                  {/* {this.props.cart.products && this.props.cart.products.length
                     ? this.props.cart.products.length
-                    : 0}
+                    : 0} */}
                 </text>
               </g>
             </svg>
