@@ -20,11 +20,12 @@ class Cart extends React.Component {
   }
 
   async componentDidMount() {
-    if (this.props.isLoggedIn) {
-      await this.props.loadCart()
-    } else {
-      await this.props.loadGuestCart()
-    }
+    // this.props.loadCart()
+    // if (this.props.isLoggedIn) {
+    //   await this.props.loadCart()
+    // } else {
+    //   await this.props.loadGuestCart()
+    // }
   }
 
   async checkoutHandler() {
@@ -43,9 +44,7 @@ class Cart extends React.Component {
   render() {
     return (
       <div className="cart-container">
-        {this.props.cart.products &&
-        this.props.cart &&
-        this.props.cart.products.length ? (
+        {this.props.cart.products && this.props.cart.products.length ? (
           <div>
             <div className="cart-heading">
               <p>Name</p>
@@ -71,9 +70,13 @@ class Cart extends React.Component {
                     <img src={product.imageUrl} />
                   </div>
                 ))}
-              <button type="button" onClick={() => this.checkoutHandler()}>
-                Checkout
-              </button>
+              {this.props.isLoggedIn ? (
+                <button type="button" onClick={() => this.checkoutHandler()}>
+                  Checkout
+                </button>
+              ) : (
+                <p>Log in or register to checkout</p>
+              )}
               <Link to="/products">
                 <button type="button">Continue shopping</button>
               </Link>

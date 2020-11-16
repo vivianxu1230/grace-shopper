@@ -20,6 +20,17 @@ Order.belongsToMany(Product, {through: OrderItem})
 User.hasMany(Order)
 Order.belongsTo(User)
 
+User.afterCreate(async user => {
+  await Order.findOrCreate({
+    where: {
+      userId: user.id,
+      status: 'Cart',
+      paymentInfo: '123',
+      address: '123'
+    }
+  })
+})
+
 module.exports = {
   User,
   Product,

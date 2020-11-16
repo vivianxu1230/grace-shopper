@@ -29,25 +29,36 @@ class SingleProduct extends React.Component {
     }
     return (
       <div>
-        <div className="productContainer">
+      <div className="productContainer">
           <img className="productImage" src={finalProduct.imageUrl} />
           <div className="product">
-            <h1>{finalProduct.name}</h1>
-            <h2>${finalProduct.price}</h2>
-
-            <p className="description">{finalProduct.description}</p>
-            <button
-              type="submit"
-              className="addToCart"
-              // onClick = {() => this.addProductToCart(product.id, 1)}
-            >
-              Add To Cart
+        <h1>{finalProduct.name}</h1>
+        <p className="description">{finalProduct.description}</p>
+        <h2>${finalProduct.price}</h2>
+        {finalProduct.onHold ? (
+          <div>
+            <button style={{opacity: '0.3'}} type="button">
+              Add to cart
             </button>
-            <button type="submit" className="like">
+            <p>Someone else has this in their cart!</p>
+          </div>
+        ) : finalProduct.quantity ? (
+          <button
+            type="submit"
+            className="addToCart"
+            onClick={() => {
+              this.addHandler(finalProduct.id)
+            }}
+          >
+            Add to cart
+          </button>
+     <button type="submit" className="like">
               <span>❤️</span>
             </button>
-          </div>
-        </div>
+        ) : (
+          <p>Item is sold out</p>
+        )}
+       </div>
       </div>
     )
   }
