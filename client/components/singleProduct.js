@@ -23,31 +23,32 @@ class SingleProduct extends React.Component {
 
   render() {
     const product = this.props.product
-    let finalProduct = ''
-    for (let i = 0; i < product.length; i++) {
-      finalProduct = product[i]
-    }
+    // let finalProduct = ''
+    // for (let i = 0; i < product.length; i++) {
+    //   finalProduct = product[i]
+    // }
     return (
       <div className="productContainer">
-        <img className="productImage" src={finalProduct.imageUrl} />
+        <img className="productImage" src={product.imageUrl} />
         <div className="product">
-          <h1>{finalProduct.name}</h1>
-          <p className="description">{finalProduct.description}</p>
-          <h2>${finalProduct.price}</h2>
-          {finalProduct.onHold ? (
+          <h1>{product.name}</h1>
+          <p className="description">{product.description}</p>
+          <h2>${product.price}</h2>
+          {console.log(this.props.product)}
+          {product && product.onHold ? (
             <div>
               <button style={{opacity: '0.3'}} type="button">
                 Add to cart
               </button>
               <p>Someone else has this in their cart!</p>
             </div>
-          ) : finalProduct.quantity ? (
+          ) : product.quantity ? (
             <div>
               <button
                 type="submit"
                 className="addToCart"
                 onClick={() => {
-                  this.addHandler(finalProduct.id)
+                  this.addHandler(product.id)
                 }}
               >
                 Add to cart

@@ -69,7 +69,7 @@ export const addItemThunk = productId => async dispatch => {
   try {
     await axios.put(`/api/cart/add/${productId}`)
     const {data} = await axios.get(`/api/products/${productId}`)
-    dispatch(addToCart(data[0]))
+    dispatch(addToCart(data))
   } catch (err) {
     console.error(err)
   }
