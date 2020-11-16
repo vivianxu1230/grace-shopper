@@ -2,17 +2,38 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchProducts} from '../store/products'
+import {all} from 'sequelize/types/lib/operators'
 
 class AllProducts extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      category: ''
+    }
+    this.clickHandler = this.clickHandler.bind(this)
+  }
   componentDidMount() {
     this.props.fetchProducts()
+  }
+  clickHandler() {
+    console.log('hi')
   }
 
   render() {
     const {products} = this.props
-
     return (
       <div>
+        <div className="options">
+          <div className="categories">
+            <p> Categories</p>
+            <p>Tops</p>
+            <p>Bottoms</p>
+            <p>Rare</p>
+            <p>Streetwear</p>
+            <p>Vintage</p>
+            <p>Shoes</p>
+          </div>
+        </div>
         {products.map(product => {
           return (
             <div className="products" key={product.id}>
