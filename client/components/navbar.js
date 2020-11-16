@@ -13,13 +13,11 @@ class Navbar extends React.Component {
     console.log('mounted')
     this.props.loadGuestCart()
   }
-
   componentDidUpdate(prevProps) {
     if (prevProps.user.id !== this.props.user.id) {
       this.props.loadCart()
     }
   }
-
   render() {
     return (
       <div>

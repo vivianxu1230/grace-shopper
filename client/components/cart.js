@@ -3,14 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
-import {
-  logout,
-  fetchCart,
-  fetchGuestCart,
-  checkoutThunk,
-  deleteThunk,
-  deleteThunkGuest
-} from '../store'
+import {logout, checkoutThunk, deleteThunk, deleteThunkGuest} from '../store'
 
 class Cart extends React.Component {
   constructor(props) {
@@ -18,16 +11,6 @@ class Cart extends React.Component {
     this.checkoutHandler = this.checkoutHandler.bind(this)
     this.deleteHandler = this.deleteHandler.bind(this)
   }
-
-  async componentDidMount() {
-    // this.props.loadCart()
-    // if (this.props.isLoggedIn) {
-    //   await this.props.loadCart()
-    // } else {
-    //   await this.props.loadGuestCart()
-    // }
-  }
-
   async checkoutHandler() {
     await this.props.checkout()
     window.location.replace('/checkoutconf')
@@ -106,12 +89,6 @@ const mapDispatch = dispatch => {
   return {
     handleClick() {
       dispatch(logout())
-    },
-    loadCart() {
-      dispatch(fetchCart())
-    },
-    loadGuestCart() {
-      dispatch(fetchGuestCart())
     },
     checkout() {
       dispatch(checkoutThunk())
