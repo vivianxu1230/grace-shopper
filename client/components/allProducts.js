@@ -1,13 +1,14 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {fetchProducts, filter} from '../store'
+import {fetchProducts} from '../store'
 
 class AllProducts extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      category: 'all'
+      category: 'all',
+      filteredProducts: []
     }
     this.handleClick = this.handleClick.bind(this)
   }
@@ -16,22 +17,26 @@ class AllProducts extends React.Component {
   }
   async handleClick(event) {
     await this.setState({category: event.target.getAttribute('value')})
-    if (this.state.category !== 'all') {
-      this.props.filter(this.state.category)
-    } else {
-      this.props.fetchProducts()
-    }
-    console.log(this.state)
+    const filteringProducts = this.props.products.filter(
+      product => product.category === this.state.category
+    )
+    await this.setState({
+      filteredProducts: filteringProducts
+    })
   }
 
   render() {
-    const {products} = this.props
+    const products =
+      this.state.category === 'all'
+        ? this.props.products
+        : this.state.filteredProducts
     const categories = [
-      {id: 1, text: 'Tops', value: 'tops'},
-      {id: 2, text: 'Bottoms', value: 'bottoms'},
-      {id: 3, text: 'Accessories', value: 'accessories'},
-      {id: 4, text: 'Whole body', value: 'wholebody'},
-      {id: 5, text: 'Shoes', value: 'shoes'}
+      {id: 1, text: 'All', value: 'all'},
+      {id: 2, text: 'Tops', value: 'tops'},
+      {id: 3, text: 'Bottoms', value: 'bottoms'},
+      {id: 4, text: 'Accessories', value: 'accessories'},
+      {id: 5, text: 'Whole Body', value: 'wholebody'},
+      {id: 6, text: 'Shoes', value: 'shoes'}
     ]
     let opt = {}
     opt.onClick = this.handleClick
@@ -41,7 +46,7 @@ class AllProducts extends React.Component {
       <div>
         <div className="options">
           <div className="categories-container">
-            <p> Categories</p>
+            <p className="categories-header"> Categories</p>
             {categories.map(category => {
               return (
                 <p {...opt} value={category.value} key={category.id}>
@@ -87,9 +92,14 @@ class AllProducts extends React.Component {
 
                 <h2>${product.price}</h2>
               </div>
+
+  
+       
+       
             )
           })}
         </div>
+
       </div>
     )
   }

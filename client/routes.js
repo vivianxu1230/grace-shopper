@@ -13,7 +13,8 @@ import {
   AdminUsers,
   AdminProducts,
   Cart,
-  CheckoutPage
+  CheckoutPage,
+  OrderHistory
 } from './components'
 import {me} from './store'
 
@@ -31,13 +32,7 @@ class Routes extends Component {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/home" component={Home} />
-        {/* {isLoggedIn? (<Route
-          path="/cart"
-          render={props => <Cart {...props} isLoggedIn={isLoggedIn} />}
-        />) : (<Route
-          path="/cart"
-          render={props => <Cart {...props} isLoggedIn={isLoggedIn} />}
-        />)} */}
+        <Route path="/myorders" component={OrderHistory} />
         <Route path="/cart" component={Cart} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/products" component={AllProducts} />

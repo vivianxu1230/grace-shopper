@@ -4,7 +4,6 @@ import axios from 'axios'
 const ALL_PRODUCTS = 'ALL_PRODUCTS'
 const ADD_PRODUCT = 'ADD_PRODUCT'
 const DELETE_PRODUCT = 'DELETE_PRODUCT'
-const FILTER = 'FILTER'
 
 // Action Creators
 export const allProducts = products => ({
@@ -21,13 +20,6 @@ export const addProduct = product => ({
   type: 'ADD_PRODUCT',
   product
 })
-
-export const filter = category => {
-  return {
-    type: FILTER,
-    category
-  }
-}
 
 // Fetch Thunk Creator
 export const fetchProducts = () => {
@@ -76,8 +68,6 @@ const productsReducer = (state = initialState, action) => {
       return state.filter(product => product.id !== action.productId)
     case ADD_PRODUCT:
       return [...state, action.product]
-    case FILTER:
-      return [...state].filter(product => product.category === action.category)
     default:
       return state
   }
