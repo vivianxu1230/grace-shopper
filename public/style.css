@@ -113,3 +113,8 @@ nav h1 {
   font-weight: bold;
   visibility: visible;
 }
+
+.orders-container {
+  display: flex;
+  justify-content: space-between;
+}

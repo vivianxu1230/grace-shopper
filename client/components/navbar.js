@@ -10,7 +10,6 @@ class Navbar extends React.Component {
     super(props)
   }
   componentDidMount() {
-    console.log('mounted')
     this.props.loadGuestCart()
   }
   componentDidUpdate(prevProps) {

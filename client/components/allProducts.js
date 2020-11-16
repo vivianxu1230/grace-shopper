@@ -35,7 +35,7 @@ class AllProducts extends React.Component {
       {id: 2, text: 'Tops', value: 'tops'},
       {id: 3, text: 'Bottoms', value: 'bottoms'},
       {id: 4, text: 'Accessories', value: 'accessories'},
-      {id: 5, text: 'Whole body', value: 'wholebody'},
+      {id: 5, text: 'Whole Body', value: 'wholebody'},
       {id: 6, text: 'Shoes', value: 'shoes'}
     ]
     let opt = {}
