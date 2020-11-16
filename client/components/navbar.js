@@ -15,7 +15,7 @@ const Navbar = ({userCart, loadCart, handleClick, isLoggedIn}) => {
   return (
     <div>
       <nav>
-        <h1>Grace Bopper</h1>
+        <h1>Archive</h1>
         {isLoggedIn ? (
           <div className="links">
             {/* The navbar will show these links after you log in */}
