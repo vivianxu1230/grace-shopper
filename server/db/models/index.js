@@ -14,8 +14,10 @@ const OrderItem = db.define('orderItem', {
   }
 })
 
+
 Product.belongsToMany(Order, {through: OrderItem})
 Order.belongsToMany(Product, {through: OrderItem})
+
 
 User.hasMany(Order)
 Order.belongsTo(User)
