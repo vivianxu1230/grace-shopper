@@ -18,13 +18,13 @@ class Cart extends React.Component {
     this.checkoutHandler = this.checkoutHandler.bind(this)
     this.deleteHandler = this.deleteHandler.bind(this)
   }
-  // componentDidMount() {
-  //   // if (this.props.isLoggedIn) {
-  //   //   this.props.loadCart()
-  //   // } else {
-  //   //   this.props.loadGuestCart()
-  //   // }
-  // }
+  componentDidMount() {
+    // if (this.props.isLoggedIn) {
+    //   this.props.loadCart()
+    // } else {
+    // this.props.loadGuestCart()
+    // }
+  }
 
   async checkoutHandler() {
     await this.props.checkout()

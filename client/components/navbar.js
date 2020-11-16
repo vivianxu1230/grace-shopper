@@ -14,7 +14,7 @@ class Navbar extends React.Component {
     //   await this.props.loadGuestCart()
     //   console.log('not logged in')
     // }
-    // await this.props.loadGuestCart()
+    await this.props.loadGuestCart()
   }
 
   render() {

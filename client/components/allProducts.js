@@ -1,37 +1,55 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {fetchProducts} from '../store/products'
-import {all} from 'sequelize/types/lib/operators'
+import {fetchProducts, filter} from '../store'
 
 class AllProducts extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      category: ''
+      category: 'all'
     }
-    this.clickHandler = this.clickHandler.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
   componentDidMount() {
     this.props.fetchProducts()
   }
-  clickHandler() {
-    console.log('hi')
+  async handleClick(event) {
+    await this.setState({category: event.target.getAttribute('value')})
+    if (this.state.category !== 'all') {
+      this.props.filter(this.state.category)
+    } else {
+      this.props.fetchProducts()
+    }
+    console.log(this.state)
   }
 
   render() {
     const {products} = this.props
+    const categories = [
+      {id: 1, text: 'Tops', value: 'tops'},
+      {id: 2, text: 'Bottoms', value: 'bottoms'},
+      {id: 3, text: 'Rare', value: 'rare'},
+      {id: 4, text: 'Streetwear', value: 'streetwear'},
+      {id: 5, text: 'Vintage', value: 'vintage'},
+      {id: 6, text: 'Shoes', value: 'shoes'}
+    ]
+    let opt = {}
+    opt.onClick = this.handleClick
+    opt.style = {position: 'relative'}
+    opt.className = 'categories'
     return (
       <div>
         <div className="options">
-          <div className="categories">
+          <div className="categories-container">
             <p> Categories</p>
-            <p>Tops</p>
-            <p>Bottoms</p>
-            <p>Rare</p>
-            <p>Streetwear</p>
-            <p>Vintage</p>
-            <p>Shoes</p>
+            {categories.map(category => {
+              return (
+                <p {...opt} value={category.value} key={category.id}>
+                  {category.text}
+                </p>
+              )
+            })}
           </div>
         </div>
         {products.map(product => {
@@ -81,7 +99,8 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  fetchProducts: () => dispatch(fetchProducts())
+  fetchProducts: () => dispatch(fetchProducts()),
+  filter: category => dispatch(filter(category))
 })
 
 export default connect(mapState, mapDispatch)(AllProducts)

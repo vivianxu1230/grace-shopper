@@ -1,9 +1,10 @@
 import axios from 'axios'
 
 // Action Types
-export const ALL_PRODUCTS = 'ALL_PRODUCTS'
-export const ADD_PRODUCT = 'ADD_PRODUCT'
-export const DELETE_PRODUCT = 'DELETE_PRODUCT'
+const ALL_PRODUCTS = 'ALL_PRODUCTS'
+const ADD_PRODUCT = 'ADD_PRODUCT'
+const DELETE_PRODUCT = 'DELETE_PRODUCT'
+const FILTER = 'FILTER'
 
 // Action Creators
 export const allProducts = products => ({
@@ -16,10 +17,17 @@ export const deleteProduct = productId => ({
   productId
 })
 
-export const addProduct = product  => ({
+export const addProduct = product => ({
   tpye: 'ADD_PRODUCT',
   product
 })
+
+export const filter = category => {
+  return {
+    type: FILTER,
+    category
+  }
+}
 
 // Fetch Thunk Creator
 export const fetchProducts = () => {
@@ -34,31 +42,29 @@ export const fetchProducts = () => {
 }
 
 // Delete Thunk Creator
-export const removeProduct = (id) => {
-  return async(dispatch) => {
+export const removeProduct = id => {
+  return async dispatch => {
     try {
-      await axios.delete(`/api/products/${id}`);
-      dispatch(removeProduct(id));
-    }
-    catch (error){
+      await axios.delete(`/api/products/${id}`)
+      dispatch(removeProduct(id))
+    } catch (error) {
       console.log(error)
     }
-
   }
-};
+}
 
 // Add Product
-export const postProduct = (product) => {
-  return async (dispatch) => {
+export const postProduct = product => {
+  return async dispatch => {
     try {
       console.log(product)
-      const { data } = await axios.post('/api/products', product);
+      const {data} = await axios.post('/api/products', product)
       dispatch(postProduct(data))
     } catch (error) {
       console.log(error)
     }
   }
-};
+}
 
 // Initial State
 const initialState = []
@@ -68,11 +74,13 @@ const productsReducer = (state = initialState, action) => {
     case ALL_PRODUCTS:
       return action.products
     case DELETE_PRODUCT:
-      return state.filter((product) => product.id !== action.productId)
+      return state.filter(product => product.id !== action.productId)
     case ADD_PRODUCT:
       return [...state, action.product]
+    case FILTER:
+      return [...state].filter(product => product.category === action.category)
     default:
-      return state;
-    }
+      return state
   }
+}
 export default productsReducer
