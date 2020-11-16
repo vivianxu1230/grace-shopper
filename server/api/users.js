@@ -12,9 +12,11 @@ const adminsOnly = (req,res,next) => {
   next()
 }
 
-router.get('/', async (req, res, next) => {
+router.get('/', adminsOnly, async (req, res, next) => {
   try {
-    const users = await User.findAll()
+    const users = await User.findAll({
+      attributes: {exclude: ['password', 'email', 'firstName', 'lastName', 'isAdmin']
+    }})
     res.json(users)
   } catch (err) {
     next(err)
