@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {fetchProducts, removeProduct} from '../store/products'
+import {fetchProducts, removeProduct, editProduct} from '../store/products'
 import NewProduct from './newProduct'
 
 class AdminProducts extends React.Component {
@@ -56,7 +56,8 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   fetchProducts: () => dispatch(fetchProducts()),
-  removeProduct: id => dispatch(removeProduct(id))
+  removeProduct: id => dispatch(removeProduct(id)),
+  editProduct: id => dispatch(editProduct(id))
 })
 
 export default connect(mapState, mapDispatch)(AdminProducts)

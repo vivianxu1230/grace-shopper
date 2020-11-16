@@ -4,6 +4,7 @@ import axios from 'axios'
 const ALL_PRODUCTS = 'ALL_PRODUCTS'
 const ADD_PRODUCT = 'ADD_PRODUCT'
 const DELETE_PRODUCT = 'DELETE_PRODUCT'
+const EDIT_PRODUCT = 'EDIT_PRODUCT'
 const FILTER = 'FILTER'
 
 // Action Creators
@@ -19,6 +20,11 @@ export const deleteProduct = productId => ({
 
 export const addProduct = product => ({
   type: 'ADD_PRODUCT',
+  product
+})
+
+export const editProduct = product => ({
+  type: EDIT_PRODUCT,
   product
 })
 
@@ -53,6 +59,17 @@ export const removeProduct = id => {
   }
 }
 
+export const updateProduct = id => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.patch(`/api/products/${id}`)
+      dispatch(editProduct(data))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 // Add Product
 export const postProduct = product => {
   return async dispatch => {
@@ -75,6 +92,8 @@ const productsReducer = (state = initialState, action) => {
     case DELETE_PRODUCT:
       return state.filter(product => product.id !== action.productId)
     case ADD_PRODUCT:
+      return [...state, action.product]
+    case EDIT_PRODUCT:
       return [...state, action.product]
     case FILTER:
       return [...state].filter(product => product.category === action.category)
