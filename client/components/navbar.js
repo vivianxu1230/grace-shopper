@@ -8,28 +8,19 @@ import {AllProducts} from './allProducts'
 class Navbar extends React.Component {
   constructor(props) {
     super(props)
-    this.handleLoad = this.handleLoad.bind(this)
-  }
-  handleLoad() {
-    console.log('function hit')
-    this.props.isLoggedin ? this.props.loadCart() : this.props.loadGuestCart()
-    // if (this.props.isLoggedIn) {
-    //   await this.props.loadCart()
-    //   console.log('logged in')
-    // } else {
-    //   await this.props.loadGuestCart()
-    //   console.log('not logged in')
-    // }
   }
   componentDidMount() {
-    // this.handleLoad()
-    //   console.log(this.props)
-    // this.props.loadGuestCart()
-    this.props.loadCart()
+    console.log('mounted')
+    this.props.loadGuestCart()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.user.id !== this.props.user.id) {
+      this.props.loadCart()
+    }
   }
 
   render() {
-    console.log(this.props)
     return (
       <div>
         <h1>Archive</h1>

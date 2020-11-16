@@ -38,10 +38,10 @@ const Product = db.define('product', {
   category: {
     type: Sequelize.STRING,
     defaultValue: 'tops',
-    allowNull: false
-    // validate: {
-    //   isIn: [['tops', 'bottoms', 'rare', 'vintage', 'streetwear', 'shoes']]
-    // }
+    allowNull: false,
+    validate: {
+      isIn: [['tops', 'bottoms', 'accessories', 'wholebody', 'shoes']]
+    }
   },
   imageUrl: {
     type: Sequelize.TEXT,
