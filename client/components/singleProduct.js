@@ -16,21 +16,25 @@ class SingleProduct extends React.Component {
     }
 
     return (
-      <div className="productContainer">
-        <img className="productImage" src={finalProduct.imageUrl} />
-        <div className="product">
-          <h1>{finalProduct.name}</h1>
-          <h2>Price - {finalProduct.price}</h2>
+      <div>
+        <div className="productContainer">
+          <img className="productImage" src={finalProduct.imageUrl} />
+          <div className="product">
+            <h1>{finalProduct.name}</h1>
+            <h2>${finalProduct.price}</h2>
 
-          <p className="description">{finalProduct.description}</p>
-
-          <button
-            type="submit"
-            className="addToCart"
-            // onClick = {() => this.addProductToCart(product.id, 1)}
-          >
-            Add To Cart
-          </button>
+            <p className="description">{finalProduct.description}</p>
+            <button
+              type="submit"
+              className="addToCart"
+              // onClick = {() => this.addProductToCart(product.id, 1)}
+            >
+              Add To Cart
+            </button>
+            <button type="submit" className="like">
+              <span>❤️</span>
+            </button>
+          </div>
         </div>
       </div>
     )

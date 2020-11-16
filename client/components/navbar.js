@@ -14,10 +14,10 @@ const Navbar = ({userCart, loadCart, handleClick, isLoggedIn}) => {
   }, [])
   return (
     <div>
-      <h1 id="header">Grace Bopper</h1>
       <nav>
+        <h1>Grace Bopper</h1>
         {isLoggedIn ? (
-          <div>
+          <div className="links">
             {/* The navbar will show these links after you log in */}
             <Link to="/home">Home</Link>
             <Link to="/products" component={AllProducts}>
@@ -28,7 +28,7 @@ const Navbar = ({userCart, loadCart, handleClick, isLoggedIn}) => {
             </a>
           </div>
         ) : (
-          <div>
+          <div id="links">
             {/* The navbar will show these links before you log in */}
             <Link to="/products">All Products</Link>
             <Link to="/login">Login</Link>

@@ -57,21 +57,23 @@ async function seed() {
   const products = await Promise.all([
     Product.create({
       name: 'White shirt',
-      description: 'Soo soft. 100% cotton.',
+      description:
+        'Re-Nylon introduces a sustainable line of products fabricated of regenerated ECONYL®, a nylon made through recycling and purifying plastic collected from oceans, fishing nets, and textile fiber waste. The classic bowling shirt is reinterpreted in regenerated nylon and decorated with sophisticated and functional details such as the pouch applied to the sleeve.',
       price: '10.00',
       category: 'tops',
       imageUrl:
-        'https://scene7.zumiez.com/is/image/zumiez/product_main_medium/Shaka-Wear-Max-Heavy-White-T-Shirt-_325409-front-US.jpg',
+        'https://www.prada.com/content/dam/pradanux_products/P/P43/P433BY/1LZCF0009/P433BY_1LZC_F0009_S_202_SLF.png/_jcr_content/renditions/cq5dam.web.white.1200.1500.webp',
       quantity: 0,
       orderId: 1
     }),
     Product.create({
       name: 'Black shirt',
-      description: 'Soo comfy. 100% hemp.',
+      description:
+        'Re-Nylon introduces a sustainable line of products fabricated of regenerated ECONYL®, a nylon made through recycling and purifying plastic collected from oceans, fishing nets, and textile fiber waste. The classic bowling shirt is reinterpreted in regenerated nylon and decorated with sophisticated and functional details such as the pouch applied to the sleeve.',
       price: '20.00',
       category: 'tops',
       imageUrl:
-        'https://www.dhresource.com/0x0/f2/albu/g10/M00/6F/74/rBVaWV6-ZdKAA-iTAACRasUGiXw810.jpg/distressing-black-t-shirt-ripped-cuffs-short.jpg',
+        'https://www.prada.com/content/dam/pradanux_products/2/240/240683/1WQ8F0002/240683_1WQ8_F0002_S_201_SLF.png/_jcr_content/renditions/cq5dam.web.white.1200.1500.webp',
       quantity: 0,
       orderId: 1
     }),
@@ -88,7 +90,8 @@ async function seed() {
     }),
     Product.create({
       name: 'Canary',
-      description: 'Pink leather ballerina pointe-style shoes',
+      description:
+        'These Saffiano textured patent leather pumps with tapered silhouette and slim 100 mm stiletto heel express timeless femininity.',
       price: '1000.00',
       category: 'shoes',
       imageUrl:
@@ -105,7 +108,7 @@ async function seed() {
     }),
     Product.create({
       name: 'White Body Suit',
-      description: 'Make a statement head to toe.',
+      description: `This sophisticated chemisier dress has a feminine silhouette and refined details. The fine lace dress is embellished with hand-embroidered floral motifs that illuminate the garment like buttons.`,
       price: '3000.00',
       category: 'vintage',
       imageUrl:
@@ -113,7 +116,8 @@ async function seed() {
     }),
     Product.create({
       name: 'Fringe Black Bootie',
-      description: 'Stay warm and in fashion.',
+      description:
+        'Reinterpreting the classic Chelsea boot, these brushed leather booties are characterized by the rubber welt with an indented motif.',
       price: '500.00',
       category: 'shoes',
       imageUrl:
