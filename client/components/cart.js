@@ -18,13 +18,14 @@ class Cart extends React.Component {
     this.checkoutHandler = this.checkoutHandler.bind(this)
     this.deleteHandler = this.deleteHandler.bind(this)
   }
-  
+
   async componentDidMount() {
-    if (this.props.isLoggedIn) {
-      await this.props.loadCart()
-    } else {
-      await this.props.loadGuestCart()
-    }
+    // this.props.loadCart()
+    // if (this.props.isLoggedIn) {
+    //   await this.props.loadCart()
+    // } else {
+    //   await this.props.loadGuestCart()
+    // }
   }
 
   async checkoutHandler() {
@@ -51,7 +52,6 @@ class Cart extends React.Component {
               <p>Qty</p>
             </div>
             <div>
-              {console.log(this.props.cart.products)}
               {this.props.cart.products &&
                 this.props.cart.products.map(product => (
                   <div className="cart-item" key={product.id}>
@@ -105,12 +105,12 @@ const mapDispatch = dispatch => {
     handleClick() {
       dispatch(logout())
     },
-    // loadCart() {
-    //   dispatch(fetchCart())
-    // },
-    // loadGuestCart() {
-    //   dispatch(fetchGuestCart())
-    // },
+    loadCart() {
+      dispatch(fetchCart())
+    },
+    loadGuestCart() {
+      dispatch(fetchGuestCart())
+    },
     checkout() {
       dispatch(checkoutThunk())
     },
