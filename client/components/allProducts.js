@@ -52,9 +52,10 @@ class AllProducts extends React.Component {
             })}
           </div>
         </div>
+      <div className="soloProductContainer">
         {products.map(product => {
           return (
-            <div className="products" key={product.id}>
+            <div className="soloProduct" key={product.id}>
               <Link to={`/products/${product.id}`}>{product.name}</Link>
               <div className="img-overlay">
                 {!product.quantity && (
@@ -86,6 +87,8 @@ class AllProducts extends React.Component {
                 />
               </div>
               <p>${product.price}</p>
+
+              </div>
             </div>
           )
         })}

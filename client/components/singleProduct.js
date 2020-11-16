@@ -29,13 +29,12 @@ class SingleProduct extends React.Component {
     }
     return (
       <div>
+      <div className="productContainer">
+          <img className="productImage" src={finalProduct.imageUrl} />
+          <div className="product">
         <h1>{finalProduct.name}</h1>
-        <img
-          style={{width: '500px', height: '500px'}}
-          src={finalProduct.imageUrl}
-        />
-        <p>{finalProduct.description}</p>
-        <p>${finalProduct.price}</p>
+        <p className="description">{finalProduct.description}</p>
+        <h2>${finalProduct.price}</h2>
         {finalProduct.onHold ? (
           <div>
             <button style={{opacity: '0.3'}} type="button">
@@ -53,9 +52,13 @@ class SingleProduct extends React.Component {
           >
             Add to cart
           </button>
+     <button type="submit" className="like">
+              <span>❤️</span>
+            </button>
         ) : (
           <p>Item is sold out</p>
         )}
+       </div>
       </div>
     )
   }

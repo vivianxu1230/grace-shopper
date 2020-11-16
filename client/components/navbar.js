@@ -32,7 +32,7 @@ class Navbar extends React.Component {
     console.log(this.props)
     return (
       <div>
-        <h1>Grace Bopper</h1>
+        <h1>Archive</h1>
         <nav>
           {this.props && this.props.isLoggedIn ? (
             <div>
