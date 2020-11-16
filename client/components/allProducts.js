@@ -29,10 +29,9 @@ class AllProducts extends React.Component {
     const categories = [
       {id: 1, text: 'Tops', value: 'tops'},
       {id: 2, text: 'Bottoms', value: 'bottoms'},
-      {id: 3, text: 'Rare', value: 'rare'},
-      {id: 4, text: 'Streetwear', value: 'streetwear'},
-      {id: 5, text: 'Vintage', value: 'vintage'},
-      {id: 6, text: 'Shoes', value: 'shoes'}
+      {id: 3, text: 'Accessories', value: 'accessories'},
+      {id: 4, text: 'Whole body', value: 'wholebody'},
+      {id: 5, text: 'Shoes', value: 'shoes'}
     ]
     let opt = {}
     opt.onClick = this.handleClick
