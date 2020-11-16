@@ -10,8 +10,8 @@ const User = db.define('user', {
       notEmpty: true
     },
     //https://sequelize.readthedocs.io/en/2.0/docs/models-definition/#:~:text=To%20define%20mappings%20between%20a,was%20updated%20the%20last%20time to turn values uppercase. Does it have to be async?
-    setDataValue : function(val) {
-      this.setDataValue('firstName', val.toUpperCase());
+    setDataValue: function(val) {
+      this.setDataValue('firstName', val.toUpperCase())
     }
   },
   lastName: {
@@ -20,8 +20,8 @@ const User = db.define('user', {
     validate: {
       notEmpty: true
     },
-    setDataValue : function(val) {
-      this.setDataValue('lastName', val.toUpperCase());
+    setDataValue: function(val) {
+      this.setDataValue('lastName', val.toUpperCase())
     }
   },
   email: {
@@ -29,15 +29,14 @@ const User = db.define('user', {
     unique: true,
     validate: {
       isEmail: true,
-      notEmpty: true,
+      notEmpty: true
     },
-    setDataValue : function(val) {
-      this.setDataValue('email', val.toUpperCase());
+    setDataValue: function(val) {
+      this.setDataValue('email', val.toUpperCase())
     }
   },
   password: {
     type: Sequelize.STRING,
-    allowNull: false,
     // Making `.password` act like a func hides it when serializing to JSON.
     // This is a hack to get around Sequelize's lack of a "private" option.
     get() {
@@ -102,4 +101,9 @@ User.beforeCreate(setSaltAndPassword)
 User.beforeUpdate(setSaltAndPassword)
 User.beforeBulkCreate(users => {
   users.forEach(setSaltAndPassword)
+})
+
+User.beforeCreate(user => {
+  const upperCase = user.email.toUpperCase()
+  user.email = upperCase
 })

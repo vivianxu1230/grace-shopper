@@ -38,6 +38,20 @@ async function seed() {
       lastName: 'Labelle',
       email: 'pattiPie@email.com',
       password: '123'
+    }),
+    User.create({
+      firstName: 'Robyn',
+      lastName: 'Fenty',
+      email: 'riri@email.com',
+      password: '123',
+      isAdmin: true
+    }),
+    User.create({
+      firstName: 'Lucille',
+      lastName: 'Ball',
+      email: 'lulu@email.com',
+      password: '123',
+      isAdmin: true
     })
   ])
 
@@ -81,7 +95,8 @@ async function seed() {
       imageUrl:
         'https://live.staticflickr.com/65535/49014186342_61220d9aa3_b.jpg',
       quantity: 1,
-      orderId: 2
+      orderId: 2,
+      onHold: true
     }),
     Product.create({
       name: 'Guipure',
@@ -186,13 +201,13 @@ async function seed() {
   await Promise.all([
     Order.create({
       address: '1234 S Main St, NY, NY',
-      orderStatus: 'Shipped',
+      status: 'Shipped',
       paymentInfo: '12345678910',
       userId: 1
     }),
     Order.create({
       address: '5678 N Main St, NO, LA',
-      orderStatus: 'Cart',
+      status: 'Cart',
       paymentInfo: '12345678910',
       userId: 2
     })

@@ -3,11 +3,11 @@ const db = require('../db')
 // const Product = require('./product')
 
 const Order = db.define('order', {
-  orderStatus: {
-    type: Sequelize.STRING
-    // validate: {
-    //   isIn: [['Cart', 'Shipped', 'Processing', 'Received']]
-    // }
+  status: {
+    type: Sequelize.STRING,
+    validate: {
+      isIn: [['Cart', 'Shipped', 'Processing', 'Received']]
+    }
   },
   paymentInfo: {
     type: Sequelize.STRING,

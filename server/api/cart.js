@@ -6,8 +6,7 @@ router.get('/', async (req, res, next) => {
   try {
     const cart = await Order.findOne({
       where: {
-        userId: req.session.passport.user,
-        orderStatus: 'Cart'
+        userId: req.session.passport.user
       },
       include: Product
     })
@@ -22,17 +21,22 @@ router.put('/checkout', async (req, res, next) => {
     const cart = await Order.findOne({
       where: {
         userId: req.session.passport.user,
-        orderStatus: 'Cart'
+        status: 'Cart'
       },
       include: Product
     })
-    console.log(cart.paymentInfo, cart.address, cart.orderStatus)
-    if (cart.paymentInfo && cart.address) {
-      cart.update({orderStatus: 'Received'})
-    }
+    await Order.create({
+      userId: req.session.passport.user,
+      status: 'Received',
+      address: cart.address,
+      paymentInfo: cart.paymentInfo
+    })
     const cartItems = cart.products
     for (let i = 0; i < cart.products.length; i++) {
       cartItems[i].update({quantity: 0})
+      const productId = cartItems[i].id
+      const orderItem = await OrderItem.findByPk(productId)
+      await orderItem.destroy()
     }
     res.sendStatus(204)
   } catch (err) {
@@ -48,10 +52,10 @@ router.put(`/add/:productId`, async (req, res, next) => {
       }
     })
     item.update({onHold: true})
-    const order = await Order.findOrCreate({
+    const order = await Order.find({
       where: {
         userId: req.session.passport.user,
-        orderStatus: 'Cart'
+        status: 'Cart'
       }
     })
     await OrderItem.create({
@@ -77,7 +81,7 @@ router.put('/delete/:productId', async (req, res, next) => {
     const cart = await Order.findOne({
       where: {
         userId: req.session.passport.user,
-        orderStatus: 'Cart'
+        status: 'Cart'
       },
       include: Product
     })
