@@ -17,7 +17,7 @@ class Navbar extends React.Component {
   render() {
     return (
       <div>
-        <h1>Grace Bopper</h1>
+        <h1>Archive</h1>
         <nav>
           {this.props.isLoggedIn ? (
             <div>
