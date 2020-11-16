@@ -95,7 +95,8 @@ async function seed() {
       imageUrl:
         'https://live.staticflickr.com/65535/49014186342_61220d9aa3_b.jpg',
       quantity: 1,
-      orderId: 2
+      orderId: 2,
+      onHold: true
     }),
     Product.create({
       name: 'Guipure',
