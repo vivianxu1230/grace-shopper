@@ -18,6 +18,7 @@ class Navbar extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div>
         <h1>Grace Bopper</h1>
