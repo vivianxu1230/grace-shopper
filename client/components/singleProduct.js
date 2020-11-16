@@ -35,8 +35,15 @@ class SingleProduct extends React.Component {
           src={finalProduct.imageUrl}
         />
         <p>{finalProduct.description}</p>
-        <p>Price - {finalProduct.price}</p>
-        {finalProduct.quantity ? (
+        <p>${finalProduct.price}</p>
+        {finalProduct.onHold ? (
+          <div>
+            <button style={{opacity: '0.3'}} type="button">
+              Add to cart
+            </button>
+            <p>Someone else has this in their cart!</p>
+          </div>
+        ) : finalProduct.quantity ? (
           <button
             type="submit"
             className="addToCart"
@@ -44,7 +51,7 @@ class SingleProduct extends React.Component {
               this.addHandler(finalProduct.id)
             }}
           >
-            Add To Cart
+            Add to cart
           </button>
         ) : (
           <p>Item is sold out</p>

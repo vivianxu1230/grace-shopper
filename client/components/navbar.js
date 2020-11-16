@@ -7,21 +7,23 @@ import {AllProducts} from './allProducts'
 
 class Navbar extends React.Component {
   async componentDidMount() {
-    if (this.props.isLoggedIn) {
-      console.log(this.props.isLoggedIn)
-      await this.props.loadCart()
-    } else {
-      this.props.loadGuestCart()
-    }
+    // if (this.props.isLoggedIn) {
+    //   await this.props.loadCart()
+    //   console.log('logged in')
+    // } else {
+    //   await this.props.loadGuestCart()
+    //   console.log('not logged in')
+    // }
+    await this.props.loadGuestCart()
   }
-  
+
   render() {
     console.log(this.props)
     return (
       <div>
         <h1>Grace Bopper</h1>
         <nav>
-          {this.props.isLoggedIn ? (
+          {this.props && this.props.isLoggedIn ? (
             <div>
               <Link to="/home">Home</Link>
               <Link to="/products" component={AllProducts}>
@@ -38,7 +40,6 @@ class Navbar extends React.Component {
             </div>
           ) : (
             <div>
-              {/* The navbar will show these links before you log in */}
               <Link to="/products">All Products</Link>
               <Link to="/login">Login</Link>
               <Link to="/signup">Sign Up</Link>
@@ -77,6 +78,7 @@ class Navbar extends React.Component {
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
+    user: state.user,
     cart: state.cart,
     isAdmin: !!state.user.isAdmin
   }
@@ -101,7 +103,7 @@ export default connect(mapState, mapDispatch)(Navbar)
 /**
  * PROP TYPES
  */
-Navbar.propTypes = {
-  handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
-}
+// Navbar.propTypes = {
+//   handleClick: PropTypes.func.isRequired,
+//   isLoggedIn: PropTypes.bool.isRequired
+// }
