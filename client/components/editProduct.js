@@ -27,7 +27,6 @@ export class EditProduct extends React.Component {
       event.preventDefault()
       const id = this.props.product.id
       const body = this.state
-      console.log('id:', id, 'body:', body)
       await this.props.updateProduct(id, body)
       await this.setState({
         name: '',
@@ -96,7 +95,6 @@ export class EditProduct extends React.Component {
           </select>
           <div>
             <button className="editProductAdmin" type="submit">
-              {' '}
               EDIT PRODUCT
             </button>
           </div>

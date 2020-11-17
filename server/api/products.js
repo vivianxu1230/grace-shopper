@@ -38,7 +38,7 @@ router.patch('/:productId', async (req, res, next) => {
         id: req.params.productId
       }
     })
-
+    console.log(product)
     res.json(product)
   } catch (error) {
     next(error)
