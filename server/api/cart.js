@@ -6,7 +6,8 @@ router.get('/', async (req, res, next) => {
   try {
     const cart = await Order.findOne({
       where: {
-        userId: req.session.passport.user
+        userId: req.session.passport.user,
+        status: 'Cart'
       },
       include: Product
     })
@@ -25,19 +26,31 @@ router.put('/checkout', async (req, res, next) => {
       },
       include: Product
     })
-    await Order.create({
+    const newOrder = await Order.create({
       userId: req.session.passport.user,
       status: 'Received',
       address: cart.address,
       paymentInfo: cart.paymentInfo
     })
+    //create order item that is associated with newOrder.id and productId
     const cartItems = cart.products
     for (let i = 0; i < cart.products.length; i++) {
       cartItems[i].update({quantity: 0})
-      const productId = cartItems[i].id
-      const orderItem = await OrderItem.findByPk(productId)
+      const currentProductId = cartItems[i].id
+      const orderItem = await OrderItem.findOne({
+        where: {productId: currentProductId}
+      })
+      console.log(orderItem)
+      const product = await Product.findByPk(currentProductId)
+      const price = product.price
       await orderItem.destroy()
+      await OrderItem.create({
+        productId: currentProductId,
+        orderId: newOrder.id,
+        price
+      })
     }
+    await cart.update({products: []})
     res.sendStatus(204)
   } catch (err) {
     next(err)
@@ -65,7 +78,6 @@ router.put(`/add/:productId`, async (req, res, next) => {
     })
     res.sendStatus(204)
   } catch (err) {
-    console.log('ERRORRRRR')
     next(err)
   }
 })

@@ -25,6 +25,7 @@ class Cart extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div className="cart-container">
         {this.props.cart.products && this.props.cart.products.length ? (

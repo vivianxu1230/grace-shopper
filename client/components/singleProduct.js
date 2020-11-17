@@ -23,10 +23,6 @@ class SingleProduct extends React.Component {
 
   render() {
     const product = this.props.product
-    // let finalProduct = ''
-    // for (let i = 0; i < product.length; i++) {
-    //   finalProduct = product[i]
-    // }
     return (
       <div className="productContainer">
         <img className="productImage" src={product.imageUrl} />

@@ -94,7 +94,7 @@ export const fetchGuestCart = () => async dispatch => {
       for (let i = 0; i < arrOfCartIds.length; i++) {
         if (arrOfCartIds[i]) {
           const {data} = await axios.get(`/api/products/${arrOfCartIds[i]}`)
-          guestCart.products.push(data[0])
+          guestCart.products.push(data)
         }
       }
       dispatch(getGuestCart(guestCart))
@@ -114,7 +114,7 @@ export const addItemGuest = productId => async dispatch => {
       localStorage.setItem('cart', productId.toString())
     }
     const {data} = await axios.get(`/api/products/${productId}`)
-    dispatch(addToCartGuest(data[0]))
+    dispatch(addToCartGuest(data))
   } catch (err) {
     console.error(err)
   }

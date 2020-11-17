@@ -272,5 +272,21 @@ form div {
 
 .orders-container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.orders-container p:hover {
+  cursor: pointer;
+}
+
+.order-details,
+.order-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.order-details {
+  padding-top: 10px;
 }
