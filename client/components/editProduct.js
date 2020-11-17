@@ -19,13 +19,11 @@ export class EditProduct extends React.Component {
   }
 
   handleChange(event) {
-    console.log('in handlechange')
     this.setState({[event.target.name]: event.target.value})
   }
 
   async handleSubmit(event) {
     try {
-      console.log('in handlesubmit', this.state)
       event.preventDefault()
       const id = this.props.product.id
       const body = this.state
