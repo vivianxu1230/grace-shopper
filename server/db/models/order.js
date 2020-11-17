@@ -1,7 +1,6 @@
 const {adminsOnly, adminsAndusers} = require('./index')
 const Sequelize = require('sequelize')
 const db = require('../db')
-// const Product = require('./product')
 
 const Order = db.define('order', {
   status: {

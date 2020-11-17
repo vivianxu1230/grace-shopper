@@ -1,6 +1,8 @@
 const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
+const Product = require('./product')
+const Order = require('./order')
 
 const User = db.define('user', {
   firstName: {
@@ -87,6 +89,15 @@ User.encryptPassword = function(plainText, salt) {
     .digest('hex')
 }
 
+User.findCart = function(req, res, next) {
+  return Order.findOne({
+    where: {
+      userId: req.user.id,
+      status: 'Cart'
+    },
+    include: Product
+  })
+}
 /**
  * hooks
  */

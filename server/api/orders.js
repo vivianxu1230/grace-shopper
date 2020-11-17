@@ -1,6 +1,7 @@
 const router = require('express').Router()
-const {Order} = require('../db/models')
+const {Order, Product} = require('../db/models')
 module.exports = router
+const {Op} = require('sequelize')
 
 const adminsOnly = (req,res,next) => {
   if (!req.user.isAdmin) {
@@ -22,6 +23,23 @@ const adminsAndusers = (req,res,next) => {
 router.get('/', async (req, res, next) => {
   try {
     const orders = await Order.findAll()
+    res.json(orders)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get('/:userId', async (req, res, next) => {
+  try {
+    const orders = await Order.findAll({
+      where: {
+        userId: req.params.userId,
+        status: {
+          [Op.ne]: 'Cart'
+        }
+      },
+      include: Product
+    })
     res.json(orders)
   } catch (err) {
     next(err)

@@ -10,26 +10,29 @@ class Navbar extends React.Component {
     super(props)
   }
   componentDidMount() {
-    console.log('mounted')
     this.props.loadGuestCart()
   }
-
   componentDidUpdate(prevProps) {
     if (prevProps.user.id !== this.props.user.id) {
       this.props.loadCart()
     }
   }
-
   render() {
     return (
       <div>
-        <h1>Archive</h1>
+        <h1>Persephone Archive</h1>
         <nav>
           {this.props && this.props.isLoggedIn ? (
             <div>
               <Link to="/home">Home</Link>
               <Link to="/products" component={AllProducts}>
                 All Products
+              </Link>
+              <Link
+                onClick={() => window.location.replace('/myorders')}
+                to="/myorders"
+              >
+                Order History
               </Link>
               {this.props.isAdmin ? (
                 <Link to="/adminview">Admin View</Link>

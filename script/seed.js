@@ -242,7 +242,7 @@ async function seed() {
       address: '1234 S Main St, New York, NY',
       status: 'Shipped',
       paymentInfo: '12345678910',
-      userId: 1
+      userId: 6
     }),
     Order.create({
       address: '5678 N Main St, New Orleans, LA',

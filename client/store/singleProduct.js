@@ -23,6 +23,7 @@ export default function singleProductReducer(state = [], action) {
     case GET_SINGLE_PRODUCT: {
       return action.product
     }
+
     default: {
       return state
     }

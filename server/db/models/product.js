@@ -4,14 +4,12 @@ const db = require('../db')
 const Product = db.define('product', {
   name: {
     type: Sequelize.STRING,
-    allowNull: false,
     validate: {
       notEmpty: true
     }
   },
   description: {
     type: Sequelize.TEXT,
-    allowNull: false,
     validate: {
       notEmpty: true
     }
@@ -49,5 +47,12 @@ const Product = db.define('product', {
       'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'
   }
 })
+
+/**
+ * classMethods
+ */
+Product.findItem = function(req, res, next) {
+  return this.findByPk(req.params.productId)
+}
 
 module.exports = Product

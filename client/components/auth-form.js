@@ -92,6 +92,7 @@ const mapDispatch = dispatch => {
         formInfo.lastName = evt.target.lastName.value
       }
       dispatch(auth(formInfo, formName))
+      window.location.replace('/')
     }
   }
 }
