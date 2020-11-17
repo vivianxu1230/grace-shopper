@@ -29,40 +29,43 @@ class orderHistory extends React.Component {
     })
   }
   render() {
-    console.log(this.state.selectedOrder)
     return (
       <div>
         <h2>Order History</h2>
-        {this.state.orders.map(order => {
-          return (
-            <div
-              onClick={this.handleClick}
-              className="orders-container"
-              value={order.id}
-              key={order.id}
-            >
-              <div className="order-header">
-                <p>Order #{order.id}</p>
-                <p>{order.status}</p>
-                <p>{order.updatedAt}</p>
+        {this.state.orders.length ? (
+          this.state.orders.map(order => {
+            return (
+              <div
+                onClick={this.handleClick}
+                className="orders-container"
+                value={order.id}
+                key={order.id}
+              >
+                <div className="order-header">
+                  <p>Order #{order.id}</p>
+                  <p>{order.status}</p>
+                  <p>{order.updatedAt}</p>
+                </div>
+                {this.state.selectedOrder ? (
+                  order.products.map(product => {
+                    return (
+                      <div key={product.id} className="order-details">
+                        <img style={{height: '50px'}} src={product.imageUrl} />
+                        <p>{product.name}</p>
+                        <p>1</p>
+                        <p>${product.price}</p>
+                      </div>
+                    )
+                  })
+                ) : (
+                  <div />
+                )}
               </div>
-              {this.state.selectedOrder ? (
-                order.products.map(product => {
-                  return (
-                    <div key={product.id} className="order-details">
-                      <img style={{height: '50px'}} src={product.imageUrl} />
-                      <p>{product.name}</p>
-                      <p>1</p>
-                      <p>${product.price}</p>
-                    </div>
-                  )
-                })
-              ) : (
-                <div />
-              )}
-            </div>
-          )
-        })}
+            )
+          })
+        ) : (
+          <p>There are no past orders to show. </p>
+        )}
       </div>
     )
   }

@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
 body {
-  font-family: serif;
+  /* font-family: 'Nanum Gothic', sans-serif; */
   display: grid;
   background: #eae0d7;
 }
@@ -20,6 +22,12 @@ nav a {
   z-index: 2;
   margin: 10px;
 }
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
 nav h1 {
   float: center;
 }

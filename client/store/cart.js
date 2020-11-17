@@ -7,7 +7,7 @@ const GET_USER_CART = 'GET_USER_CART'
 const CHECKOUT = 'CHECKOUT'
 const ADD_TO_CART = 'ADD_TO_CART'
 const DELETE_CART_PRODUCT = 'DELETE_CART_PRODUCT'
-const GET_GUEST_CART = 'GET_GUEST_CART '
+const GET_GUEST_CART = 'GET_GUEST_CART'
 const ADD_TO_CART_GUEST = 'ADD_TO_CART_GUEST'
 const DELETE_CART_PRODUCT_GUEST = 'DELETE_CART_PRODUCT_GUEST'
 
@@ -145,7 +145,7 @@ export default function(state = cart, action) {
     case GET_USER_CART:
       return action.userCart
     case CHECKOUT:
-      return state
+      return {products: []}
     case ADD_TO_CART:
       return {...state, products: [...state.products, action.product]}
     case DELETE_CART_PRODUCT:

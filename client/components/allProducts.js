@@ -8,7 +8,15 @@ class AllProducts extends React.Component {
     super(props)
     this.state = {
       category: 'all',
-      filteredProducts: []
+      filteredProducts: [],
+      categories: [
+        {id: 1, text: 'All', value: 'all'},
+        {id: 2, text: 'Tops', value: 'tops'},
+        {id: 3, text: 'Bottoms', value: 'bottoms'},
+        {id: 4, text: 'Accessories', value: 'accessories'},
+        {id: 5, text: 'Whole Body', value: 'wholebody'},
+        {id: 6, text: 'Shoes', value: 'shoes'}
+      ]
     }
     this.handleClick = this.handleClick.bind(this)
   }
@@ -30,26 +38,19 @@ class AllProducts extends React.Component {
       this.state.category === 'all'
         ? this.props.products
         : this.state.filteredProducts
-    const categories = [
-      {id: 1, text: 'All', value: 'all'},
-      {id: 2, text: 'Tops', value: 'tops'},
-      {id: 3, text: 'Bottoms', value: 'bottoms'},
-      {id: 4, text: 'Accessories', value: 'accessories'},
-      {id: 5, text: 'Whole Body', value: 'wholebody'},
-      {id: 6, text: 'Shoes', value: 'shoes'}
-    ]
-    let opt = {}
-    opt.onClick = this.handleClick
-    opt.style = {position: 'relative'}
-    opt.className = 'categories'
     return (
       <div>
         <div className="options">
           <div className="categories-container">
             <p className="categories-header"> Categories</p>
-            {categories.map(category => {
+            {this.state.categories.map(category => {
               return (
-                <p {...opt} value={category.value} key={category.id}>
+                <p
+                  className="categories"
+                  onClick={this.onClick}
+                  value={category.value}
+                  key={category.id}
+                >
                   {category.text}
                 </p>
               )
@@ -62,7 +63,7 @@ class AllProducts extends React.Component {
               <div className="soloProduct" key={product.id}>
                 <h1>{product.name}</h1>
                 <div className="img-overlay">
-                  {!product.quantity && (
+                  {!product.quantity ? (
                     <svg viewBox="50 20 500 500">
                       <g>
                         <rect
@@ -84,6 +85,8 @@ class AllProducts extends React.Component {
                         </text>
                       </g>
                     </svg>
+                  ) : (
+                    <div />
                   )}
                 </div>
                 <Link to={`/products/${product.id}`}>
@@ -92,14 +95,9 @@ class AllProducts extends React.Component {
 
                 <h2>${product.price}</h2>
               </div>
-
-  
-       
-       
             )
           })}
         </div>
-
       </div>
     )
   }

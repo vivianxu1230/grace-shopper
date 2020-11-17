@@ -1,16 +1,10 @@
 const router = require('express').Router()
-const {Product, Order, OrderItem} = require('../db/models')
+const {User, Product, Order, OrderItem} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
-    const cart = await Order.findOne({
-      where: {
-        userId: req.session.passport.user,
-        status: 'Cart'
-      },
-      include: Product
-    })
+    const cart = await User.findCart(req, res, next)
     res.json(cart)
   } catch (err) {
     next(err)
@@ -19,28 +13,20 @@ router.get('/', async (req, res, next) => {
 
 router.put('/checkout', async (req, res, next) => {
   try {
-    const cart = await Order.findOne({
-      where: {
-        userId: req.session.passport.user,
-        status: 'Cart'
-      },
-      include: Product
-    })
+    const cart = await User.findCart(req, res, next)
     const newOrder = await Order.create({
-      userId: req.session.passport.user,
+      userId: req.user.id,
       status: 'Received',
       address: cart.address,
       paymentInfo: cart.paymentInfo
     })
-    //create order item that is associated with newOrder.id and productId
     const cartItems = cart.products
-    for (let i = 0; i < cart.products.length; i++) {
+    for (let i = 0; i < cartItems.length; i++) {
       cartItems[i].update({quantity: 0})
       const currentProductId = cartItems[i].id
       const orderItem = await OrderItem.findOne({
         where: {productId: currentProductId}
       })
-      console.log(orderItem)
       const product = await Product.findByPk(currentProductId)
       const price = product.price
       await orderItem.destroy()
@@ -59,18 +45,9 @@ router.put('/checkout', async (req, res, next) => {
 
 router.put(`/add/:productId`, async (req, res, next) => {
   try {
-    const item = await Product.findOne({
-      where: {
-        id: req.params.productId
-      }
-    })
+    const item = await Product.findItem(req, res, next)
     item.update({onHold: true})
-    const order = await Order.findOne({
-      where: {
-        userId: req.session.passport.user,
-        status: 'Cart'
-      }
-    })
+    const order = await User.findCart(req, res, next)
     await OrderItem.create({
       productId: item.id,
       price: item.price,
@@ -84,19 +61,9 @@ router.put(`/add/:productId`, async (req, res, next) => {
 
 router.put('/delete/:productId', async (req, res, next) => {
   try {
-    const item = await Product.findOne({
-      where: {
-        id: req.params.productId
-      }
-    })
+    const item = await Product.findItem(req, res, next)
     item.update({onHold: false})
-    const cart = await Order.findOne({
-      where: {
-        userId: req.session.passport.user,
-        status: 'Cart'
-      },
-      include: Product
-    })
+    const cart = await User.findCart(req, res, next)
     cart.update({
       products: cart.products.filter(
         product => product.id !== req.params.productId

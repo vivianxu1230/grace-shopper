@@ -28,6 +28,12 @@ class Navbar extends React.Component {
               <Link to="/products" component={AllProducts}>
                 All Products
               </Link>
+              <Link
+                onClick={() => window.location.replace('/myorders')}
+                to="/myorders"
+              >
+                Order History
+              </Link>
               {this.props.isAdmin ? (
                 <Link to="/adminview">Admin View</Link>
               ) : (
