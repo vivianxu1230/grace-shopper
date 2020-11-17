@@ -8,7 +8,7 @@ const checkoutpage = ({checkout, cart, isLoggedIn, loadCart}) => {
     <div>
       <h3 style={{textAlign: 'center'}}>
         Congratulations! You have successfully checked out. Your confirmation id
-        is #{Math.floor(Math.random() * 2039903)}
+        is #2789hne342bd!
       </h3>
     </div>
   )
