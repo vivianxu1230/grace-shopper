@@ -1,9 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Xanh+Mono&display=swap');
 
 body {
-  /* font-family: 'Nanum Gothic', sans-serif; */
+  font-family: 'Xanh Mono', monospace;
   display: grid;
   background: #eae0d7;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
 
 label {
@@ -22,12 +27,6 @@ nav a {
   z-index: 2;
   margin: 10px;
 }
-
-a {
-  text-decoration: none;
-  color: black;
-}
-
 nav h1 {
   float: center;
 }
@@ -196,7 +195,7 @@ form div {
   box-shadow: 5px 5px 15px rgba(#ba7e7e, 0.5);
   border-radius: 10px;
   border-style: groove;
-  margin-left: 20px;
+  margin-left: 60px;
 }
 
 .soloProduct h1 {
@@ -211,6 +210,7 @@ form div {
   font-size: 1.8em;
   color: #f5f5f5;
   margin-top: 20px;
+  text-align: center;
 }
 
 .soloProduct img {
@@ -240,10 +240,11 @@ form div {
   width: 100%;
   height: 100%;
 }
+
 .img-overlay {
   position: relative;
-  display: inline-block;
-  transition: transform 150ms ease-in-out;
+  /* display: inline-block; */
+  /* transition: transform 150ms ease-in-out; */
 }
 
 .img-overlay img {
@@ -258,43 +259,22 @@ form div {
   left: 0;
 }
 
-.categories-container {
+.options {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  visibility: hidden;
-}
-
-.categories-container:hover {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  visibility: visible;
-  cursor: pointer;
-}
-
-.categories-header {
   font-weight: bold;
-  visibility: visible;
+}
+
+.options p:hover {
+  cursor: pointer;
 }
 
 .orders-container {
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .orders-container p:hover {
   cursor: pointer;
-}
-
-.order-details,
-.order-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-
-.order-details {
-  padding-top: 10px;
 }

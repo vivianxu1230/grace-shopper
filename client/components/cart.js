@@ -13,6 +13,7 @@ class Cart extends React.Component {
   }
   async checkoutHandler() {
     await this.props.checkout()
+
     window.location.replace('/checkoutconf')
   }
 
