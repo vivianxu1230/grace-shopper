@@ -12,6 +12,4 @@ router.use((req, res, next) => {
   next(error)
 })
 
-module.exports = {
-  router
-}
+module.exports = router
