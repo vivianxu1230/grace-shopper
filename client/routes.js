@@ -14,7 +14,7 @@ import {
   AdminProducts,
   Cart,
   CheckoutPage,
-  SingleUser
+  SingleUser,
   OrderHistory
 } from './components'
 import {me} from './store'

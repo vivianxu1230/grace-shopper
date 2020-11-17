@@ -68,7 +68,7 @@ export const updateProduct = (id, product) => {
     try {
       await axios.patch(`/api/products/${id}`, {product})
       const {data} = await axios.get(`/api/products/${id}`)
-      dispatch(editProduct(data[0]))
+      dispatch(editProduct(data))
     } catch (error) {
       console.log(error)
     }

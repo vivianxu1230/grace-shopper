@@ -1,8 +1,8 @@
 const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
-const Product = require('/Users/vivianxu1230/fullstack/grace_shopper_proj/grace-shopper/server/db/models/product.js')
-const Order = require('/Users/vivianxu1230/fullstack/grace_shopper_proj/grace-shopper/server/db/models/order.js')
+const Product = require('./product')
+const Order = require('./order')
 
 const User = db.define('user', {
   firstName: {

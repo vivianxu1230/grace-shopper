@@ -14,13 +14,12 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     const products = await Product.findAll({
-      attributes: {exclude: ['createdAt', 'updatedAt']
-    }
-  })
-  res.json(products)
-} catch (err) {
-  next(err)
-}
+      attributes: {exclude: ['createdAt', 'updatedAt']}
+    })
+    res.json(products)
+  } catch (err) {
+    next(err)
+  }
 })
 
 //try and refactor with findbypk
@@ -46,7 +45,7 @@ router.post('/', (req, res, next) => {
 
 router.patch('/:productId', async (req, res, next) => {
   try {
-    console.log('req.body:', req.body)
+    console.log('req.body.product:', req.body.product)
     await Product.update(req.body.product, {
       where: {
         id: req.params.productId

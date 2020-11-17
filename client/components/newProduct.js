@@ -54,7 +54,7 @@ export class NewProduct extends React.Component {
           />
           <input
             className="newProductInput"
-            type="integer"
+            type="number"
             name="price"
             placeholder="Price"
             value={this.state.price}
@@ -88,9 +88,8 @@ export class NewProduct extends React.Component {
             <option>category</option>
             <option name="tops">tops</option>
             <option name="bottoms">bottoms</option>
-            <option name="rare">rare</option>
-            <option name="vintage">vintage</option>
-            <option name="streetwear">streetwear</option>
+            <option name="accessories">accessories</option>
+            <option name="wholebody">wholebody</option>
             <option name="shoes">shoes</option>
           </select>
           <button type="submit">Submit New Product</button>
