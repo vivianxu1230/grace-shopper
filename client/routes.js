@@ -14,13 +14,11 @@ import {
   AdminProducts,
   Cart,
   CheckoutPage,
+  SingleUser
   OrderHistory
 } from './components'
 import {me} from './store'
 
-/**
- * COMPONENT
- */
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
@@ -40,7 +38,8 @@ class Routes extends Component {
         {isAdmin && (
           <Switch>
             <Route path="/adminview" component={adminView} />
-            <Route path="/adminusers" component={AdminUsers} />
+            <Route exact path="/adminusers" component={AdminUsers} />
+            <Route path="/adminusers/:userId" component={SingleUser} />
             <Route path="/adminproducts" component={AdminProducts} />
           </Switch>
         )}

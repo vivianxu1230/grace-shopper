@@ -44,6 +44,21 @@ router.post('/', (req, res, next) => {
     .catch(next)
 })
 
+router.patch('/:productId', async (req, res, next) => {
+  try {
+    console.log('req.body:', req.body)
+    await Product.update(req.body.product, {
+      where: {
+        id: req.params.productId
+      }
+    })
+
+    res.sendStatus(204)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.delete('/:productId', (req, res, next) => {
   Product.destroy({
     where: {
