@@ -3,7 +3,7 @@ const {User} = require('../db/models')
 
 module.exports = router
 
-const adminsOnly = (req,res,next) => {
+const adminsOnly = (req, res, next) => {
   if (!req.user.isAdmin) {
     const err = new Error('No access.')
     err.status = 401
@@ -12,7 +12,16 @@ const adminsOnly = (req,res,next) => {
   next()
 }
 
-router.get('/', async (req, res, next) => {
+const adminsAndusers = (req, res, next) => {
+  if (!req.user.isAdmin || req.user.userId !== req.params.userId) {
+    const err = new Error('No access.')
+    err.status = 401
+    return next(err)
+  }
+  next()
+}
+
+router.get('/', adminsOnly, async (req, res, next) => {
   try {
     const users = await User.findAll()
     res.json(users)
@@ -21,7 +30,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:userId', async (req, res, next) => {
+router.get('/:userId', adminsAndusers, async (req, res, next) => {
   try {
     const user = await User.findOne({
       where: {
@@ -50,7 +59,7 @@ router.put('/:userId', async (req, res, next) => {
   }
 })
 
-router.patch('/:userId', async (req, res, next) => {
+router.patch('/:userId', adminsAndusers, async (req, res, next) => {
   try {
     const user = await User.findOne({
       where: {
@@ -65,11 +74,15 @@ router.patch('/:userId', async (req, res, next) => {
   }
 })
 
-router.delete('/:userid', adminsOnly, (req, res, next) => { 
- req.User.destroy()
-  .then(() => {
-    res.status(204).end()
-  })
-  .catch(next) 
+router.delete('/:userid', adminsOnly, async (req, res, next) => {
+  try {
+    const user = await User.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+    res.sendStatus(204)
+  } catch (err) {
+    next(err)
+  }
 })
-

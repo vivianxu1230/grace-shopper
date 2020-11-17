@@ -1,3 +1,4 @@
+const {adminsOnly, adminsAndusers} = require('./index')
 const router = require('express').Router()
 const {Order} = require('../db/models')
 module.exports = router
