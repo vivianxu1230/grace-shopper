@@ -1,19 +1,19 @@
+/* eslint-disable react/no-unused-state */
 import React from 'react'
-import axios from 'axios'
 import {connect} from 'react-redux'
-import {postProduct} from '../store/products'
+import {updateProduct} from '../store/products'
 
-export class NewProduct extends React.Component {
-  constructor() {
-    super()
+export class EditProduct extends React.Component {
+  constructor(props) {
+    super(props)
     this.state = {
       name: '',
       description: '',
       price: 0,
-      quantity: 1,
       category: '',
       imageUrl: ''
     }
+
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
@@ -25,12 +25,13 @@ export class NewProduct extends React.Component {
   async handleSubmit(event) {
     try {
       event.preventDefault()
-      await this.props.createProduct(this.state)
+      const id = this.props.product.id
+      const body = this.state
+      await this.props.updateProduct(id, body)
       await this.setState({
         name: '',
         description: '',
         price: 0,
-        quantity: 1,
         category: '',
         imageUrl: ''
       })
@@ -41,7 +42,6 @@ export class NewProduct extends React.Component {
 
   render() {
     return (
-      //Double check route for action
       <div className="newProduct">
         <form onSubmit={this.handleSubmit}>
           <input
@@ -86,14 +86,18 @@ export class NewProduct extends React.Component {
             onChange={this.handleChange}
           >
             <option>category</option>
-            <option name="tops">tops</option>
-            <option name="bottoms">bottoms</option>
-            <option name="rare">rare</option>
-            <option name="vintage">vintage</option>
-            <option name="streetwear">streetwear</option>
-            <option name="shoes">shoes</option>
+            <option name="tops">Tops</option>
+            <option name="bottoms">Bottoms</option>
+            <option name="rare">Rare</option>
+            <option name="vintage">Vintage</option>
+            <option name="streetwear">Streetwear</option>
+            <option name="shoes">Shoes</option>
           </select>
-          <button type="submit">Submit New Product</button>
+          <div>
+            <button className="editProductAdmin" type="submit">
+              EDIT PRODUCT
+            </button>
+          </div>
         </form>
       </div>
     )
@@ -102,8 +106,8 @@ export class NewProduct extends React.Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createProduct: product => dispatch(postProduct(product))
+    updateProduct: (id, body) => dispatch(updateProduct(id, body))
   }
 }
 
-export default connect(null, mapDispatchToProps)(NewProduct)
+export default connect(null, mapDispatchToProps)(EditProduct)
