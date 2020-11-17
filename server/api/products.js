@@ -45,7 +45,6 @@ router.post('/', (req, res, next) => {
 
 router.patch('/:productId', async (req, res, next) => {
   try {
-    console.log('req.body.product:', req.body.product)
     await Product.update(req.body.product, {
       where: {
         id: req.params.productId
