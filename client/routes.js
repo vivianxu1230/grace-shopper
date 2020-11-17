@@ -13,13 +13,11 @@ import {
   AdminUsers,
   AdminProducts,
   Cart,
-  CheckoutPage
+  CheckoutPage,
+  SingleUser
 } from './components'
 import {me} from './store'
 
-/**
- * COMPONENT
- */
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
@@ -31,13 +29,6 @@ class Routes extends Component {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/home" component={Home} />
-        {/* {isLoggedIn? (<Route
-          path="/cart"
-          render={props => <Cart {...props} isLoggedIn={isLoggedIn} />}
-        />) : (<Route
-          path="/cart"
-          render={props => <Cart {...props} isLoggedIn={isLoggedIn} />}
-        />)} */}
         <Route path="/cart" component={Cart} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/products" component={AllProducts} />
@@ -45,7 +36,8 @@ class Routes extends Component {
         {isAdmin && (
           <Switch>
             <Route path="/adminview" component={adminView} />
-            <Route path="/adminusers" component={AdminUsers} />
+            <Route exact path="/adminusers" component={AdminUsers} />
+            <Route path="/adminusers/:userId" component={SingleUser} />
             <Route path="/adminproducts" component={AdminProducts} />
           </Switch>
         )}

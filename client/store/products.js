@@ -5,6 +5,7 @@ const ALL_PRODUCTS = 'ALL_PRODUCTS'
 const ADD_PRODUCT = 'ADD_PRODUCT'
 const DELETE_PRODUCT = 'DELETE_PRODUCT'
 const FILTER = 'FILTER'
+const EDIT_PRODUCT = 'EDIT_PRODUCT'
 
 // Action Creators
 export const allProducts = products => ({
@@ -28,6 +29,11 @@ export const filter = category => {
     category
   }
 }
+
+export const editProduct = product => ({
+  type: EDIT_PRODUCT,
+  product
+})
 
 // Fetch Thunk Creator
 export const fetchProducts = () => {
@@ -65,7 +71,18 @@ export const postProduct = product => {
   }
 }
 
-// Initial State
+export const updateProduct = (id, product) => {
+  return async dispatch => {
+    try {
+      await axios.patch(`/api/products/${id}`, {product})
+      const {data} = await axios.get(`/api/products/${id}`)
+      dispatch(editProduct(data[0]))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 const initialState = []
 
 const productsReducer = (state = initialState, action) => {
@@ -78,6 +95,14 @@ const productsReducer = (state = initialState, action) => {
       return [...state, action.product]
     case FILTER:
       return [...state].filter(product => product.category === action.category)
+    case EDIT_PRODUCT:
+      return state.map(product => {
+        if (product.id === action.product.id) {
+          return action.product
+        }
+        return product
+      })
+
     default:
       return state
   }

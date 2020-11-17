@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unused-state */
 import React from 'react'
 import {connect} from 'react-redux'
-import {updateProduct} from '../store/singleProduct'
+import {updateProduct} from '../store/products'
 
 export class EditProduct extends React.Component {
   constructor(props) {
@@ -19,7 +19,6 @@ export class EditProduct extends React.Component {
   }
 
   handleChange(event) {
-    console.log('in handleChange')
     this.setState({[event.target.name]: event.target.value})
   }
 
