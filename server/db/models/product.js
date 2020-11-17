@@ -48,4 +48,11 @@ const Product = db.define('product', {
   }
 })
 
+/**
+ * classMethods
+ */
+Product.findItem = function(req, res, next) {
+  return this.findByPk(req.params.productId)
+}
+
 module.exports = Product

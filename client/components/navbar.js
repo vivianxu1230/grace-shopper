@@ -20,13 +20,19 @@ class Navbar extends React.Component {
   render() {
     return (
       <div>
-        <h1>Archive</h1>
+        <h1>Persephone Archive</h1>
         <nav>
           {this.props && this.props.isLoggedIn ? (
             <div>
               <Link to="/home">Home</Link>
               <Link to="/products" component={AllProducts}>
                 All Products
+              </Link>
+              <Link
+                onClick={() => window.location.replace('/myorders')}
+                to="/myorders"
+              >
+                Order History
               </Link>
               {this.props.isAdmin ? (
                 <Link to="/adminview">Admin View</Link>
