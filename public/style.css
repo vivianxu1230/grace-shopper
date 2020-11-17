@@ -309,3 +309,48 @@ form div {
   position: inline;
   margin: 10px;
 }
+
+.adminProductContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-flow: wrap;
+  align-items: stretch;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.adminsoloProduct {
+  flex-direction: row;
+  padding: 40px;
+  position: relative;
+  margin: 20px;
+  overflow: hidden;
+  width: 900px;
+  height: 800px;
+  background: #f5f5f5;
+  box-shadow: 5px 5px 15px rgba(#ba7e7e, 0.5);
+  border-radius: 10px;
+  border-style: groove;
+  margin-left: 20px;
+}
+
+.adminsoloProduct h1 {
+  margin-left: 25%;
+  font-size: 1.8em;
+  color: #4e4e4e;
+  margin-top: 10px;
+}
+
+.adminsoloProduct h2 {
+  margin-left: 70%;
+  font-size: 1.8em;
+  color: #c3a1a0;
+  margin-top: 20px;
+}
+
+.adminsoloProduct img {
+  width: 300px;
+  height: 400px;
+  grid-row: auto;
+}

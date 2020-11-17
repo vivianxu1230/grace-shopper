@@ -59,11 +59,13 @@ export const removeProduct = id => {
   }
 }
 
-export const updateProduct = id => {
+export const updateProduct = (id, product) => {
   return async dispatch => {
     try {
-      const {data} = await axios.patch(`/api/products/${id}`)
+      const {data} = await axios.patch(`/api/products/${id}`, product)
+      console.log(data)
       dispatch(editProduct(data))
+      console.log(editProduct(data))
     } catch (error) {
       console.log(error)
     }
