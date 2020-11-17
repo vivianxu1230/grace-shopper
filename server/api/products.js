@@ -33,12 +33,13 @@ router.post('/', (req, res, next) => {
 
 router.patch('/:productId', async (req, res, next) => {
   try {
-    const product = await Product.update(req.body, {
+    console.log('req.body:', req.body)
+    const product = await Product.update(req.body.product, {
       where: {
         id: req.params.productId
       }
     })
-    console.log(product)
+
     res.json(product)
   } catch (error) {
     next(error)

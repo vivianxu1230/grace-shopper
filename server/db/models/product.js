@@ -4,14 +4,12 @@ const db = require('../db')
 const Product = db.define('product', {
   name: {
     type: Sequelize.STRING,
-    allowNull: false,
     validate: {
       notEmpty: true
     }
   },
   description: {
     type: Sequelize.TEXT,
-    allowNull: false,
     validate: {
       notEmpty: true
     }
@@ -39,9 +37,6 @@ const Product = db.define('product', {
     type: Sequelize.STRING,
     defaultValue: 'tops',
     allowNull: false
-    // validate: {
-    //   isIn: [['tops', 'bottoms', 'rare', 'vintage', 'streetwear', 'shoes']]
-    // }
   },
   imageUrl: {
     type: Sequelize.TEXT,
