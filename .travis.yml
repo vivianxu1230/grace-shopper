@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-- 12
+  - 12
 services:
-- postgresql
+  - postgresql
 addons:
   postgresql: '10'
 dist: xenial
@@ -11,19 +11,17 @@ notifications:
     on_success: change
     on_failure: always
 install:
-- npm ci
+  - npm ci
 before_script:
-- psql -c 'create database "gracebopper-test";' -U postgres
+  - psql -c 'create database "gracebopper-test";' -U postgres
 script:
-- npm test
-- npm run build-client
+  - npm test
+  - npm run build-client
 before_deploy:
-- rm -rf node_modules
+  - rm -rf node_modules
 deploy:
   skip_cleanup: true
   provider: heroku
   app: gracebopper
-
-
   api_key:
-    secure: BOpqDXhjuPpkut0vRqXxmlS58W3pSVkSKVEMOECU9bEdRXe/AaiJhWL4JfeJoDWXcaLdc2OOMdModnST/+UfSzwQIt330kUemU2HfGIswLMcIAaxQkqckB7hO/JMhxTl/+98eNzW/1+ehRElV/4vCf849PGbwxvNZgf4CiGhy3Apg48qJTJHLzsC21BqttEN716IiD6j9afTXMNvUuOw84giD/6YzyRgRx4b+KsIU6CMG1adjUzJfG112Wdm2OjkMznSeS+V5mPC4WxRKUzrsrLLQQLStiNkRD6YxorLTgwR0O0/nU7gOQmf6dTrMVHICbwu+N0sJEvPA9bhj8ClYdNHg/l/iBchhwUPyIythclt/TdAT5QIpCDbDgsb42EyFh8T7EJAkl3uSRHZAsg71B5DYiVL5+GTSECll0VWe2thWpcCbsx3tVfcPD9ySwoOwACRwGscbQg2FllABblMUHHYXKBXaBy8C8Tt4HbH92ZMqvXnglYM/SiQkSwMr4pxKgY0+21ejdVZl3HhttCnibQI+m9iWmMwjfKJqabE4tZL9YeqjiXsU9SP3KqwpVVXNC/Gt2IEzQ83O3HTHXCopuigTScjuPbrmexVQlge1NblYmXPXlYh1lhtoc5mWyzGHewhrZNnb4ltAJ52uy6HMq4RbwiaWaXyIr/67IZ30hI=
+    secure: KHN8T6wC/oPP5orhFjWhLkfnXgCCgkrbeS6U/NtCJeLHYZaxNl84VagddrIEx/VJjdTFc9BGUc6dUz9jNkOCWF7tVeWmhY/UjYwojMY1lMGViYf3SYSsUx+5QN05RhAANtA1O24sOu56dzxipQJGuvC6b7qOTeddMA8ZcW5nHf4wLoNdoyfykXjcjMUOC5D8ZU/luxG+NPH37Ks7Zd5nEkIRSgkyiw82DomQhHmqYhlcKLh2gAaCJHwjMEp37nn6kGPFgcWEHPkrDYcZrjtyT0knHH/iX9P90CmMloeyYXA2p9arfJ/9JlZ9mPQSn1NghYicWvapmrCBr2xFLsxMCxNzIYPBv1UTN3j+aStpxEsSffhlfZBuZgcPAEdAac5gTJT14JLOn5qOSs9b0tavUHHgn6V/ox2CdqvOPxiQNVC+1S/V/SdIjCzOWMWX0cLbAxNP+jgct0FD1daaNm3kuk/5UciUMhvsh4BQpfEjDeF/1aIvTzfg/8dqCYEE0YuzY7i4eUd955M9L81b8wz7GZ7FBp5fv3W2B4UXD8Y/0m4wBUUGmsZO7VBsteHIuZY+xsu9KHEzRfxMr8JJxMQFvEUDIGHdS6RTEFSUmVmDKQAaY0Fgi0Tqp2zQJkqS9y262vy6VPv7ee6ELGzRVwkhT5L/FP5gPZwVXLnb88eOGf4=

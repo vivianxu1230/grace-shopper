@@ -353,4 +353,28 @@ form div {
   width: 300px;
   height: 400px;
   grid-row: auto;
+=======
+.categories-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  visibility: hidden;
+}
+
+.categories-container:hover {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  visibility: visible;
+  cursor: pointer;
+}
+
+.categories-header {
+  font-weight: bold;
+  visibility: visible;
+}
+
+.orders-container {
+  display: flex;
+  justify-content: space-between;
 }

@@ -1,6 +1,5 @@
 const router = require('express').Router()
 const {User} = require('../db/models')
-module.exports = router
 
 const adminsOnly = (req, res, next) => {
   if (!req.user.isAdmin) {
@@ -11,9 +10,11 @@ const adminsOnly = (req, res, next) => {
   next()
 }
 
-router.get('/', async (req, res, next) => {
+router.get('/', adminsOnly, async (req, res, next) => {
   try {
-    const users = await User.findAll()
+    const users = await User.findAll({
+      attributes: {exclude: ['password', 'email', 'firstName', 'lastName', 'isAdmin']
+    }})
     res.json(users)
   } catch (err) {
     next(err)
@@ -47,8 +48,25 @@ router.put('/:userId', async (req, res, next) => {
 
 router.delete('/:userid', adminsOnly, (req, res, next) => {
   req.User.destroy()
-    .then(() => {
-      res.status(204).end()
-    })
-    .catch(next)
-})
+   .then(() => {
+     res.status(204).end()
+   })
+   .catch(next) 
+ })
+ 
+
+// router.delete('/:userid', adminsOnly, (req, res, next) => { 
+//   try {
+//    const users = await User.destroy({
+//       where: {
+//         id: req.params.id
+//       }
+      
+//     })
+//     res.sendStatus(204)
+//   } catch (err) {
+//     next(err)
+//   }
+// })
+module.exports = router
+

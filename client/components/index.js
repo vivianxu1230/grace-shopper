@@ -17,3 +17,5 @@ export {default as CheckoutPage} from './checkoutpage'
 export {default as AdminProducts} from './adminProducts'
 export {default as NewProduct} from './newProduct'
 export {default as SingleUser} from './singleUser'
+export {default as OrderHistory} from './orderHistory'
+

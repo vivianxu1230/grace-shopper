@@ -36,7 +36,10 @@ const Product = db.define('product', {
   category: {
     type: Sequelize.STRING,
     defaultValue: 'tops',
-    allowNull: false
+    allowNull: false,
+    validate: {
+      isIn: [['tops', 'bottoms', 'accessories', 'wholebody', 'shoes']]
+    }
   },
   imageUrl: {
     type: Sequelize.TEXT,

@@ -15,6 +15,7 @@ import {
   Cart,
   CheckoutPage,
   SingleUser
+  OrderHistory
 } from './components'
 import {me} from './store'
 
@@ -29,6 +30,7 @@ class Routes extends Component {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/home" component={Home} />
+        <Route path="/myorders" component={OrderHistory} />
         <Route path="/cart" component={Cart} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/products" component={AllProducts} />

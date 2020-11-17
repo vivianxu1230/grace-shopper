@@ -52,7 +52,7 @@ router.put(`/add/:productId`, async (req, res, next) => {
       }
     })
     item.update({onHold: true})
-    const order = await Order.find({
+    const order = await Order.findOne({
       where: {
         userId: req.session.passport.user,
         status: 'Cart'
@@ -61,7 +61,7 @@ router.put(`/add/:productId`, async (req, res, next) => {
     await OrderItem.create({
       productId: item.id,
       price: item.price,
-      orderId: order[0].id
+      orderId: order.id
     })
     res.sendStatus(204)
   } catch (err) {
