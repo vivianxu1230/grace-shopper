@@ -122,6 +122,15 @@ async function seed() {
       orderId: 3
     }),
     Product.create({
+      name: 'Vivienne Westwood FW1992 Headscarf',
+      description:
+        'Vivienne Westwood ivory silk headscarf. Hand rolled hem, dog print with gold leaf text. Always on Camera Fall-Winter 1992',
+      price: '1500.00',
+      category: 'accessories',
+      imageUrl:
+        'https://a.1stdibscdn.com/vivienne-westwood-silk-dog-print-headscarf-always-on-camera-fw-1992-for-sale/1121189/v_68215521560328551629/6821552_master.jpg?disable=upscale&auto=webp&quality=60&width=960'
+    }),
+    Product.create({
       name: 'Rick Owens Boots',
       description: 'Stay warm and in fashion.',
       price: '500.00',
@@ -234,6 +243,24 @@ async function seed() {
       price: '100.00',
       category: 'accessories',
       imageUrl: 'https://i1.adis.ws/i/forzieri/jp292713-001-1x-t?$nlpv$'
+    }),
+    Product.create({
+      name: 'Vivienne Westwood Corset',
+      description:
+        '1990s-era silhouette from the genius mind of the British dame of punk fashion.',
+      price: '1500.00',
+      category: 'tops',
+      imageUrl:
+        'https://a.1stdibscdn.com/archivesE/upload/1121189/v_18913531472553850267/1891353_master.jpg?disable=upscale&auto=webp&quality=60&width=960'
+    }),
+    Product.create({
+      name: 'Alice Auaa FW13 Knit',
+      description:
+        'Creepy and deconstructed shipwreck ghost chic dress from the fall/winter 2013 runway collection.',
+      price: '1500.00',
+      category: 'wholebody',
+      imageUrl:
+        'https://i.pinimg.com/564x/76/14/8c/76148cca953bb246cd83266e8b369c03.jpg'
     })
   ])
 
