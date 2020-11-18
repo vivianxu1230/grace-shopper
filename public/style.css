@@ -27,9 +27,6 @@ nav a {
   z-index: 2;
   margin: 10px;
 }
-nav h1 {
-  float: center;
-}
 
 form div {
   margin: 1em;
@@ -230,15 +227,17 @@ form div {
 }
 
 .mainContainer {
-  width: 1000px;
-  height: 900px;
-  margin-left: 20%;
-  margin-right: 25%;
+  display: flex;
+  /* width: 1000px;
+  height: 00px; */
+  justify-content: center;
+  /* margin-left: 20%;
+  margin-right: 25%; */
 }
 
 .mainImg {
-  width: 100%;
-  height: 100%;
+  width: 1000px;
+  height: auto;
 }
 
 .img-overlay {

@@ -15,7 +15,7 @@ export const Home = () => {
         <Link to="/products">
           <img
             className="mainImg"
-            src="https://images.theconversation.com/files/293774/original/file-20190924-54793-157i3zo.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop"
+            src="https://resize.hswstatic.com/w_796/gif/persephone.jpg"
           />
         </Link>
       </div>
