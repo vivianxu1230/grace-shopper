@@ -15,11 +15,17 @@ label {
   display: block;
 }
 
+header h1 {
+  display: flex;
+  justify-content: center;
+}
+
 nav {
   height: 80px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  justify-content: center;
 }
 
 nav a {
@@ -34,6 +40,7 @@ form div {
 }
 
 .cart-icon {
+  display: flex;
   align-self: flex-end;
 }
 
@@ -49,6 +56,7 @@ form div {
 .cart-item {
   display: flex;
   flex-direction: row;
+  justify-content: right;
   justify-content: space-evenly;
 }
 

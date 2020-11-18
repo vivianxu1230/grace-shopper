@@ -290,15 +290,6 @@ async function seed() {
         'https://a.1stdibscdn.com/vivienne-westwood-grey-sheepskin-topless-trapper-hat-fw-1994-for-sale/1121189/v_93455821587663541464/9345582_master.jpg?disable=upscale&auto=webp&quality=60&width=960'
     }),
     Product.create({
-      name: 'Vivienne Westwood Dog Headscarf',
-      description:
-        "Vivienne Westwood ivory silk headscarf. Hand rolled hem, dog print with gold leaf text. 'Always on Camera' Fall-Winter 1992",
-      price: '200.00',
-      category: 'accessories',
-      imageUrl:
-        'https://a.1stdibscdn.com/vivienne-westwood-silk-dog-print-headscarf-always-on-camera-fw-1992-for-sale/1121189/v_68215521560328551629/6821552_master.jpg?disable=upscale&auto=webp&quality=60&width=960'
-    }),
-    Product.create({
       name: 'Helmut Lang AW03 Layering Skirt',
       description:
         "This is one of the most detailed and unique iterations of the famed aviator pieces. Looks great over pants. Compared to other iterations, this had much more organic patterning and layering, with a number of open slits that can be styled with chaps as originally presented in Arena Homme's iconic 10 year Helmut Lang retrospective in 2003.",

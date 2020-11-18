@@ -20,7 +20,9 @@ class Navbar extends React.Component {
   render() {
     return (
       <div>
-        <h1>Persephone Archive</h1>
+        <header>
+          <h1>Persephone Archive</h1>
+        </header>
         <nav>
           {this.props && this.props.isLoggedIn ? (
             <div>
