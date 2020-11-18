@@ -54,7 +54,7 @@ export class EditProduct extends React.Component {
           />
           <input
             className="newProductInput"
-            type="integer"
+            type="number"
             name="price"
             placeholder="Price"
             value={this.state.price}
@@ -85,13 +85,12 @@ export class EditProduct extends React.Component {
             value={this.state.category}
             onChange={this.handleChange}
           >
-            <option>category</option>
-            <option name="tops">Tops</option>
-            <option name="bottoms">Bottoms</option>
-            <option name="rare">Rare</option>
-            <option name="vintage">Vintage</option>
-            <option name="streetwear">Streetwear</option>
-            <option name="shoes">Shoes</option>
+            <option>choose category</option>
+            <option name="tops">tops</option>
+            <option name="bottoms">bottoms</option>
+            <option name="accessories">accessories</option>
+            <option name="wholebody">wholebody</option>
+            <option name="shoes">shoes</option>
           </select>
           <div>
             <button className="editProductAdmin" type="submit">

@@ -19,7 +19,7 @@ export class AdminUsers extends React.Component {
                   {user.firstName} {user.lastName}
                 </Link>
               </h2>
-              <h2>{user.email}</h2>
+              <h4>{user.email}</h4>
             </div>
           )
         })}
