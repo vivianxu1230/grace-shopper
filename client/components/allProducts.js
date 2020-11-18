@@ -24,6 +24,7 @@ class AllProducts extends React.Component {
     this.props.fetchProducts()
   }
   async handleClick(event) {
+    console.log(this.state)
     await this.setState({category: event.target.getAttribute('value')})
     const filteringProducts = this.props.products.filter(
       product => product.category === this.state.category
@@ -34,6 +35,7 @@ class AllProducts extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     const products =
       this.state.category === 'all'
         ? this.props.products
@@ -45,7 +47,7 @@ class AllProducts extends React.Component {
             return (
               <p
                 className="categories"
-                onClick={this.onClick}
+                onClick={this.handleClick}
                 value={category.value}
                 key={category.id}
               >
