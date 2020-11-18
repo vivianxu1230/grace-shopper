@@ -162,6 +162,15 @@ async function seed() {
         'https://www.givenchy.com/dw/image/v2/BBRT_PRD/on/demandware.static/-/Sites-Givenchy_master/default/dw4f24be96/images/BMJ09030AF001/BMJ09030AF001-02-01.jpg'
     }),
     Product.create({
+      name: 'Margiela 4-Piece Sweater Set',
+      description:
+        'A fabulous black wool knit 4 piece sweater set from Martin Margiela. It consists of a crop long sleeve turtleneck, a long sleeve shrug, a crop sleeveless vest and a wide hip band. All can be configured in different ways or worn separately. ',
+      price: '300.00',
+      category: 'tops',
+      imageUrl:
+        'https://a.1stdibscdn.com/martin-margiela-4-piece-cardigan-pullover-vest-for-sale/1121189/v_99597521603467707710/9959752_master.jpg?disable=upscale&auto=webp&quality=60&width=960'
+    }),
+    Product.create({
       name: 'Prada Extreme-Tex Rain Jacket',
       description:
         'A sleek, distinctive design characterizes this rain jacket born from the desire to combine cutting-edge textile technologies with eco-sustainable manufacturing methods.',
@@ -171,6 +180,15 @@ async function seed() {
         'https://www.prada.com/content/dam/pradanux_products/S/SGB/SGB625/1XV1F0342/SGB625_1XV1_F0342_S_202_SLF.png/_jcr_content/renditions/cq5dam.web.white.1200.1500.webp',
       onHold: true,
       orderId: 4
+    }),
+    Product.create({
+      name: 'Alexander McQueen SS2003 Top',
+      description:
+        'Against a giant screen projection of underwater scenes and Blair Witch–style haunted woods, McQueen unfolded a sartorial narrative that began with pirates and drowned maidens and ended in the rainforest. This top is from that very collection. ',
+      price: '500.00',
+      category: 'tops',
+      imageUrl:
+        'https://a.1stdibscdn.com/s-s-2003-alexander-mcqueen-runway-shipwrecked-sheer-nude-silk-top-for-sale/1121189/v_108293721605603545990/10829372_master.jpeg?disable=upscale&auto=webp&quality=60&width=960'
     }),
     Product.create({
       name: 'Rick Owens Light Bonded Bottoms',
@@ -234,6 +252,59 @@ async function seed() {
       price: '100.00',
       category: 'accessories',
       imageUrl: 'https://i1.adis.ws/i/forzieri/jp292713-001-1x-t?$nlpv$'
+    }),
+    Product.create({
+      name: 'Comme Des Garcons AW2005 Skirt',
+      description:
+        "Vintage Comme des Garcons ivory satin tiered ruffle skirt with trompe l'oeil print and asymmetric hem. Broken Bride collection AW 2005.",
+      price: '700.00',
+      category: 'bottoms',
+      imageUrl:
+        'https://a.1stdibscdn.com/vintage-comme-des-garcons-broken-bride-ivory-tiered-skirt-2005-for-sale/1121189/v_70359221562915119143/7035922_master.jpg?disable=upscale&auto=webp&quality=60&width=960'
+    }),
+    Product.create({
+      name: 'Comme des Garcons Victorian Bustle Dress',
+      description:
+        "Rei Kawakubo for Comme des Garcons high concept creation with Victorian flair. Most likely inspired by Vivienne Westwood's wench style dresses. Asymmetric heavy cotton dress extraordinarily constructed with fan pleating and manipulation of fabric into bustle style back. The gathers and tucks of the skirt allow for irregular hemline and the hand ruched bodice creates a feminine corset single strap style. Side zipper closure.",
+      price: '1700.00',
+      category: 'wholebody',
+      imageUrl:
+        'https://a.1stdibscdn.com/comme-des-garcons-asymmetric-victorian-flair-bustle-dress-westwood-inspiration-for-sale/1121189/v_75104321568183635744/7510432_master.jpg?disable=upscale&auto=webp&quality=60&width=960'
+    }),
+    Product.create({
+      name: 'Vivienne Westwood FW1994Trapper Hat',
+      description:
+        'Vivienne Westwood grey sheepskin topless trapper hat, fw 1994',
+      price: '350.00',
+      category: 'accessories',
+      imageUrl:
+        'https://a.1stdibscdn.com/vivienne-westwood-grey-sheepskin-topless-trapper-hat-fw-1994-for-sale/1121189/v_93455821587663541464/9345582_master.jpg?disable=upscale&auto=webp&quality=60&width=960'
+    }),
+    Product.create({
+      name: 'Vivienne Westwood Dog Headscarf',
+      description:
+        "Vivienne Westwood ivory silk headscarf. Hand rolled hem, dog print with gold leaf text. 'Always on Camera' Fall-Winter 1992",
+      price: '200.00',
+      category: 'accessories',
+      imageUrl:
+        'https://a.1stdibscdn.com/vivienne-westwood-silk-dog-print-headscarf-always-on-camera-fw-1992-for-sale/1121189/v_68215521560328551629/6821552_master.jpg?disable=upscale&auto=webp&quality=60&width=960'
+    }),
+    Product.create({
+      name: 'Helmut Lang AW03 Layering Skirt',
+      description:
+        "This is one of the most detailed and unique iterations of the famed aviator pieces. Looks great over pants. Compared to other iterations, this had much more organic patterning and layering, with a number of open slits that can be styled with chaps as originally presented in Arena Homme's iconic 10 year Helmut Lang retrospective in 2003.",
+      price: '1200.00',
+      category: 'bottoms',
+      imageUrl:
+        'https://process.fs.grailed.com/AJdAgnqCST4iPtnUxiGtTz/auto_image/cache=expiry:max/rotate=deg:exif/resize=height:1400,fit:scale/output=quality:90/compress/https://cdn.fs.grailed.com/api/file/mNZnRgf6QKew6wgBtYE2'
+    }),
+    Product.create({
+      name: 'John Galliano Hooded Bodysuit',
+      description: 'Circa 1986 John Galliano with an asymmetrical, daring cut',
+      price: '700.00',
+      category: 'wholebody',
+      imageUrl:
+        'https://a.1stdibscdn.com/archivesE/upload/1121189/v_64846311555940445949/6484631_master.jpeg?disable=upscale&auto=webp&quality=60&width=960'
     })
   ])
 
