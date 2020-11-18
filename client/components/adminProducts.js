@@ -28,15 +28,14 @@ class AdminProducts extends React.Component {
                 <img src={product.imageUrl} />
               </Link>
               <h2>{product.price}</h2>
-              <EditProduct product={product} />
               <button
                 className="deleteProductAdmin"
                 type="button"
                 onClick={() => this.handleDelete(product.id)}
               >
-                {' '}
                 DELETE PRODUCT
               </button>
+              <EditProduct product={product} />
             </div>
           )
         })}
