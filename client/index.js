@@ -7,12 +7,18 @@ import {Router} from 'react-router-dom'
 import history from './history'
 import store from './store'
 import App from './app'
-import {StyleReset, Container} from 'atomize'
+import {ThemeProvider, StyleReset, Container} from 'atomize'
 
 // establishes socket connection
 import './socket'
 
 const engine = new Styletron()
+
+const theme = {
+  shadows: {
+    'blue-shadow': '0 16px 24px -2px rgba(147, 203, 230, 0.5)'
+  }
+}
 
 process.on('unhandledRejection', (reason, p) => {
   throw reason
@@ -21,12 +27,14 @@ process.on('unhandledRejection', (reason, p) => {
 ReactDOM.render(
   <Container>
     <StyletronProvider value={engine}>
-      <Provider store={store}>
-        <Router history={history}>
-          <StyleReset />
-          <App />
-        </Router>
-      </Provider>
+      <ThemeProvider theme={theme}>
+        <Provider store={store}>
+          <Router history={history}>
+            <StyleReset />
+            <App />
+          </Router>
+        </Provider>
+      </ThemeProvider>
     </StyletronProvider>
   </Container>,
   document.getElementById('app')

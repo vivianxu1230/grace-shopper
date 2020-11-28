@@ -20,7 +20,7 @@ class Navbar extends React.Component {
   render() {
     return (
       <Div>
-        <Text tag="h1" textSize="display1" textAlign="center">
+        <Text textSize="display1" textAlign="center">
           Persephone Archive
         </Text>
         <nav>
