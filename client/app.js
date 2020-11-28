@@ -8,6 +8,7 @@ class App extends React.Component {
   componentDidMount() {
     this.props.loadInitialData()
   }
+
   render() {
     return (
       <div>

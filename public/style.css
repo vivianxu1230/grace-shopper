@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Xanh+Mono&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Xanh+Mono&display=swap');
 
 body {
   font-family: 'Xanh Mono', monospace;
@@ -236,11 +236,7 @@ form div {
 
 .mainContainer {
   display: flex;
-  /* width: 1000px;
-  height: 00px; */
   justify-content: center;
-  /* margin-left: 20%;
-  margin-right: 25%; */
 }
 
 .mainImg {
@@ -250,8 +246,6 @@ form div {
 
 .img-overlay {
   position: relative;
-  /* display: inline-block; */
-  /* transition: transform 150ms ease-in-out; */
 }
 
 .img-overlay img {
@@ -389,4 +383,4 @@ form div {
 
 .orders-container p:hover {
   cursor: pointer;
-}
+} */

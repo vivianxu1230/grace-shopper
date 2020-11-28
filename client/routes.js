@@ -22,6 +22,7 @@ import {me} from './store'
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData()
+    console.log('routes load')
   }
 
   render() {
