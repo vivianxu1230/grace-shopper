@@ -131,44 +131,46 @@ async function seed() {
         'https://a.1stdibscdn.com/vivienne-westwood-silk-dog-print-headscarf-always-on-camera-fw-1992-for-sale/1121189/v_68215521560328551629/6821552_master.jpg?disable=upscale&auto=webp&quality=60&width=960'
     }),
     Product.create({
-      name: 'Rick Owens Boots',
-      description: 'Stay warm and in fashion.',
+      name: 'Kaat Tilley Beaded Dress',
+      description:
+        'This set features a Les Habitudes beaded bustier and Kaat Tilley crinkle skirt. The bustier has a corset back. The crinkle skirt has a zipper closure. In excellent vintage condition.',
       price: '500.00',
-      category: 'shoes',
+      category: 'wholebody',
       imageUrl:
-        'https://cdn.rickowens.eu/products/80056/large/RP20F2843LGFLWN_9999__1.jpg?1588690637',
+        'https://a.1stdibscdn.com/archivesE/upload/1121189/v_18194631470660595770/1819463_master.jpg?disable=upscale&auto=webp&quality=60&width=960',
       quantity: 0,
       orderId: 3
     }),
     Product.create({
-      name: 'Ganni Dress',
+      name: 'Mugler Quilted Silver Dress',
       description:
-        "Meet the epitome of party dresses. Boasting a flared design and whimsical rose print, this mini dress from GANNI will turn you into the prettiest one of any event. Now let's have some fun.",
+        'Vintage THIERRY MUGLER Quilted Silver Space Age Futuristic Dress',
       price: '2000.00',
       category: 'wholebody',
       imageUrl:
-        'https://cdn-images.farfetch-contents.com/15/87/78/22/15877822_30100693_1000.jpg',
+        'https://a.1stdibscdn.com/vintage-thierry-mugler-quilted-silver-space-age-futuristic-dress-for-sale/1121189/v_94730921589305103001/9473092_master.jpeg?disable=upscale&auto=webp&quality=60&width=960',
       quantity: 0,
       orderId: 3
     }),
     Product.create({
-      name: 'Collina Strada Shirt',
+      name: 'Mugler Eyelash Top',
       description:
-        "Florals in spring may be overrated, but they'll always be adored. Made from breathable cotton, the ones on this shirt will make you look great no matter the occasion. It's just too good.",
-      price: '200.00',
+        ' Size 36/ US Small. We accept returns for refund, please see our terms. We offer free ground shipping within the US. Please let us know if you have any questions.',
+      price: '150.00',
       category: 'tops',
       imageUrl:
-        'https://cdn-images.farfetch-contents.com/15/41/01/91/15410191_30129490_1000.jpg',
+        'https://a.1stdibscdn.com/archivesE/upload/1121189/v_19902331475481486796/1990233_master.jpg?disable=upscale&auto=webp&quality=60&width=960',
       quantity: 0,
       orderId: 3
     }),
     Product.create({
-      name: 'Givenchy Hoodie',
-      description: 'Black hoodie with reflective band.',
+      name: 'Hussein Chalayan 2002 heels',
+      description:
+        'Hussein Chalayan Autumn-Winter 2002 black leather shoes with metal heel.',
       price: '600.00',
-      category: 'tops',
+      category: 'shoes',
       imageUrl:
-        'https://www.givenchy.com/dw/image/v2/BBRT_PRD/on/demandware.static/-/Sites-Givenchy_master/default/dw4f24be96/images/BMJ09030AF001/BMJ09030AF001-02-01.jpg'
+        'https://a.1stdibscdn.com/archivesE/upload/1121189/v_34695811510039304110/3469581_master.jpg?disable=upscale&auto=webp&quality=60&width=960'
     }),
     Product.create({
       name: 'Margiela 4-Piece Sweater Set',
@@ -180,13 +182,13 @@ async function seed() {
         'https://a.1stdibscdn.com/martin-margiela-4-piece-cardigan-pullover-vest-for-sale/1121189/v_99597521603467707710/9959752_master.jpg?disable=upscale&auto=webp&quality=60&width=960'
     }),
     Product.create({
-      name: 'Prada Extreme-Tex Rain Jacket',
+      name: 'Plein Sud Tie-Dye Skirt',
       description:
-        'A sleek, distinctive design characterizes this rain jacket born from the desire to combine cutting-edge textile technologies with eco-sustainable manufacturing methods.',
+        'Unique mini skirt by Plein Sud Jeans done in a tie dyed felted wool with leather panel and lace up sides. Unlined with side zip closure. The marked size is 40/8. 80% wool, 20% nylon. The low waist measures 28", hips 36" and the total length 18.5". Excellent vintage condition with no noted flaws. Made in France.',
       price: '500.00',
-      category: 'tops',
+      category: 'bottoms',
       imageUrl:
-        'https://www.prada.com/content/dam/pradanux_products/S/SGB/SGB625/1XV1F0342/SGB625_1XV1_F0342_S_202_SLF.png/_jcr_content/renditions/cq5dam.web.white.1200.1500.webp',
+        'https://a.1stdibscdn.com/2000s-plein-sud-jeans-asymmetric-leather-tie-dye-felted-wool-lace-up-mini-skirt-for-sale/1121189/v_66917821558623265552/6691782_master.jpg?disable=upscale&auto=webp&quality=60&width=960',
       onHold: true,
       orderId: 4
     }),
@@ -200,44 +202,44 @@ async function seed() {
         'https://a.1stdibscdn.com/s-s-2003-alexander-mcqueen-runway-shipwrecked-sheer-nude-silk-top-for-sale/1121189/v_108293721605603545990/10829372_master.jpeg?disable=upscale&auto=webp&quality=60&width=960'
     }),
     Product.create({
-      name: 'Rick Owens Light Bonded Bottoms',
+      name: 'Issey Miyake Art Glasses',
       description:
-        'Highly waterproof and breathable pants made of Komatsu Matere® fabric.',
+        'Extremely rare art piece from Issey Miyake dating to the 1980s in the form of silver-toned bent wire glasses with amber nose pads and removable rubber neck strap. Can be worn or displayed. Made in Japan. Excellent condition.',
       price: '200.00',
-      category: 'bottoms',
+      category: 'accessories',
       imageUrl:
-        'https://cdn.rickowens.eu/products/80447/large/RP20F2300QLX_09_40_-1.jpg?1588775617',
+        'https://a.1stdibscdn.com/1980s-issey-miyake-silver-wire-art-glasses-with-rubber-neck-strap-for-sale/1121189/v_104254221600989391382/10425422_master.jpeg?disable=upscale&auto=webp&quality=60&width=960',
       onHold: true,
       orderId: 4
     }),
     Product.create({
-      name: 'Rick Owens Performa Boots',
+      name: 'Issey Miyake Bi-Color Vintage Dress',
       description:
         'Reinterpreting the classic Chelsea boot, these brushed leather booties are characterized by the rubber welt with an indented motif.',
       price: '900.00',
-      category: 'shoes',
+      category: 'wholebody',
       imageUrl:
-        'https://cdn.rickowens.eu/products/81425/large/RP20F2884LDE_90_-_1.jpg?1591352033',
+        'https://a.1stdibscdn.com/archivesE/upload/1121189/v_35458311511273245459/3545831_master.jpg?disable=upscale&auto=webp&quality=60&width=960',
       onHold: true,
       orderId: 4
     }),
     Product.create({
-      name: 'Prada Sheepskin Coat',
+      name: 'Junya Black Frayed Edge Hat',
       description:
-        'This sheepskin coat is characterized by its striking vintage finish. A frog toggle closure decorates the front of the coat with distinctive shirt-style collar.',
+        'Vintage Junya Watanabe black wool hat featuring intentional frayed edges and adorned with a vintage hat pin at the center front.',
       price: '2000.00',
-      category: 'wholebody',
+      category: 'accessories',
       imageUrl:
-        'https://www.prada.com/content/dam/pradanux_products/U/UPS/UPS418/889F0002/UPS418_889_F0002_SLF.png/_jcr_content/renditions/cq5dam.web.white.1200.1500.webp'
+        'https://a.1stdibscdn.com/archivesE/upload/1121189/v_18484931471326489750/1848493_master.jpg?disable=upscale&auto=webp&quality=60&width=960'
     }),
     Product.create({
-      name: 'Prada Sable Dress',
+      name: 'Issey Miyake Machine Gun Baby Dress',
       description:
-        'Flowing lines moved by the sunray pleats on the skirt define the design of this light sablé dress. The garment with refined three-quarter sleeves and a waist belt in the same fabric has a vibrant floral print.',
+        'Issey Miyake Pleats Please Machine Gun Baby. Limited Edition Dress. Labeled size 3. Excellent Condition',
       price: '1000.00',
       category: 'wholebody',
       imageUrl:
-        'https://www.prada.com/content/dam/pradanux_products/P/P3C/P3C65H/1X5TF0002/P3C65H_1X5T_F0002_S_202_SLF.png/jcr:content/renditions/cq5dam.web.white.2400.3000.webp'
+        'https://a.1stdibscdn.com/issey-miyake-pleats-please-machine-gun-baby-dress-for-sale/1121189/v_76541111570447182073/7654111_master.jpg?disable=upscale&auto=webp&quality=60&width=960'
     }),
     Product.create({
       name: 'XULY.Bët (Lamine Kouyaté) Ensemble',
@@ -272,7 +274,7 @@ async function seed() {
         'https://a.1stdibscdn.com/vintage-comme-des-garcons-broken-bride-ivory-tiered-skirt-2005-for-sale/1121189/v_70359221562915119143/7035922_master.jpg?disable=upscale&auto=webp&quality=60&width=960'
     }),
     Product.create({
-      name: 'Comme des Garcons Victorian Bustle Dress',
+      name: 'Comme des Garcons Bustle Dress',
       description:
         "Rei Kawakubo for Comme des Garcons high concept creation with Victorian flair. Most likely inspired by Vivienne Westwood's wench style dresses. Asymmetric heavy cotton dress extraordinarily constructed with fan pleating and manipulation of fabric into bustle style back. The gathers and tucks of the skirt allow for irregular hemline and the hand ruched bodice creates a feminine corset single strap style. Side zipper closure.",
       price: '1700.00',

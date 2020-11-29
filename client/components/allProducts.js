@@ -2,12 +2,23 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchProducts} from '../store'
-import {Container, Row, Col, Div, Image, Text} from 'atomize'
+import {
+  Container,
+  Row,
+  Col,
+  Div,
+  Image,
+  Text,
+  Button,
+  Icon,
+  Collapse
+} from 'atomize'
 
 class AllProducts extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      showCollapse: false,
       category: 'all',
       filteredProducts: [],
       categories: [
@@ -36,31 +47,47 @@ class AllProducts extends React.Component {
   }
 
   render() {
+    const {selectedCode, showCollapse} = this.state
     const products =
       this.state.category === 'all'
         ? this.props.products
         : this.state.filteredProducts
     return (
       <Container>
-        <Div>
-          {this.state.categories.map(category => {
-            return (
-              <p
-                className="categories"
-                onClick={this.handleClick}
-                value={category.value}
-                key={category.id}
-              >
-                {category.text}
-              </p>
-            )
-          })}
-        </Div>
-
+        <Row>
+          <Col>
+            <Text
+              textSize="subheader"
+              textAlign="center"
+              cursor="pointer"
+              onClick={() => this.setState({showCollapse: !showCollapse})}
+            >
+              Categories
+            </Text>
+            <Collapse isOpen={showCollapse}>
+              <Div>
+                {this.state.categories.map(category => {
+                  return (
+                    <Text
+                      textAlign="center"
+                      cursor="pointer"
+                      className="categories"
+                      onClick={this.handleClick}
+                      value={category.value}
+                      key={category.id}
+                    >
+                      {category.text}
+                    </Text>
+                  )
+                })}
+              </Div>
+            </Collapse>
+          </Col>
+        </Row>
         <Row>
           {products.map(product => {
             return (
-              <Col size="4">
+              <Col size="3">
                 <Div
                   hoverShadow="blue-shadow"
                   d="flex"
@@ -74,9 +101,7 @@ class AllProducts extends React.Component {
                   key={product.id}
                 >
                   <Link to={`/products/${product.id}`}>
-                    <Text textColor="black" textSize="subheader">
-                      {product.name}
-                    </Text>
+                    <Text textColor="black">{product.name}</Text>
                   </Link>
                   <div className="img-overlay">
                     {/* {!product.quantity && (
@@ -106,9 +131,9 @@ class AllProducts extends React.Component {
                       )} */}
                   </div>
                   <Link to={`/products/${product.id}`}>
-                    <Image h="350px" w="auto" src={product.imageUrl} />
+                    <Image h="250px" w="auto" src={product.imageUrl} />
                   </Link>
-                  <Text>${product.price}</Text>
+                  <Text textSize="caption">${product.price}</Text>
                 </Div>
               </Col>
             )
