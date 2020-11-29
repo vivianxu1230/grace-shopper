@@ -46,7 +46,7 @@ router.put('/checkout', async (req, res, next) => {
 router.put(`/add/:productId`, async (req, res, next) => {
   try {
     const item = await Product.findItem(req, res, next)
-    item.update({onHold: true})
+    await item.update({onHold: true})
     const order = await User.findCart(req, res, next)
     await OrderItem.create({
       productId: item.id,

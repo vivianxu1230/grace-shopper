@@ -2,17 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {fetchProducts} from '../store'
-import {
-  Container,
-  Row,
-  Col,
-  Div,
-  Image,
-  Text,
-  Button,
-  Icon,
-  Collapse
-} from 'atomize'
+import {Container, Row, Col, Div, Image, Text, Collapse} from 'atomize'
 
 class AllProducts extends React.Component {
   constructor(props) {

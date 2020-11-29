@@ -2,8 +2,18 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-
 import {logout, checkoutThunk, deleteThunk, deleteThunkGuest} from '../store'
+import {
+  Container,
+  Row,
+  Col,
+  Div,
+  Icon,
+  Image,
+  Text,
+  Collapse,
+  Button
+} from 'atomize'
 
 class Cart extends React.Component {
   constructor(props) {
@@ -27,51 +37,78 @@ class Cart extends React.Component {
 
   render() {
     return (
-      <div className="cart-container">
+      <Container>
         {this.props.cart.products && this.props.cart.products.length ? (
-          <div>
-            <div className="cart-heading">
-              <p>Name</p>
-              <p>Price</p>
-              <p>Qty</p>
-            </div>
-            <div>
+          <Div>
+            <Row textAlign="center">
+              <Col size="4">
+                <Text textSize="subheader">Name</Text>
+              </Col>
+              <Col size="4">
+                <Text textSize="subheader">Price</Text>
+              </Col>
+              <Col size="3">
+                <Text textSize="subheader">Qty</Text>
+              </Col>
+            </Row>
+            <Div>
               {this.props.cart.products &&
                 this.props.cart.products.map(product => (
-                  <div className="cart-item" key={product.id}>
-                    <button
-                      onClick={() => {
-                        this.deleteHandler(product.id)
-                      }}
-                      type="button"
-                      className="delete-checkout"
-                    >
-                      x
-                    </button>
-                    <Link to={`/products/${product.id}`}>
-                      <p>{product.name}</p>
-                    </Link>
-                    <p>${product.price}</p>
-                    <p>{product.quantity}</p>
-                    <img src={product.imageUrl} />
-                  </div>
+                  <Row textAlign="center" key={product.id}>
+                    <Col size="4">
+                      <Link to={`/products/${product.id}`}>
+                        <Text textColor="black">{product.name}</Text>
+                        <Image h="120px" w="auto" src={product.imageUrl} />
+                      </Link>
+                    </Col>
+                    <Col size="4">
+                      <Text>${product.price}</Text>
+                    </Col>
+                    <Col size="3" d="flex" flexDir="row" justify="center">
+                      <Text>{product.quantity}</Text>
+                    </Col>
+                    <Col d="flex" align="flex-start" size="1">
+                      {' '}
+                      <Button
+                        m={{t: '4.2rem'}}
+                        bg="white"
+                        onClick={() => {
+                          this.deleteHandler(product.id)
+                        }}
+                        type="button"
+                        className="delete-checkout"
+                      >
+                        <Icon name="Delete" size="20px" />
+                      </Button>
+                    </Col>
+                  </Row>
                 ))}
-              {this.props.isLoggedIn ? (
-                <button type="button" onClick={() => this.checkoutHandler()}>
-                  Checkout
-                </button>
-              ) : (
-                <p>Log in or register to checkout</p>
-              )}
-              <Link to="/products">
-                <button type="button">Continue shopping</button>
-              </Link>
-            </div>
-          </div>
+              <Div d="flex" justify="center">
+                {this.props.isLoggedIn ? (
+                  <Button
+                    m={{r: '1rem'}}
+                    type="button"
+                    onClick={() => this.checkoutHandler()}
+                  >
+                    Checkout
+                  </Button>
+                ) : (
+                  <Text m={{t: '0.5rem', r: '1rem'}}>
+                    Log in or register to checkout
+                  </Text>
+                )}
+                <Link to="/products">
+                  <Button type="button">Continue shopping</Button>
+                </Link>
+              </Div>
+            </Div>
+          </Div>
         ) : (
-          <p>There are no items in your cart.</p>
+          <Text textSize="subheader" textAlign="center">
+            There are no items in your cart.
+          </Text>
         )}
-      </div>
+      </Container>
     )
   }
 }
