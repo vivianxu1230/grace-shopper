@@ -44,7 +44,11 @@ class Navbar extends React.Component {
               ) : (
                 <></>
               )}
-              <Anchor href="#" onClick={this.props.handleClick}>
+              <Anchor
+                textColor="black"
+                href="#"
+                onClick={this.props.handleClick}
+              >
                 Logout
               </Anchor>
               <Link className="cart-link" to="/cart">

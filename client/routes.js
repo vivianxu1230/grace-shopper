@@ -5,7 +5,6 @@ import PropTypes from 'prop-types'
 import {
   Login,
   Signup,
-  UserHome,
   AllProducts,
   SingleProduct,
   Home,
@@ -46,7 +45,6 @@ class Routes extends Component {
         )}
         {isLoggedIn && (
           <Switch>
-            <Route path="/home" component={UserHome} />
             <Route path="/checkoutconf" component={CheckoutPage} />
           </Switch>
         )}

@@ -9,6 +9,10 @@ const Order = db.define('order', {
       isIn: [['Cart', 'Shipped', 'Processing', 'Received']]
     }
   },
+  orderTotal: {
+    type: Sequelize.DECIMAL(10, 2),
+    defaultValue: 0.0
+  },
   paymentInfo: {
     type: Sequelize.STRING,
     allowNull: false

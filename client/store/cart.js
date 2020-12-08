@@ -1,4 +1,8 @@
 import axios from 'axios'
+import {loadStripe} from '@stripe/stripe-js'
+const stripePromise = loadStripe(
+  'pk_test_51HvwjSA1LtAlN3NJCwJBKxZD2dQNnbwaKg0gLnEQVFw9AZ6I1Z5R6eejLVaI4inKCxjZVyJXOhMtFuyZZagk51Q200XdsJJn0g'
+)
 
 /**
  * ACTION TYPES
@@ -59,6 +63,14 @@ export const fetchCart = () => async dispatch => {
 export const checkoutThunk = () => async dispatch => {
   try {
     await axios.put('/api/cart/checkout')
+    // const session = await response.json()
+    // // console.log('session:', session)
+    // const result = await stripe.redirectToCheckout({
+    //   sessionId: session.id,
+    // })
+    // if (result.error) {
+    //   console.log('error at checkout')
+    // }
     dispatch(checkout())
   } catch (err) {
     console.error(err)

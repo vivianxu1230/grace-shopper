@@ -26,7 +26,6 @@ class AllProducts extends React.Component {
     this.props.fetchProducts()
   }
   async handleClick(event) {
-    console.log(this.state)
     await this.setState({category: event.target.getAttribute('value')})
     const filteringProducts = this.props.products.filter(
       product => product.category === this.state.category
@@ -77,7 +76,7 @@ class AllProducts extends React.Component {
         <Row>
           {products.map(product => {
             return (
-              <Col size="3">
+              <Col size="3" key={product.id}>
                 <Div
                   hoverShadow="blue-shadow"
                   d="flex"
@@ -88,7 +87,6 @@ class AllProducts extends React.Component {
                   border="1px solid"
                   borderColor="black"
                   className="soloProduct"
-                  key={product.id}
                 >
                   <Link to={`/products/${product.id}`}>
                     <Text textColor="black">{product.name}</Text>

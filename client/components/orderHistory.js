@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout, fetchCart, fetchGuestCart} from '../store'
 import axios from 'axios'
+import {Text, Div, Icon, Container, Image} from 'atomize'
 
 class orderHistory extends React.Component {
   constructor(props) {
@@ -30,43 +31,50 @@ class orderHistory extends React.Component {
   }
   render() {
     return (
-      <div>
-        <h2>Order History</h2>
+      <Container>
+        <Text textAlign="center" textSize="subheader">
+          Order History
+        </Text>
         {this.state.orders.length ? (
           this.state.orders.map(order => {
             return (
-              <div
+              <Div
                 onClick={this.handleClick}
                 className="orders-container"
                 value={order.id}
                 key={order.id}
               >
-                <div className="order-header">
-                  <p>Order #{order.id}</p>
-                  <p>{order.status}</p>
-                  <p>{order.updatedAt}</p>
-                </div>
+                <Div textAlign="center" cursor="pointer">
+                  <Text>Order #{order.id}</Text>
+                  <Text>{order.status}</Text>
+                  <Text>{order.updatedAt}</Text>
+                </Div>
                 {this.state.selectedOrder ? (
                   order.products.map(product => {
                     return (
-                      <div key={product.id} className="order-details">
-                        <img style={{height: '50px'}} src={product.imageUrl} />
-                        <p>{product.name}</p>
-                        <p>1</p>
-                        <p>${product.price}</p>
-                      </div>
+                      <Div
+                        key={product.id}
+                        d="flex"
+                        flexDir="row"
+                        justify="space-evenly"
+                      >
+                        <Image h="100px" w="auto" src={product.imageUrl} />
+                        <Text>{product.name}</Text>
+                        <Text>1</Text>
+                        <Text>${product.price}</Text>
+                      </Div>
                     )
                   })
                 ) : (
-                  <div />
+                  <Div />
                 )}
-              </div>
+              </Div>
             )
           })
         ) : (
-          <p>There are no past orders to show. </p>
+          <Text textAlign="center">There are no past orders to show. </Text>
         )}
-      </div>
+      </Container>
     )
   }
 }
