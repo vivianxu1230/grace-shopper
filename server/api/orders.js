@@ -3,7 +3,7 @@ const {Order, Product} = require('../db/models')
 module.exports = router
 const {Op} = require('sequelize')
 
-const adminsOnly = (req,res,next) => {
+const adminsOnly = (req, res, next) => {
   if (!req.user.isAdmin) {
     const err = new Error('No access.')
     err.status = 401
@@ -12,7 +12,7 @@ const adminsOnly = (req,res,next) => {
   next()
 }
 
-const adminsAndusers = (req,res,next) => {
+const adminsAndusers = (req, res, next) => {
   if (!req.user.isAdmin || req.user.userId !== req.params.userId) {
     const err = new Error('No access.')
     err.status = 401

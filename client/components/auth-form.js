@@ -50,7 +50,7 @@ class AuthForm extends React.Component {
                 </label>
                 <Input
                   onChange={e => this.handleChange(e)}
-                  value="this.state.lastName"
+                  value={this.state.lastName}
                   placeholder="Last Name"
                   name="lastName"
                   type="text"

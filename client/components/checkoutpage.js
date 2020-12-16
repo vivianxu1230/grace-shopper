@@ -2,15 +2,16 @@ import React, {useState} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout, fetchCart, deleteThunk} from '../store'
+import {Container, Row, Col, Div, Image, Text, Collapse} from 'atomize'
 
 const checkoutpage = ({checkout, cart, isLoggedIn, loadCart}) => {
   return (
-    <div>
-      <h3 style={{textAlign: 'center'}}>
+    <Container>
+      <Text textSize="subheader" textAlign="center">
         Congratulations! You have successfully checked out. Your confirmation id
         is #2789hne342bd!
-      </h3>
-    </div>
+      </Text>
+    </Container>
   )
 }
 

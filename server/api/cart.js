@@ -50,8 +50,8 @@ router.put('/checkout', async (req, res, next) => {
         }
       ],
       mode: 'payment',
-      success_url: 'https://google.com',
-      cancel_url: 'https://google.com'
+      success_url: 'http://localhost:8080/checkoutconf',
+      cancel_url: 'http://google.com'
     })
 
     const cartItems = cart.products
