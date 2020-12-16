@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const {User, Product, Order, OrderItem} = require('../db/models')
 const stripe = require('stripe')(
-  'sk_test_51HvwjSA1LtAlN3NJOKoDJSfhDlrUkO8pJrHOaLoFaF82LetH5RJPyyPPGgyA1mAcl08TQP9zkZ1BC2l2x6oqIp4800ZNHZl0Kw'
+  'pk_test_TYooMQauvdEDq54NiTphI7jx'
 )
 
 module.exports = router
